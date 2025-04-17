@@ -33,12 +33,12 @@
                 <h1>Leave A Review</h1>
 
                 <div class="fieldContainer">
-                    <label for="">Subject</label>
+                    <label for="">Subject *</label>
                     <input type="text" name="" id="">
                 </div>
 
                 <div class="fieldContainer">
-                    <label for="">Review</label>
+                    <label for="">Review *</label>
                     <textarea name="" id=""></textarea>
                 </div>
 

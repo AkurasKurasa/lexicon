@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 *, *::after, *::before {
     box-sizing: border-box;
@@ -12,6 +13,7 @@
     --bitter: "Bitter", serif;
     --openSans: "Open Sans", sans-serif;
     --domine: "Domine", serif;
+    --arvo: "Arvo", serif;
 }
 
 html {
@@ -110,16 +112,54 @@ main {
     margin-bottom: 24px;
 }
 
-.reviewForm h1 {
+#reviewForm {
+    width: 100%;
+}
+
+#reviewForm h1 {
     font-family: var(--openSans);
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 700;
     width: 100%;
     text-align: left;
     margin-bottom: 16px;
+    text-transform: uppercase;
 }
 
+.fieldContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: fit-content;
+}
 
+.fieldContainer label {
+    font-family: var(--arvo);
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(115, 64, 96);
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    width: 100%;
+}
+
+.fieldContainer input, textarea {
+    border: 1px rgb(204, 204, 204) solid;
+}
+
+.fieldContainer input {
+    width: 342px;
+    height: 41px;
+    margin: .5rem 0
+}
+
+.fieldContainer textarea {
+    width: 500px;
+    height: 210px;
+    margin: .5rem 0
+}
 
 .info {
     border: 1px black solid;
