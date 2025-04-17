@@ -22,14 +22,13 @@ html {
 }
 
 main {
-    display:flex;
     height: fit-content;
-
     margin: 32px;
     padding: 32px;
 }
 
-.recipeInfo {
+/*Section for the title and the authorcard*/
+.headerSection {
     display: flex;
     flex-direction: row;
     gap: 5vw;
@@ -57,6 +56,7 @@ main {
     font-style: italic;
     color: rgb(77, 77, 77);
     line-height: 25px;
+    margin: 16px 0 16px 0;
 }
 
 .recipeImage {
@@ -208,13 +208,12 @@ main {
     margin-top: 100px;
     height: 80vh;
     width: 60vh;
-    background-color: #444; /* darker gray for better contrast */
+    background-color: #444; 
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
     padding: 1rem;
-    border-radius: 10px;
 }
 
 .authorCard h2 {
@@ -240,3 +239,66 @@ main {
     position: absolute;
     margin-top: 120px;
   }
+
+/*Section for the main content */
+.sectionMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    background-color: #fdfdfd; 
+    font-family: var(--openSans);
+    margin-bottom: 3rem;
+}
+
+.sectionCard {
+    width: 110vh;
+    background: white;
+    border-radius: 12px;
+}
+
+
+.prepTimeContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(197, 191, 191);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    font-family: var(--openSans);
+    background-color: #fff;
+}
+
+.colorFill {
+    height: 10px;
+    width: 100%;
+    background-color: orange;
+    margin-bottom: 30px;
+}
+
+.timeHeader,
+.timeValues {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.timeHeader span,
+.timeValues span {
+    flex: 1; 
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.timeValues span {
+    font-size: 15px;
+    color: #333;
+}
+
+.timeHeader span {
+    margin-right: 10px;
+}
