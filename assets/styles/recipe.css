@@ -21,11 +21,15 @@ html {
     
 }
 
+section {
+    margin-bottom: 15vh;
+}
 main {
     height: fit-content;
     margin: 32px;
     padding: 32px;
 }
+
 
 /*Section for the title and the authorcard*/
 .headerSection {
@@ -241,14 +245,12 @@ main {
   }
 
 /*Section for the main content */
-.sectionMain {
+.mainSection {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 2rem;
     width: 100%;
-    background-color: #fdfdfd; 
     font-family: var(--openSans);
     margin-bottom: 3rem;
 }
@@ -256,7 +258,7 @@ main {
 .sectionCard {
     width: 110vh;
     background: white;
-    border-radius: 12px;
+    border-radius: 1px;
 }
 
 
@@ -264,13 +266,11 @@ main {
     display: flex;
     flex-direction: column;
     border: 2px solid rgb(197, 191, 191);
-    border-radius: 10px;
+    border-radius: 6px;
     overflow: hidden;
     width: 100%;
     max-width: 900px;
-    margin: 2rem auto;
     font-family: var(--openSans);
-    background-color: #fff;
 }
 
 .colorFill {
@@ -301,4 +301,24 @@ main {
 
 .timeHeader span {
     margin-right: 10px;
+}
+
+.ingredientsCard {
+    background-color: rgb(236, 234, 231);
+    width: 150vh;
+    height:fit-content;
+}
+
+
+.IngredName {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.IngredDesc {
+    font-size: 18px;
+}
+
+.ingredient{
+    padding:30px;
 }

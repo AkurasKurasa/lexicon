@@ -72,38 +72,47 @@
         </section>
 
         <!-- Section for the body (The main content of the page) -->
-        <section class="sectionMain"> 
-  <div class="sectionCard">
-    <div class="prepTimeContainer">
-      <div class="colorFill"></div>
-      <div class="timeHeader">
-        <span>Prep Time</span>
-        <span>Cook Time</span>
-        <span>Additional Time</span>
-      </div>
-      <div class="timeValues">
-        <span>20 minutes</span>
-        <span>35 minutes</span>
-        <span>1 hour 20 minutes</span>
-      </div><br>
-      <div class="timeHeader">
-        <span>Total Time</span>
-        <span>Servings</span>
-      </div>
-      <div class="timeValues">
-        <span>2 hours 15 minutes</span>
-        <span>8</span>
-      </div>
-      <hr style="margin: 30px 25px 30px 25px">
-      <div class="timeHeader">
-        <span>Estimated Budget: </span>
-      </div>
+    <section class="mainSection"> 
+    <div class="sectionCard">
+        <div class="prepTimeContainer">
+        <div class="colorFill"></div>
+        <div class="timeHeader">
+            <span>Prep Time</span>
+            <span>Cook Time</span>
+            <span>Additional Time</span>
+        </div>
+        <div class="timeValues">
+            <span>20 minutes</span>
+            <span>35 minutes</span>
+            <span>1 hour 20 minutes</span>
+        </div><br>
+        <div class="timeHeader">
+            <span>Total Time</span>
+            <span>Servings</span>
+        </div>
+        <div class="timeValues">
+            <span>2 hours 15 minutes</span>
+            <span>8</span>
+        </div>
+        <hr style="margin: 30px 25px 30px 25px">
+        <div class="timeHeader">
+            <span>Estimated Budget: </span>
+        </div>
 
-      <div class="timeValues">
-        <span>&#8369;00.00</span>
-      </div><br>
+        <div class="timeValues">
+            <span>&#8369;00.00</span>
+        </div><br>
+        </div>
     </div>
-  </div>
+    <div class="ingredientsCard">
+        <div>
+        <p style="font-weight:bold;font-size:25px;margin:30px 30px 0 30px">Ingredients for this recipe</p>
+        <div class="ingredient">
+            <p class="IngredName">Brown Sugar</p>
+            <p class="IngredDesc">The perfect little bit of sweetness. The brown sugar helps offset the spiciness and makes everything, just deliciously rich.</p>
+        </div>
+        </div>
+    </div>
 </section>
 
     </main>
