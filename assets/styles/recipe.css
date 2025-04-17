@@ -6,6 +6,7 @@
 *, *::after, *::before {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
     top: 0;
 }
 
@@ -20,32 +21,23 @@ html {
     
 }
 
-body {
-    min-height: 100vh;
-    height: fit-content;
-    min-width: 100vw;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    padding: 5rem 0;
-}
-
 main {
-    border: 1px black solid;
+    height: fit-content;
+    margin: 32px;
+    padding: 32px;
+}
+
+/*Section for the title and the authorcard*/
+.headerSection {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-direction: row;
-    width: 1155px;
+    gap: 5vw;
+    width: 100%;
     height: fit-content;
 }
 
-.content {
-    border: 1px black solid;
+.recipeHeader {
     display: flex;
-    align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     width: 655px;
@@ -64,6 +56,7 @@ main {
     font-style: italic;
     color: rgb(77, 77, 77);
     line-height: 25px;
+    margin: 16px 0 16px 0;
 }
 
 .recipeImage {
@@ -168,4 +161,144 @@ main {
     justify-content: center;
     width: 355px;
     height: 100%;
+}
+
+/* CSS For the stars */
+.star {
+    font-size: 20px;
+    width: 15px;
+    display: inline-block;
+    color: gray;
+}
+.star:last-child {
+    margin-right: 0;
+}
+.star:before {
+    content:'\2605';
+}
+.star.on {
+    color: gold;
+}
+.star.half:after {
+    content:'\2605';
+    color: gold;
+    position: absolute;
+    margin-left: -20px;
+    width: 10px;
+    overflow: hidden;
+}
+
+/*CSS for the jump to recipe button */
+.jumpToRecipe {
+    font-size: 16px;
+    height: 5vh;
+    cursor: pointer;
+    background-color:rgb(236, 234, 231);
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/*CSS for the author card*/
+.authorProfile {
+    height:100%;
+    width: 100%;
+}
+.authorCard {
+    margin-top: 100px;
+    height: 80vh;
+    width: 60vh;
+    background-color: #444; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding: 1rem;
+}
+
+.authorCard h2 {
+    margin-top: 120px; 
+    font-family: var(--domine); 
+    color: white;
+}
+
+.authorCard p {
+    padding: 16px; 
+    font-family: var(--bitter); 
+    color: white; 
+    text-align: center;
+    line-height: 2rem;
+}
+
+/*CSS for the author's profile picture*/
+.authorPicture {
+    border-radius: 50%;
+    object-fit: contain;
+    height: 150px;
+    width: auto;
+    position: absolute;
+    margin-top: 120px;
+  }
+
+/*Section for the main content */
+.sectionMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    background-color: #fdfdfd; 
+    font-family: var(--openSans);
+    margin-bottom: 3rem;
+}
+
+.sectionCard {
+    width: 110vh;
+    background: white;
+    border-radius: 12px;
+}
+
+
+.prepTimeContainer {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(197, 191, 191);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    font-family: var(--openSans);
+    background-color: #fff;
+}
+
+.colorFill {
+    height: 10px;
+    width: 100%;
+    background-color: orange;
+    margin-bottom: 30px;
+}
+
+.timeHeader,
+.timeValues {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.timeHeader span,
+.timeValues span {
+    flex: 1; 
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.timeValues span {
+    font-size: 15px;
+    color: #333;
+}
+
+.timeHeader span {
+    margin-right: 10px;
 }
