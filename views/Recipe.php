@@ -10,7 +10,7 @@
 <body>
     <main>
         <div class="recipeInfo">
-        <div class="content">
+        <div class="recipeHeader">
             <h1 class="recipeName">Aunt Jemima's Beloved Fried Chicken</h1>
             <div class="recipeRating">
                 <span class="star"></span>
@@ -57,6 +57,15 @@
 
             </form>
         -->    
+        <div class="authorProfile">
+        <div class="authorCard">    
+            <h2 >Aunt Jemima</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non commodi nemo quidem, cumque omnis sit optio aspernatur esse placeat odit praesentium dolorem quo accusamus, provident ad! Ex ullam nemo nihil!</p>
+            <img class="authorPicture stack-top" src="../assets/images/img_avatar.png" alt="Avatar">
+
+        </div>
+
+        </div>
         </div>
         <!-- 
         <div class="info"></div>

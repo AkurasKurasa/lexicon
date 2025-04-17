@@ -24,21 +24,20 @@ html {
 main {
     display:flex;
     height: fit-content;
-    width: 100%;
+
     margin: 32px;
     padding: 32px;
 }
 
 .recipeInfo {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-direction: row;
+    gap: 5vw;
     width: 100%;
     height: fit-content;
 }
 
-.content {
+.recipeHeader {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -199,3 +198,45 @@ main {
     border-radius: 5px;
     margin-bottom: 15px;
 }
+
+/*CSS for the author card*/
+.authorProfile {
+    height:100%;
+    width: 100%;
+}
+.authorCard {
+    margin-top: 100px;
+    height: 80vh;
+    width: 60vh;
+    background-color: #444; /* darker gray for better contrast */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.authorCard h2 {
+    margin-top: 120px; 
+    font-family: var(--domine); 
+    color: white;
+}
+
+.authorCard p {
+    padding: 16px; 
+    font-family: var(--bitter); 
+    color: white; 
+    text-align: center;
+    line-height: 2rem;
+}
+
+/*CSS for the author's profile picture*/
+.authorPicture {
+    border-radius: 50%;
+    object-fit: contain;
+    height: 150px;
+    width: auto;
+    position: absolute;
+    margin-top: 120px;
+  }
