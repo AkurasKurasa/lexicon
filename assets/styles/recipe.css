@@ -6,6 +6,7 @@
 *, *::after, *::before {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
     top: 0;
 }
 
@@ -20,32 +21,25 @@ html {
     
 }
 
-body {
-    min-height: 100vh;
+main {
+    display:flex;
     height: fit-content;
-    min-width: 100vw;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    padding: 5rem 0;
+    width: 100%;
+    margin: 32px;
+    padding: 32px;
 }
 
-main {
-    border: 1px black solid;
+.recipeInfo {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    width: 1155px;
+    width: 100%;
     height: fit-content;
 }
 
 .content {
-    border: 1px black solid;
     display: flex;
-    align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     width: 655px;
@@ -168,4 +162,40 @@ main {
     justify-content: center;
     width: 355px;
     height: 100%;
+}
+
+/* CSS For the stars */
+.star {
+    font-size: 20px;
+    width: 15px;
+    display: inline-block;
+    color: gray;
+}
+.star:last-child {
+    margin-right: 0;
+}
+.star:before {
+    content:'\2605';
+}
+.star.on {
+    color: gold;
+}
+.star.half:after {
+    content:'\2605';
+    color: gold;
+    position: absolute;
+    margin-left: -20px;
+    width: 10px;
+    overflow: hidden;
+}
+
+/*CSS for the jump to recipe button */
+.jumpToRecipe {
+    font-size: 16px;
+    height: 5vh;
+    cursor: pointer;
+    background-color:rgb(236, 234, 231);
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }

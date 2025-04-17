@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe</title>
@@ -8,12 +9,24 @@
 </head>
 <body>
     <main>
+        <div class="recipeInfo">
         <div class="content">
             <h1 class="recipeName">Aunt Jemima's Beloved Fried Chicken</h1>
+            <div class="recipeRating">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <p style="display: inline-block;"> <span id="NumOfReviews">0</span> reviews / <span id="AveStars">0</span> average
+            </div>
             <p class="recipeDescription">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non commodi nemo quidem, cumque omnis sit optio aspernatur esse placeat odit praesentium dolorem quo accusamus, provident ad! Ex ullam nemo nihil!
             </p>
+            <button class="jumpToRecipe">&#129059; JUMP TO RECIPE</button>
             <div class="recipeImage"></div>
+            </div>
+            <!-- 
             <div class="recipeList">
                 <h1>INGREDIENTS FOR THIS RECIPE</h1>
 
@@ -43,9 +56,11 @@
                 </div>
 
             </form>
-            
+        -->    
         </div>
+        <!-- 
         <div class="info"></div>
+        -->
     </main>
 </body>
 </html>
