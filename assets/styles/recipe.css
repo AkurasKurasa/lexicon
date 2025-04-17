@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap');
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    top: 0;
+}
+
+:root {
+    --bitter: "Bitter", serif;
+    --openSans: "Open Sans", sans-serif;
+    --domine: "Domine", serif;
+}
+
+html {
+    
+}
+
+body {
+    min-height: 100vh;
+    height: fit-content;
+    min-width: 100vw;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 5rem 0;
+}
+
+main {
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 1155px;
+    height: fit-content;
+}
+
+.content {
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 655px;
+    height: fit-content;
+}
+
+.recipeName {
+    font-family: var(--domine);
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.recipeDescription {
+    font-family: var(--bitter);
+    font-size: 16px;
+    font-style: italic;
+    color: rgb(77, 77, 77);
+    line-height: 25px;
+}
+
+.recipeImage {
+    /* border: 1px black solid; */
+    width: 655px;
+    height: 1000px;
+    background-image: url('../images/chicken.jpg');
+    background-size: cover;
+}
+
+.recipeList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    border: 1px black solid;
+}
+
+.recipeList h1 {
+    font-family: var(--openSans);
+    font-size: 25px;
+    font-weight: 700;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.recipeList h2 {
+    font-family: var(--openSans);
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    text-align: left;
+}
+
+.recipeList p {
+    font-family: var(--bitter);
+    font-size: 17px;
+    /* font-weight: 700; */
+    color: rgb(77, 77, 77);
+    width: 100%;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.reviewForm h1 {
+    font-family: var(--openSans);
+    font-size: 25px;
+    font-weight: 700;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+
+
+.info {
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 355px;
+    height: 100%;
+}
