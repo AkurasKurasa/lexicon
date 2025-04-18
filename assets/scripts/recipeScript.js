@@ -18,7 +18,7 @@ $( document ).ready(function() {
         $("#userStar").html("0");
         $("#starsGiven").val("");
         $(".userRating").each(function(){
-            $(this).removeClass("on");
+            $(this).html("&#9734;");
         });
         checkInput();
     });
@@ -29,11 +29,11 @@ $( document ).ready(function() {
         i = 0
         $(".userRating").each(function(){
             if (i<=indexStarSelected) {
-                $(this).addClass("on");
+                $(this).html("&#9733;");
                 i++;
             }
             else {
-                $(this).removeClass("on");
+                $(this).html("&#9734;");
             }
         });
         $("#userStar").html(i);

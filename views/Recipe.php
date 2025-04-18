@@ -17,11 +17,11 @@
         <div class="recipeHeader">
             <h1 class="recipeName">Aunt Jemima's Beloved Fried Chicken</h1>
             <div class="recipeRating">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
+                <span class="star">&#9734;</span>
+                <span class="star">&#9734;</span>
+                <span class="star">&#9734;</span>
+                <span class="star">&#9734;</span>
+                <span class="star">&#9734;</span>
                 <p style="display: inline-block;"> <span id="numOfReviews">0</span> reviews / <span id="AveStars">0</span> average
             </div>
             <p class="recipeDescription">
@@ -99,7 +99,7 @@
         </div>
         <hr style="margin: 30px 25px 30px 25px">
         <div class="timeHeader">
-            <span>Estimated Budget: </span>
+            <span>Estimated Cost: </span>
         </div>
 
         <div class="timeValues">
@@ -154,11 +154,11 @@
                                 <div id="rateRecipe">
                                 <input name="starsGiven" id="starsGiven" value="" hidden>
                                 <p style="display: inline-block;margin:0;"> <span id="userStar">0</span> / 5 stars </p>
-                                <span class="star userRating" id="ratingOne"></span>
-                                <span class="star userRating" id="ratingTwo"></span>
-                                <span class="star userRating" id="ratingThree"></span>
-                                <span class="star userRating" id="ratingFour"></span>
-                                <span class="star userRating" id="ratingFive"></span>
+                                <span class="star userRating" id="ratingOne">&#9734;</span>
+                                <span class="star userRating" id="ratingTwo">&#9734;</span>
+                                <span class="star userRating" id="ratingThree">&#9734;</span>
+                                <span class="star userRating" id="ratingFour">&#9734;</span>
+                                <span class="star userRating" id="ratingFive">&#9734;</span>
                                 </div>
                                 <div class="d-flex gap-3">
                                 <textarea class="form-control" id="userComment" placeholder="Enter your comment..." rows="1" style="resize: none;"></textarea>
@@ -179,11 +179,11 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex flex-row align-items-center"> <span id="loggedInUsername"class="me-2">Username</span> 
                                     <div class="otherUserRatingContainer">
-                                        <span class="star otherUserRating"></span>
-                                        <span class="star otherUserRating"></span>
-                                        <span class="star otherUserRating"></span>
-                                        <span class="star otherUserRating"></span>
-                                        <span class="star otherUserRating"></span>  
+                                        <span class="star otherUserRating">&#9734;</span>
+                                        <span class="star otherUserRating">&#9734;</span>
+                                        <span class="star otherUserRating">&#9734;</span>
+                                        <span class="star otherUserRating">&#9734;</span>
+                                        <span class="star otherUserRating">&#9734;</span>  
                                     </div>
                                     </div> 
                                     <small>12h ago</small>
@@ -197,11 +197,11 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex flex-row align-items-center"> <span id="loggedInUsername"class="me-2">Username</span> 
                                     <div class="otherUserRatingContainer">
-                                        <span class="star otherUserRating"></span>
-                                        <span class="star otherUserRating"></span>
-                                        <span class="star otherUserRating"></span>
-                                        <span class="star otherUserRating"></span>
-                                        <span class="star otherUserRating"></span>  
+                                        <span class="star otherUserRating">&#9734;</span>
+                                        <span class="star otherUserRating">&#9734;</span>
+                                        <span class="star otherUserRating">&#9734;</span>
+                                        <span class="star otherUserRating">&#9734;</span>
+                                        <span class="star otherUserRating">&#9734;</span>  
                                     </div>
                                     </div> 
                                     <small>12h ago</small>
