@@ -184,7 +184,7 @@ main {
     content:'\2605';
     color: gold;
     position: absolute;
-    margin-left: -20px;
+    margin-left: -1px;
     width: 10px;
     overflow: hidden;
 }
@@ -445,4 +445,10 @@ main {
 #userComment::placeholder {
     text-align: left; 
     color: #888; 
+}
+
+.otherUserRating {
+    text-align: center;
+    font-size: 15px;
+    width: 10px;
 }

@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    /*Checks if there is a rating and a comment*/
+    /*Checks if there is an input on rating and comment*/
     function checkInput() {
         if($("#userComment").val() != "" & $("#starsGiven").val() != "") {
             $("#submitComment").attr("disabled", false);
