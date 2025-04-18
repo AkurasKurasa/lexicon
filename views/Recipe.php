@@ -154,11 +154,11 @@
                                 <div id="rateRecipe">
                                 <input name="starsGiven" id="starsGiven" value="" hidden>
                                 <p style="display: inline-block;margin:0;"> <span id="userStar">0</span> / 5 stars </p>
-                                <span class="star rating" id="ratingOne"></span>
-                                <span class="star rating" id="ratingTwo"></span>
-                                <span class="star rating" id="ratingThree"></span>
-                                <span class="star rating" id="ratingFour"></span>
-                                <span class="star rating" id="ratingFive"></span>
+                                <span class="star userRating" id="ratingOne"></span>
+                                <span class="star userRating" id="ratingTwo"></span>
+                                <span class="star userRating" id="ratingThree"></span>
+                                <span class="star userRating" id="ratingFour"></span>
+                                <span class="star userRating" id="ratingFive"></span>
                                 </div>
                                 <div class="d-flex gap-3">
                                 <textarea class="form-control" id="userComment" placeholder="Enter your comment..." rows="1" style="resize: none;"></textarea>

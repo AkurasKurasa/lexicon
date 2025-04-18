@@ -1,12 +1,15 @@
 $( document ).ready(function() {
-    /*When the comment input is empty, the submit button is disabled*/
-    $("#userComment").on("input", function(){
-        if($(this).val() != "") {
+    /*Checks if there is a rating and a comment*/
+    function checkInput() {
+        if($("#userComment").val() != "" & $("#starsGiven").val() != "") {
             $("#submitComment").attr("disabled", false);
         }
         else {
             $("#submitComment").attr("disabled", true);
         }
+    }
+    $("#userComment").on("input", function(){
+        checkInput();
     });
 
     /*Cancels the input*/
@@ -14,16 +17,17 @@ $( document ).ready(function() {
         $("#userComment").val("").blur();
         $("#userStar").html("0");
         $("#starsGiven").val("");
-        $(".rating").each(function(){
+        $(".userRating").each(function(){
             $(this).removeClass("on");
         });
+        checkInput();
     });
 
     /*Rating Functionality*/
-    $("#rateRecipe").on("click", ".rating", function(){
-        indexStarSelected = $(".rating").index($(this));
+    $("#rateRecipe").on("click", ".userRating", function(){
+        indexStarSelected = $(".userRating").index($(this));
         i = 0
-        $(".rating").each(function(){
+        $(".userRating").each(function(){
             if (i<=indexStarSelected) {
                 $(this).addClass("on");
                 i++;
@@ -33,5 +37,7 @@ $( document ).ready(function() {
             }
         });
         $("#userStar").html(i);
+        $("#starsGiven").val(i);
+        checkInput();
     });
 });
