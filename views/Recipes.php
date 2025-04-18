@@ -13,7 +13,7 @@
 
         <div class="recipesContainer">
 
-            <div class="recipeContainer">
+            <div class="recipeContainer" data-name="chicken">
                 <div class="recipeImage"></div>
                 <div class="recipeName">
                     <h1>Aunt Jemima's Beloved Fried Chicken</h1>
