@@ -201,31 +201,55 @@ main {
     height:100%;
     width: 100%;
 }
-.authorCard {
-    margin-top: 100px;
-    height: 80vh;
-    width: 60vh;
-    background-color: #444; 
+.author-card {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    color: white;
-    padding: 1rem;
-}
-
-.authorCard h2 {
-    margin-top: 120px; 
-    font-family: var(--domine); 
-    color: white;
-}
-
-.authorCard p {
-    padding: 16px; 
-    font-family: var(--bitter); 
-    color: white; 
-    text-align: center;
-    line-height: 2rem;
-}
+    gap: 20px;
+    padding: 20px;
+    background: #fdf8f1;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    max-width: 700px;
+    margin: 40px auto;
+    flex-wrap: wrap;
+  }
+  
+  .author-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #40679E;
+  }
+  
+  .author-info {
+    flex: 1;
+  }
+  
+  .author-name {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #333;
+  }
+  
+  .author-bio {
+    margin: 10px 0;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .author-socials a {
+    color: #40679E;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: bold;
+  }
+  
+  .author-socials a:hover {
+    text-decoration: underline;
+  }
+  
 
 /*CSS for the author's profile picture*/
 .authorPicture {
@@ -317,13 +341,13 @@ main {
 .ingredientsCard, .instructionsCard {
     width: 100%;
     height:fit-content;
-    background-color: rgb(236, 234, 231);
+    background-color: #fdf8f1;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-.stepDetails {
+.stepDetails {  
     font-style: italic;
     font-size: 14px;
     color: rgb(61, 61, 61);

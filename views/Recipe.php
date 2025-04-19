@@ -63,13 +63,20 @@
         -->
             
         <div class="authorProfile">
-        <div class="authorCard">    
-            <h2 >Aunt Jemima</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non commodi nemo quidem, cumque omnis sit optio aspernatur esse placeat odit praesentium dolorem quo accusamus, provident ad! Ex ullam nemo nihil!</p>
-            <img class="authorPicture stack-top" src="../assets/images/img_avatar.png" alt="Avatar">
-
-        </div>
-
+        <div class="author-card">
+            <img src="../assets/images/img_avatar.png" alt="Author Image" class="author-image" />
+            <div class="author-info">
+                <h3 class="author-name">Jane Doe</h3>
+                <p class="author-bio">
+                Jane is a passionate home cook who loves experimenting with flavors and creating easy-to-follow recipes for everyone.
+                </p>
+                <p class="author-socials">
+                Follow her on:
+                <a href="#">Instagram</a> |
+                <a href="#">YouTube</a>
+                </p>
+                </div>
+            </div>
         </div>
         </div>
         </section>
@@ -161,7 +168,7 @@
                                 <span class="star userRating" id="ratingFive">&#9734;</span>
                                 </div>
                                 <div class="d-flex gap-3">
-                                <textarea class="form-control" id="userComment" placeholder="Enter your comment..." rows="1" style="resize: none;"></textarea>
+                                <textarea class="form-control" name="userComment" id="userComment" placeholder="Enter your comment..." rows="1" style="resize: none;"></textarea>
                                 </div>
                                 <div class="d-flex justify-content-end gap-3 mt-2" style="width:100%;">
                                 <button type="reset" class="commentButton" id="cancelComment">Cancel</button>

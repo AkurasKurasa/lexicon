@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    /*Checks if there is an input on rating and comment*/
+    /*Function that checks if there is an input on rating and comment*/
     function checkInput() {
         if($("#userComment").val() != "" & $("#starsGiven").val() != "") {
             $("#submitComment").attr("disabled", false);
@@ -8,9 +8,29 @@ $( document ).ready(function() {
             $("#submitComment").attr("disabled", true);
         }
     }
+
+    //Ajax for the recipe rating and the number of comments
+    $.ajax({
+        url:"../controllers/recipeProcess.php",
+        type:"GET",
+        success: function(response) {
+            console.log('success!');
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
+    })
     $("#userComment").on("input", function(){
         checkInput();
     });
+
+    /* Jump to Recipe */
+    $(".jumpToRecipe").click(function(){
+        $('html, body').animate({
+            scrollTop: $('.mainSection').offset().top
+        }, 100);
+        console.log
+    })
 
     /*Cancels the input*/
     $("#cancelComment").on("click", function(){
@@ -40,4 +60,23 @@ $( document ).ready(function() {
         $("#starsGiven").val(i);
         checkInput();
     });
+
+    /*submitComment button script */
+    $("#commentForm").on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url:"../controllers/recipeProcess.php",
+            type: "POST",
+            data: $("#commentForm").serialize(),
+            success: function(response) {
+                let data = JSON.parse(response);
+                console.log(response);
+                console.log(data.stars);
+            },
+            error: function(xhr, status, error) {
+                alert("Something Went wrong:" + error);
+            }
+        })
+    });
+
 });
