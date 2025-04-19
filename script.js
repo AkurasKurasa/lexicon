@@ -66,13 +66,4 @@ $(document).ready(function(){
       });
   });
 
-  // Signup.php
-
-  $("#test").submit(function(e) {
-    // e.preventDefault();
-    // let formData = new FormData(this);
-
-    console.log("works");
-  })
-
 });
