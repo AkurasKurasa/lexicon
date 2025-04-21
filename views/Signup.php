@@ -64,6 +64,7 @@
                 <button>SIGN UP</button>
 
                 <li class="error"></li>
+                <p class="success"></p>
                 
                 <p>Have an account? <a href="Login.php">Log in</a></p>
 

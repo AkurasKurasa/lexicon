@@ -25,8 +25,12 @@ $(document).ready(function(){
       success: function(response) {
         const data = JSON.parse(response);
         if (data.success) {
+          $('.success').empty();
+          $('.success').show();
           $('.error').empty();
-           console.log("Success")
+          $('.error').hide();
+          let message = `<span>Account successfully created</span>`;
+          $('.success').append(message);
         } else {
           let errors = data.errors;
           $('.error').empty();
@@ -37,7 +41,7 @@ $(document).ready(function(){
         }
       },
       error: function() {
-      sggsdgs
+      
       }
     });
   })
