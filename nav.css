@@ -1,4 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/*
+    <nav>
+        <ul>
+            <li id="nav-logo-li">
+        <a href="#">
+            <img id="nav-logo" src="../assets/cooked-logo.png" alt="Cooked.">
+        </a>
+            </li>
+        </ul>
+        <ul>
+            <li><a href="#">Recipes</a></li>
+            <li><a href="#">Popular</a></li>
+            <li>
+                <a href="#">User ▼</a>
+                <ul class="dropdown">
+                    <li><a href="#">Edit Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+*/
+
 
 * {
 
