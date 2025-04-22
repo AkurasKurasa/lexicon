@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/*
+    <nav>
+        <ul>
+            <li id="nav-logo-li">
+        <a href="#">
+            <img id="nav-logo" src="../assets/cooked-logo.png" alt="Cooked.">
+        </a>
+            </li>
+        </ul>
+        <ul>
+            <li><a href="#">Recipes</a></li>
+            <li><a href="#">Popular</a></li>
+            <li>
+                <a href="#">User ▼</a>
+                <ul class="dropdown">
+                    <li><a href="#">Edit Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+*/
+
+
+* {
+
+  padding: 0;
+  margin: 0;
+  font-family: 'Lexend Deca', sans-serif;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  padding: 10px 20px;
+}
+
+nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav > ul li {
+  position: relative;
+  margin-left: 20px;
+}
+
+nav > ul li a {
+  display: block;
+  padding: 10px 15px;
+  color: #FFF;
+  text-decoration: none;
+  text-align: center;
+  font-size: 18px;
+}
+
+nav > ul li ul.dropdown li {
+  display: block;
+}
+
+nav > ul li ul.dropdown {
+  width: 120px;
+  background: #000000;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 999;
+  display: none;
+}
+
+nav > ul li a:hover {
+  background: #1c1c1c;
+}
+
+nav > ul li:hover ul.dropdown {
+  display: block;
+}
+
+#nav-logo-li {
+  padding: 0 !important;
+}

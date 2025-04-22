@@ -13,7 +13,7 @@
 
         <div class="recipesContainer">
 
-            <div class="recipeContainer">
+            <div class="recipeContainer" data-name="chicken">
                 <div class="recipeImage"></div>
                 <div class="recipeName">
                     <h1>Aunt Jemima's Beloved Fried Chicken</h1>
@@ -433,4 +433,6 @@
 
     </section>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="../script.js"></script>
 </html>

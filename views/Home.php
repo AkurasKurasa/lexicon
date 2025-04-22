@@ -8,70 +8,72 @@
 </head>
 <body>
         <div class="featuredRecipes">
-            <div class="featuredRecipe chicken">
-                <h1 class="featuredRecipe-name">FOOD</h1>
+            <div class="featuredRecipe chicken" data-id="chicken">
+                <h1 class="featuredRecipe-name">CHICKEN</h1>
             </div>
 
-            <div class="featuredRecipe ramen">
-                <h1 class="featuredRecipe-name">FOOD</h1>
+            <div class="featuredRecipe ramen" data-id="ramen">
+                <h1 class="featuredRecipe-name">RAMEN</h1>
             </div>
 
-            <div class="featuredRecipe salad">
-                <h1 class="featuredRecipe-name">FOOD</h1>
+            <div class="featuredRecipe salad" data-id="salad">
+                <h1 class="featuredRecipe-name">SALAD</h1>
             </div>
 
-            <div class="featuredRecipe barbeque">
-                <h1 class="featuredRecipe-name">FOOD</h1>
+            <div class="featuredRecipe barbeque" data-id="barbeque">
+                <h1 class="featuredRecipe-name">BARBEQUE</h1>
             </div>
         </div>
 
         <div class="otherRecipes">
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="pizza">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">PIZZA</h3>
             </div>
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="burger">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">BURGER</h3>
             </div>
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="asian">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">ASIAN</h3>
             </div>
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="sandwich">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">SANDWICHES</h3>
             </div>
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="soup">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">SOUP</h3>
             </div>
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="pasta">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">PASTA</h3>
             </div>
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="healthy">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">HEALTHY</h3>
             </div>
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="breakfast">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">BREAKFAST</h3>
             </div>
 
-            <div class="otherRecipe-wrapper">
+            <div class="otherRecipe-wrapper" data-id="seafood">
                 <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">FOOD</h3>
+                <h3 class="otherRecipe-name">SEAFOOD</h3>
             </div>
 
         </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="../script.js"></script>
 </html>
