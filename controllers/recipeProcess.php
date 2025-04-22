@@ -1,4 +1,6 @@
 <?php
+//Starts Session
+session_start();
 include_once("../config.php");
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['starsGiven']) && isset($_POST['userComment'])) {

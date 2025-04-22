@@ -23,7 +23,7 @@ $(document).ready(function(){
         type: 'signup'
       },
       success: function(response) {
-        const data = JSON.parse(response);
+        console.log(response); 
         if (data.success) {
           $('.success').empty();
           $('.success').show();
@@ -38,10 +38,10 @@ $(document).ready(function(){
               let message = `<li>${error}</li>`;
               $('.error').append(message);
           });           
-        }
+        } 
       },
-      error: function() {
-      
+      error: function(xhr, status, error) {
+        console.error("Request failed:", status, error);
       }
     });
   })

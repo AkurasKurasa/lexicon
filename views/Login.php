@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (isset($_SESSION['loggedInUser'])) {
+        header("Location: home.php");
+        exit();
+} 
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +21,6 @@
 <body>
     <main>
         <section class="imageSection"></section>
-
         <section class="contentSection">
             <form id="loginForm">
                 <h1>Cooked.</h1>

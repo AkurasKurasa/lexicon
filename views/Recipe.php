@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../assets/styles/recipe.css">
 </head>
 <body>
+    <?php require_once(__DIR__.'../nav.php'); ?>
     <main>
         <!-- Section for the header -->
         <section class="headerSection">

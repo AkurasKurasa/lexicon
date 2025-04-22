@@ -7,7 +7,7 @@ class User
     {
         $this->db = $db;
     }
-
+    //Inserts the registered information to the database
     public function create($data)
     {
         $sql = "INSERT INTO users (first_name, last_name, gender, email, password, role)
@@ -24,6 +24,7 @@ class User
 
     }
 
+    //Checks if the account exists
     public function verifyUser($email, $password)
     {
         $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
@@ -37,12 +38,16 @@ class User
         // }
 
         if ( $user && $password == $user['password'] ) {
+            //Starts Session
+            session_start();
+            $_SESSION["loggedInUser"] = $user['id'];
             return $user;
         }
     
         return false;
     }
 
+    //Checks if the emailExists
     public function emailExists($email)
     {
         $sql = "SELECT COUNT(*) FROM users WHERE email = :email";
@@ -51,6 +56,15 @@ class User
         $count = $stmt->fetchColumn();
 
         return $count > 0;
+    }
+
+    //Gets the information of the Player
+    public function getUserInfo($id) {
+        $sql = "SELECT * FROM users WHERE id = $id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user;
     }
 
     // public function getById($id)

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/styles/recipes.css">
 </head>
 <body>
+    <?php require_once(__DIR__.'../nav.php'); ?>
     <h1 class="header">Explore Food Recipes</h1>
 
     <section class="recipesSection">
