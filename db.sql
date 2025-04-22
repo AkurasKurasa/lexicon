@@ -4,6 +4,24 @@ CREATE TABLE categories (
     category_name VARCHAR(255) NOT NULL
 );
 
+-- roles table query
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+-- users table query
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    gender ENUM('Male', 'Female', 'Other', 'Prefer not to say') NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (role) REFERENCES roles(name)
+);
+
 -- products table query
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -11,6 +29,8 @@ CREATE TABLE products (
     description TEXT,
     category INT,
     author INT,
+    average_rating INT,
+    reviewers INT,
     is_archived BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
@@ -57,22 +77,12 @@ CREATE TABLE product_instructions (
 CREATE TABLE product_review_comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     comment TEXT NOT NULL,
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     product_id INT NOT NULL,
-    authored_by INT NOT NULL,
+    authored_by INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
     FOREIGN KEY (authored_by) REFERENCES users(id) ON DELETE SET NULL
-);
-
--- product_votes table query
-CREATE TABLE product_votes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
-    product_id INT NOT NULL,
-    rated_by INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
-    FOREIGN KEY (rated_by) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- sentiments table query
@@ -81,28 +91,9 @@ CREATE TABLE sentiments (
     comment_id INT NOT NULL,
     positive INT DEFAULT 0,
     negative INT DEFAULT 0,
-    neutral INT DEFAULT 0,
     FOREIGN KEY (comment_id) REFERENCES product_review_comments(id) ON DELETE CASCADE
 );
 
--- users table query
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
-    gender ENUM('Male', 'Female', 'Other', 'Prefer not to say') NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    FOREIGN KEY (role) REFERENCES roles(name)
-);
-
--- roles table query
-CREATE TABLE roles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE
-);
 
 -- activity_logs table query
 CREATE TABLE activity_logs (
@@ -112,3 +103,5 @@ CREATE TABLE activity_logs (
     activity_by INT NOT NULL,
     FOREIGN KEY (activity_by) REFERENCES users(id)
 );
+
+

@@ -1,5 +1,5 @@
 <?php
-
+include_once("../config.php");
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['starsGiven']) && isset($_POST['userComment'])) {
         $starsGiven = $_POST['starsGiven'];

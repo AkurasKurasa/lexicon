@@ -22,7 +22,7 @@
                 <span class="star">&#9734;</span>
                 <span class="star">&#9734;</span>
                 <span class="star">&#9734;</span>
-                <p style="display: inline-block;"> <span id="numOfReviews">0</span> reviews / <span id="AveStars">0</span> average
+                <p style="display: inline-block;"> <span id="totalNumOfReviews">0</span> reviews / <span id="averageRating">0</span> average
             </div>
             <p class="recipeDescription">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non commodi nemo quidem, cumque omnis sit optio aspernatur esse placeat odit praesentium dolorem quo accusamus, provident ad! Ex ullam nemo nihil!
@@ -30,37 +30,7 @@
             <button class="jumpToRecipe">&#129059; JUMP TO RECIPE</button>
             <div class="recipeImage"></div>
             </div>
-            <!-- 
-            <div class="recipeList">
-                <h1>INGREDIENTS FOR THIS RECIPE</h1>
 
-                <h2>INGREDIENT #1</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ratione iste consequatur, cupiditate consequuntur animi aliquam fuga ipsum id repudiandae, deleniti eaque facilis debitis molestiae voluptatem vero suscipit quaerat laboriosam.</p>
-            
-                <h2>INGREDIENT #2</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ratione iste consequatur, cupiditate consequuntur animi aliquam fuga ipsum id repudiandae, deleniti eaque facilis debitis molestiae voluptatem vero suscipit quaerat laboriosam.</p>
-
-                <h2>INGREDIENT #2</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ratione iste consequatur, cupiditate consequuntur animi aliquam fuga ipsum id repudiandae, deleniti eaque facilis debitis molestiae voluptatem vero suscipit quaerat laboriosam.</p>
-            </div>
-
-            <div class="recipeImage"></div>
-
-            <form action="" id="reviewForm">
-                <h1>Leave A Review</h1>
-
-                <div class="fieldContainer">
-                    <label for="">Subject *</label>
-                    <input type="text" name="" id="">
-                </div>
-
-                <div class="fieldContainer">
-                    <label for="">Review *</label>
-                    <textarea name="" id=""></textarea>
-                </div>
-
-            </form>
-        -->
             
         <div class="authorProfile">
         <div class="author-card">
@@ -70,8 +40,7 @@
                 <p class="author-bio">
                 Jane is a passionate home cook who loves experimenting with flavors and creating easy-to-follow recipes for everyone.
                 </p>
-                <p class="author-socials">
-                Follow her on:
+                <p class="author-socials text-align-center">
                 <a href="#">Instagram</a> |
                 <a href="#">YouTube</a>
                 </p>
@@ -86,31 +55,34 @@
     <div class="sectionCard">
         <div class="prepTimeContainer">
         <div class="colorFill"></div>
-        <div class="timeHeader">
-            <span>Prep Time</span>
-            <span>Cook Time</span>
-            <span>Additional Time</span>
+        <div class="recipeDetailContainer">
+            <div class="recipeDetail">
+                <p>Prep Time:</p> 
+                <p>20 minutes</p>
+            </div>
+            <div class="recipeDetail">
+                <p>Cook Time</p> 
+                <p>35 minutes</p>
+            </div>
+            <div class="recipeDetail">
+                <p>Additional Time:</p> 
+                <p>1 hour 20 minutes</p>
+            </div>
+            <div class="recipeDetail">
+                <p>Total Time</p> 
+                <p>2 hours 15 minutes</p>
+            </div>
+            <div class="recipeDetail">
+                <p>Servings</p> 
+                <p>8</p>
+            </div>
         </div>
-        <div class="timeValues">
-            <span>20 minutes</span>
-            <span>35 minutes</span>
-            <span>1 hour 20 minutes</span>
-        </div><br>
-        <div class="timeHeader">
-            <span>Total Time</span>
-            <span>Servings</span>
-        </div>
-        <div class="timeValues">
-            <span>2 hours 15 minutes</span>
-            <span>8</span>
-        </div>
+        <br>
         <hr style="margin: 30px 25px 30px 25px">
-        <div class="timeHeader">
-            <span>Estimated Cost: </span>
-        </div>
 
-        <div class="timeValues">
-            <span>&#8369;0.00</span>
+        <div class="recipeDetail">
+            <p>Estimated Cost:</p> 
+            <p>&#8369;0.00</p>
         </div><br>
         </div>
     </div>
@@ -215,6 +187,8 @@
                                 </div>
                                 <p class="text-justify comment-text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                             </div>
+                        </div>
+                        <div class="paginationContainer">
                         </div>
                         
                     </div>

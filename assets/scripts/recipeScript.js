@@ -14,7 +14,12 @@ $( document ).ready(function() {
         url:"../controllers/recipeProcess.php",
         type:"GET",
         success: function(response) {
-            console.log('success!');
+            data = JSON.parse(response);
+            //shows the number of reviews and the average rating of the recipe
+            $("#totalNumOfReviews").html(data.totalNumOfReviews);
+            $("#averageRating").html(data.averageRating);
+
+            //changes the highlight of the 
         },
         error: function(xhr, status, error) {
             console.log(error);
