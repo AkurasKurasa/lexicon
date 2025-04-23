@@ -16,10 +16,13 @@ $( document ).ready(function() {
         success: function(response) {
             data = JSON.parse(response);
             //shows the number of reviews and the average rating of the recipe
-            $("#totalNumOfReviews").html(data.totalNumOfReviews);
-            $("#averageRating").html(data.averageRating);
-
-            //changes the highlight of the 
+            /*$("#totalNumOfReviews").html(data.totalNumOfReviews);
+            $("#averageRating").html(data.averageRating);*/
+            if(!data.checkLoggedIn) {
+                $("#userComment").attr('placeholder', 'You must be logged in to review.');
+                $("#userComment").prop('disabled', 'true');
+            }
+            
         },
         error: function(xhr, status, error) {
             console.log(error);
