@@ -28,7 +28,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    padding: 5rem 0;
+    padding: 10rem 0 5rem 0;
     overflow: scroll;
 }
 
@@ -55,7 +55,7 @@ symbol {
 .recipesContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: row;
     gap: 1.5rem;
     /* border: 1px black solid; */
@@ -66,7 +66,7 @@ symbol {
 .recipeContainer {
     border: 1px solid rgba(0,0,0,.15);
     height: 300px;
-    width: 100%; /*285px*/
+    width: 287px; /*285px*/
 
     display: grid;
     grid-template-columns: 1fr;
@@ -109,6 +109,7 @@ symbol {
     /* margin-left: 1rem; */
     margin-bottom: 0.5rem;
     margin-top: 1rem;
+    height: 48px;
 }
 
 .recipeRatingContainer {

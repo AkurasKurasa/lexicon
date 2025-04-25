@@ -9,12 +9,12 @@ CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     description TEXT,
-    category INT,
+    category VARCHAR(255),  -- match type of category_name
     author INT,
     is_archived BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (category) REFERENCES categories(id)
+    FOREIGN KEY (category) REFERENCES categories(category_name)
         ON DELETE SET NULL,
 
     FOREIGN KEY (author) REFERENCES users(id)
@@ -53,6 +53,15 @@ CREATE TABLE product_instructions (
         ON DELETE CASCADE
 );
 
+-- images
+CREATE TABLE images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    related_id INT,
+    related_type ENUM('product', 'user', 'categories') NOT NULL,
+    image TEXT NOT NULL,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+); 
+
 -- product_review_comments table query
 CREATE TABLE product_review_comments (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -69,10 +78,8 @@ CREATE TABLE product_votes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
     product_id INT NOT NULL,
-    rated_by INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
-    FOREIGN KEY (rated_by) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
 -- sentiments table query

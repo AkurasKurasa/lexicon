@@ -17,8 +17,8 @@
     --arvo: "Arvo", serif;
 }
 
-html {
-    
+body {
+    padding: 0 7rem 0 5rem;
 }
 
 main {

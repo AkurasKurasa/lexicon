@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../assets/styles/recipe.css">
 </head>
 <body>
+
+    <?php include '../components/Navbar.php'; ?>
+
     <main>
         <!-- Section for the header -->
         <section class="headerSection">

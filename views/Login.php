@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/styles/auth.css">
 </head>
 <body>
+
     <main>
         <section class="imageSection"></section>
 
