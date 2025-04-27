@@ -14,7 +14,7 @@
 
         <div class="recipesContainer">
 
-            <div class="recipeContainer" data-name="chicken">
+            <div class="recipeContainer" data-name="1">
                 <div class="recipeImage"></div>
                 <div class="recipeName">
                     <h1>Aunt Jemima's Beloved Fried Chicken</h1>

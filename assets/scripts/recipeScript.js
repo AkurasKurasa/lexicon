@@ -77,12 +77,14 @@ $( document ).ready(function() {
             type: "POST",
             data: $("#commentForm").serialize(),
             success: function(response) {
-                let data = JSON.parse(response);
-                console.log(response);
-                console.log(data.stars);
+                $data = JSON.parse(response);
+                    if ($data.success) {
+                        console.log($data.success);
+                    }
+                
             },
             error: function(xhr, status, error) {
-                alert("Something Went wrong:" + error);
+                console.log("Something Went wrong:" + error);
             }
         })
     });
