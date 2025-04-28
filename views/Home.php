@@ -10,6 +10,10 @@
 
         <?php include '../components/Navbar.php'; ?>
 
+        /*
+        Test
+        */
+
         <div class="featuredRecipes">
             <div class="featuredRecipe chicken" data-id="chicken">
                 <h1 class="featuredRecipe-name">CHICKEN</h1>
