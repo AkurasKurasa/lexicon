@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    top: 0;
+}
+
+:root {
+    --bitter: "Bitter", serif;
+    --openSans: "Open Sans", sans-serif;
+    --instrumentSans: "Instrument Sans", sans-serif;
+    --lexendDeca: "Lexend Deca", sans-serif;
+}
+
+.logContainer {
+    width: 100%;
+    height: 50px;
+    /* border: 1px solid rgba(0,0,0,.15); */
+    border-radius: 3px;
+    padding: 1rem 2rem;
+    background-color: #dfdfdf;
+    font-family: var(--bitter);
+    font-weight: 600;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logTime {
+    font-family: var(--openSans);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: gray;
+    margin-right: 2rem;
+}
+
+.logInformation {
+    font-family: var(--lexendDeca);
+    font-size: 11px;
+    font-weight: 500;
+    color: #6a6a6a;
+    letter-spacing: 0.5px;
+    /* color: gray; */
+}

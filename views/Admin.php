@@ -38,74 +38,22 @@
                     <div class="logs"></div>
                     <p>LOGS</p>
                 </div>
+
+                <div class="tab">
+                    <div class="users"></div>
+                    <p>USERS</p>
+                </div>
+
+                <div class="tab">
+                    <div class="export"></div>
+                    <p>EXPORT</p>
+                </div>
+
             </div>
 
         </div>
 
-
         <!-- Dashboard -->
-        <!-- <div class="content">
-            <nav class="top-divider">
-                <div class="profileContainer">
-                    <p>John Doe</p>
-                    <div class="profile"></div>
-                </div>
-            </nav>
-
-            <div class="bottom-divider">
-                <div class="header">
-                    <div class="info-container">
-                        <div class="info-1"></div>
-                        <div class="info-1"></div>
-                        <div class="info-1"></div>
-                        <div class="info-1"></div>
-                    </div>
-                </div>
-
-                <div class="chart"></div>
-            </div>
-        </div> -->
-
-        <!-- Recipes -->
-        <!-- <div class="content">
-            <nav class="top-divider">
-                <div class="profileContainer">
-                    <p>John Doe</p>
-                    <div class="profile"></div>
-                </div>
-            </nav>
-
-            <div class="bottom-divider">
-                <div class="controlContainer">
-
-                    <div class="searchBar">
-                        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search recipe..." value="" />
-                        <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
-                            <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
-                        </button>
-                    </div>
-
-                    <div class="filters">
-                        <select name="" id="">
-                            <option value="" selected hidden>Select a category...</option>
-                            <option value="chicken">Chicken</option>
-                        </select>
-
-                        <select name="" id="">
-                            <option value="" selected>Select a chef...</option>
-                            <option value="gordon ramsay">Gordon Ramsay</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="recipesSection">
-                    
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Logs -->
         <div class="content">
             <nav class="top-divider">
                 <div class="profileContainer">
@@ -114,13 +62,11 @@
                 </div>
             </nav>
 
-            <div class="bottom-divider">
+            <section class="bottomDivider">
                 <div class="controlContainer">
-
                     <div class="wrapper-1">
-
                         <div class="searchBar">
-                            <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search user..." value="" />
+                            <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search recipe..." value="" />
                             <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
                                 <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
                             </button>
@@ -128,22 +74,22 @@
 
                         <div class="filters">
                             <select name="" id="">
-                                <option value="" selected>Select role...</option>
-                                <option value="user">User</option>
-                                <option value="admin">Admin</option>
+                                <option value="" selected hidden>Select a category...</option>
+                                <option value="chicken">Chicken</option>
                             </select>
-                            <input type="date" name="" id="">
-                            <input type="time" name="" id="">
-                            -
-                            <input type="date" name="" id="">
-                            <input type="time" name="" id="">
+
+                            <select name="" id="">
+                                <option value="" selected>Select a chef...</option>
+                                <option value="gordon ramsay">Gordon Ramsay</option>
+                            </select>
                         </div>
 
                     </div>
 
                     <div class="wrapper-2">
                         <div class="pages">
-                            <p class="page">1</p>
+
+                            <!-- <p class="page">1</p>
                             <p class="page">...</p>
                             <p class="page">4</p>
                             <p class="page">5</p>
@@ -151,17 +97,46 @@
                             <p class="page">7</p>
                             <p class="page">8</p>
                             <p class="page">...</p>
-                            <p class="page">12</p>
+                            <p class="page">12</p> -->
+                            
                         </div>
+
+                        <button class="controlBtn">Add Recipe</button>
                     </div>
 
                 </div>
 
                 <div class="recipesSection">
+                    <div class="recipesContainer">
 
+                        <div class="recipeContainer">
+
+                            <div class="recipeTop">
+                                <img src="" alt="" class="">
+                                <div class="recipeContainer-content">
+                                    <h1>Aunt Jemima's Beloved Fried Chicken</h1>
+                                </div>
+                            </div>
+
+                            <div class="recipeBottom">
+                                <p class="categoryName">CHICKEN</p>
+                                <p class="authorName">Aunt Jemima</p>
+                                <div class="buttonsContainer">
+                                    <div class="btn"></div>
+                                    <div class="btn"></div>
+                                    <div class="btn"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </div>
+            </section>
+
+            
+        </div>   
+
     </main>
 </body>
 </html>

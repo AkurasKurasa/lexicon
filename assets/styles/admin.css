@@ -154,6 +154,24 @@ main {
     height: 23px;
 }
 
+.users {
+    content: url('../images/users.svg');
+    width: 23px;
+    height: 23px;
+}
+
+.export {
+    content: url('../images/export.svg');
+    width: 23px;
+    height: 23px;
+}
+
+.trash {
+    content: url('../images/trash.svg');
+    width: 16px;
+    height: 16px;
+}
+
 .content { 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -202,8 +220,6 @@ main {
     padding: 1rem 1rem;
 }
 
-/* Dashboard */
-
 .header {
     background: #e9b251;
     width: 100%;
@@ -230,6 +246,23 @@ main {
     border-bottom: 3px #42424247 solid;
     background-color: white;
     border-radius: 5px;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.info-1 h1 {
+    font-family: var(--lexendDeca);
+    font-size: 20px;
+}
+
+.info-1 h2 {
+    font-family: var(--lexendDeca);
+    font-size: 32px;
+    color: gray;
+    /* margin-left: 0.5rem; */
 }
 
 .chart {
@@ -239,8 +272,6 @@ main {
     height: 50%;
     margin-bottom: 1.5rem;
 }
-
-/* Recipes */
 
 .controlContainer {
     /* border: 1px black solid; */
@@ -254,12 +285,20 @@ main {
     gap: 0.5rem;
 }
 
-.wrapper-1, .wrapper-2 {
+.wrapper-1 {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
 }
+
+.wrapper-2 {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+
   
 .searchBar {
     width: fit-content;
@@ -320,10 +359,19 @@ input[type="time"], input[type="date"] {
     height: 2rem;
 }
 
-.recipesSection {
-    border: 1px #42424247 solid;
-    width: calc(100% - 4rem);
-    height: 78%;
+.controlBtn {
+    font-family: var(--bitter);
+    font-weight: 700;
+    margin-left: 1rem;
+    height: 2rem;
+    border-radius: 0;
+    border: none;
+    padding: 0.5rem 2rem;
+    color: white;
+    background-color: #FF0303;
+    cursor: pointer;
+    margin-right: 2rem;
+    margin-top: 0.5rem;
 }
 
 .pages {
@@ -352,3 +400,49 @@ input[type="time"], input[type="date"] {
     color: gray;
     cursor: pointer;
 }
+
+.recipesSection {
+    border: 1px #42424247 solid;
+    width: calc(100% - 4rem);
+    height: 78%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    overflow: scroll;
+}
+
+.logContainer {
+    width: 100%;
+    height: 50px;
+    /* border: 1px solid rgba(0,0,0,.15); */
+    border-radius: 3px;
+    padding: 1rem 2rem;
+    background-color: #dfdfdf;
+    font-family: var(--bitter);
+    font-weight: 600;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logTime {
+    font-family: var(--openSans);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: gray;
+    margin-right: 2rem;
+}
+
+.logInformation {
+    font-family: var(--lexendDeca);
+    font-size: 11px;
+    font-weight: 500;
+    color: #6a6a6a;
+    letter-spacing: 0.5px;
+    /* color: gray; */
+}
+
