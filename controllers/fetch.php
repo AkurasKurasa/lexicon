@@ -1,12 +1,13 @@
 <?php
     include('../config.php');
+    require_once '../models/Recipe.php';
 
     $type = $_GET['type'];
-    $id = $_GET['id'];
 
     switch ($type) {
 
         case 'fetchRecipes':
+            $id = $_GET['id'];
             $output = "";
             $query = "
             SELECT 
@@ -19,16 +20,17 @@
             LEFT JOIN images 
                 ON images.related_id = products.id 
                 AND images.related_type = 'product';
-    ";
+
+            ";
             $result = $pdo->prepare($query);
             $result->execute();
             $counter = 0;
+            
 
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
                 // product_name, product_image, category, id
             
-                    // Open the container on the first item and every 4 items after
                     if ($counter % 4 == 0) {
                         $output .= "<div class='recipesContainer'>";
                     }
@@ -79,11 +81,113 @@
                 $output .= "</div>";
             }
             
-
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;
 
+
+        case 'fetchRecipesAdmin': 
+            $filterName = $_GET['filterName'] ?? null; 
+            $filterCategory = $_GET['filterCategory'] ?? null; 
+            $filterUser = $_GET['filterUser'] ?? null;  // New filter for user (author's name)
+        
+            $params = [];
+            $conditions = [];
+        
+            $query = "
+                SELECT 
+                    products.product_name,
+                    products.category,
+                    products.id,
+                    images.image,
+                    CONCAT(users.first_name, ' ', users.last_name) AS author_name
+                FROM 
+                    products
+                LEFT JOIN images 
+                    ON images.related_id = products.id 
+                    AND images.related_type = 'product'
+                LEFT JOIN users 
+                    ON users.id = products.author
+            ";
+        
+            // Add conditions dynamically
+            if (!empty($filterCategory)) {
+                $conditions[] = "products.category = :category";
+                $params[':category'] = $filterCategory;
+            }
+        
+            if (!empty($filterName)) {
+                $conditions[] = "products.product_name LIKE :name";
+                $params[':name'] = "%$filterName%";
+            }
+        
+            if (!empty($filterUser)) {
+                // Filter by author's name (first_name + last_name)
+                $conditions[] = "CONCAT(users.first_name, ' ', users.last_name) LIKE :author_name";
+                $params[':author_name'] = "%$filterUser%";  // Search for full name match
+            }
+        
+            if (!empty($conditions)) {
+                $query .= " WHERE " . implode(" AND ", $conditions);
+            }
+        
+            $result = $pdo->prepare($query);
+            $result->execute($params);
+        
+            $output = "";
+            $counter = 0;
+        
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        
+                if ($counter % 4 == 0) {
+                    $output .= "<div class='recipesContainer'>";
+                }
+        
+                $output .= "
+                    <div class='recipeContainer' data-name='{$row['id']}'>
+                        <div class='recipeTop'>
+                            <img src='' alt='' class='recipeBackground' style='background-image: url({$row['image']});'>
+                            <div class='recipeContent'>
+                                <h1>{$row['product_name']}</h1>
+                            </div>
+                        </div>
+                        <div class='recipeBottom'>
+                            <p class='categoryName'>" . strtoupper($row['category']) . "</p>
+                            <p class='authorName'>{$row['author_name']}</p>  <!-- Now showing the combined author name -->
+                            <div class='btnContainer'>
+                                <div class='btn delete'>
+                                    <img src='' alt='' class='trash'>
+                                </div>
+                                <div class='btn edit'>
+                                    <img src='' alt='' class='edit'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ";
+        
+                $counter++;
+        
+                if ($counter % 4 == 0) {
+                    $output .= "</div>";
+                }
+            }
+        
+            if ($counter % 4 != 0) {
+                $output .= "</div>";
+            }
+        
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
+
+        
         case 'fetchRecipe':
+
+            $id = $_GET['id'];
+            $recipe = new Recipe($pdo);
+
+            $output = $recipe->fetchRecipe($id);
+
+            echo json_encode(['success' => true, 'content' => $output]);
             break;
 
         case 'fetchComments':

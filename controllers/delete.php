@@ -6,27 +6,23 @@
 
     switch ($type) {
 
-        case 'addRecipeByUser':
+        case 'deleteRecipeByUser':
 
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;
 
-        case 'addRecipeByAdmin':
+        case 'deleteRecipeByAdmin':
 
             $recipe = new Recipe($pdo);
 
-            $recipeName = $_POST['name'];
-            $recipeDescription = $_POST['description'];
-            $recipeCategory = $_POST['category'];
+            $id = $_POST['id'];
 
             $recipeInfo = [
-                'name' => $recipeName,
-                'description'  => $recipeDescription,
-                'category'     => $recipeCategory
+                'id' => $id
             ];
 
-            if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
-                $recipe->create($recipeInfo);
+            if ( strlen($id) > 0 ) {
+                $recipe->delete($id);
                 echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success' => false]);
@@ -35,7 +31,6 @@
 
 
         default:
-
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;
     }

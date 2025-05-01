@@ -21,11 +21,6 @@
                 <h3 class="">GENERAL</h3>
 
                 <div class="tab">
-                    <div class="dashboard"></div>
-                    <p>DASHBOARD</p>
-                </div>
-
-                <div class="tab">
                     <div class="recipe"></div>
                     <p>RECIPES</p>
                 </div>
@@ -68,22 +63,22 @@
                     <div class="controlWrapper1">
 
                         <div class="searchBarContainer">
-                            <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search recipe..." value="" />
-                            <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+                            <input id="filterName" type="text" name="searchQueryInput" class="filterFieldInput" placeholder="Search recipe..." value="" />
+                            <!-- <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
                                 <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
-                            </button>
+                            </button> -->
                         </div>
 
                         <div class="searchBarContainer" style="margin-left: 0;">
-                            <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search user..." value="" />
-                            <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+                            <input id="filterUser" type="text" name="searchQueryInput" class="filterFieldInput" placeholder="Search user..." value="" />
+                            <!-- <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
                                 <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
-                            </button>
+                            </button> -->
                         </div>
 
                         <div class="filtersContainer">
-                            <select name="" id="">
-                                <option value="" selected hidden>Select a category...</option>
+                            <select name="" id="filterCategory" class="filterField">
+                                <option value="" selected>Select a category...</option>
                                 <option value="chicken">Chicken</option>
                                 <option value="ramen">Ramen</option>
                                 <option value="salad">Salad</option>
@@ -99,7 +94,7 @@
                                 <option value="seafood">Seafood</option>
                             </select>
 
-                            <select name="" id="">
+                            <select name="" id="" class="filterField">
                                 <option value="" selected>Choose rating...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -118,33 +113,7 @@
                 </div>
 
                 <div class="dataSection">
-                    <div class="recipesContainer">
-
-                        <div class="recipeContainer">
-
-                            <div class="recipeTop">
-                                <img src="" alt="" class="recipeBackground">
-                                <div class="recipeContent">
-                                    <h1>Aunt Jemima's Beloved Fried Chicken</h1>
-                                </div>
-                            </div>
-
-                            <div class="recipeBottom">
-                                <p class="categoryName">CHICKEN</p>
-                                <p class="authorName">Aunt Jemima</p>
-                                <div class="btnContainer">
-                                    <div class="btn">
-                                        <img src="" alt="" class="trash">
-                                    </div>
-                                    <div class="btn">
-                                        <img src="" alt="" class="edit">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-
-                    </div>
+                    <!-- data here -->
                 </div>
             </section>
 
@@ -160,29 +129,45 @@
                     <div class="modal-content">
                         <form action="" id="adminRecipeForm" class="recipeForm">
 
+                            <input type="text" id="recipeId" name="id" hidden>
+
                             <div class="fieldsContainer recipe-name">
                                 <label for="">RECIPE NAME</label>
-                                <input type="text" name="name" placeholder="e.g., Delicious Spaghetti">
+                                <input type="text" id="recipeName" name="name" placeholder="e.g., Delicious Spaghetti">
                             </div>
 
                             <div class="fieldsContainer category">
                                 <label for="">CATEGORY</label>
-                                <select name="" name="category" id=""></select>
+                                <select name="category" id="recipeCategory">
+                                    <option value="chicken">Chicken</option>
+                                    <option value="ramen">Ramen</option>
+                                    <option value="salad">Salad</option>
+                                    <option value="barbeque">Barbeque</option>
+                                    <option value="pizza">Pizza</option>
+                                    <option value="sandwiches">Sandwiches</option>
+                                    <option value="asian">Asian</option>
+                                    <option value="steak">Steak</option>
+                                    <option value="soup">Soup</option>
+                                    <option value="pasta">Pasta</option>
+                                    <option value="healthy">Healthy</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="seafood">Seafood</option>
+                                </select>
                             </div>
 
                             <div class="fieldsContainer description">
                                 <label for="">DESCRIPTION</label>
-                                <textarea name="" name="description" id="" placeholder="It is delicious."></textarea>
+                                <textarea name="description" id="recipeDescription" placeholder="It is delicious."></textarea>
                             </div>
 
                             <div class="fieldsContainer description">
                                 <label for="">INGREDIENTS</label>
-                                <textarea name="" id="" name="ingredients" placeholder="e.g., carrots - 2, eggs - 5, ..."></textarea>
+                                <textarea id="" name="ingredients" placeholder="e.g., carrots - 2, eggs - 5, ..."></textarea>
                             </div>
 
                             <div class="fieldsContainer description">
                                 <label for="">IMAGES</label>
-                                <textarea name="" id="" name="images" placeholder="e.g., https://i.imgur.com/RYbaxaF.jpeg, https://i.imgur.com/jzFOtOS.jpeg (seperate image url by a comma)"></textarea>
+                                <textarea id="" name="images" placeholder="e.g., https://i.imgur.com/RYbaxaF.jpeg, https://i.imgur.com/jzFOtOS.jpeg (seperate image url by a comma)"></textarea>
                             </div>
 
                             <div class="fieldsWrapper">
@@ -224,5 +209,5 @@
     </main>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="../scripts/admin.js"></script>
+<script src="../scripts/admin-1.js"></script>
 </html>
