@@ -4,6 +4,19 @@
     --lexendDeca: "Lexend Deca", sans-serif;
 }
 
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--lexendDeca), sans-serif;
+    padding-top: 100px; /* Make space for the fixed navbar */
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -13,9 +26,12 @@
     font-family: 'Lexend Deca';
     width: 100%;
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1;
-  }
-  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+}
+
 ul {
     list-style: none;
     padding: 0;
@@ -36,7 +52,7 @@ ul {
 }
 
 nav > ul li {
-position: relative;
+    position: relative;
 }
 
 nav > ul li a {
@@ -54,27 +70,27 @@ nav > ul li a {
 }
 
 nav > ul li ul.dropdown li {
-display: block;
+    display: block;
 }
 
 nav > ul li ul.dropdown {
-width: 120px;
-background: #000000;
-position: absolute;
-top: 100%;
-left: 0;
-z-index: 999;
-display: none;
+    width: 120px;
+    background: #000000;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+    display: none;
 }
 
 nav > ul li a:hover {
-/* background: #1c1c1c; */
+    /* background: #1c1c1c; */
 }
 
 nav > ul li:hover ul.dropdown {
-display: block;
+    display: block;
 }
 
 #nav-logo-li {
-padding: 0 !important;
+    padding: 0 !important;
 }
