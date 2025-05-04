@@ -12,6 +12,9 @@
     <?php include '../components/Navbar.php'; ?>
 
     <main>
+
+    <div class="recipeContainer">
+      
         <!-- Section for the header -->
         <section class="headerSection">
         <div class="recipeHeader">
@@ -108,6 +111,7 @@
     </div>
   </div>
 </section>
+</div>
 
     </main>
 </body>
