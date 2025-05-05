@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400&display=swap');
+
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to right, #00093c, #2d0b00);
+    color: #fff;
+    padding: 10px 0 30px;
+    border-top-left-radius: 125px;
+    font-size: 13px;
+    line-height: 20px;
+    font-family: 'Lexend Deca', sans-serif; 
+  }
+  .nav-logo h1 {
+    font-family: var(--lexendDeca);
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -7%;
+    text-align: left;
+    width: 100%;
+    color: #fff;
+}
