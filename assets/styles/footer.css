@@ -2,7 +2,7 @@
 
 footer {
     width: 100%;
-    position: absolute;
+    position: fixed; /* Changed from absolute to fixed */
     bottom: 0;
     background: linear-gradient(to right, #00093c, #2d0b00);
     color: #fff;
@@ -10,10 +10,12 @@ footer {
     border-top-left-radius: 125px;
     font-size: 13px;
     line-height: 20px;
-    font-family: 'Lexend Deca', sans-serif; 
-  }
-  .nav-logo h1 {
-    font-family: var(--lexendDeca);
+    font-family: 'Lexend Deca', sans-serif;
+    box-sizing: border-box; /* Important for padding not to add to the width */
+}
+
+.nav-logo h1 {
+    font-family: var(--lexendDeca); /* Assuming you have a CSS variable defined */
     font-weight: 800;
     font-size: 32px;
     letter-spacing: -7%;
