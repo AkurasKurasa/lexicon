@@ -13,12 +13,30 @@
 
     <main>
 
+    <div class="nextRecipe">
+    <ul>
+      <div class="selectRecipe">
+        <li>
+            <a href="#">
+                <h4>Previous Recipe</h4>
+            </a>
+        </li>
+
+        <li >
+            <a href="#">
+                <h4>Previous Recipe</h4>
+            </a>
+        </li>
+      </div>
+    </ul>
+    </div>
     <div class="recipeContainer">
       
         <!-- Section for the header -->
         <section class="headerSection">
         <div class="recipeHeader">
             <h1 class="recipeName">Aunt Jemima's Beloved Fried Chicken</h1>
+            <span></span>
             <div class="recipeRating">
                 <span class="star"></span>
                 <span class="star"></span>
@@ -26,7 +44,8 @@
                 <span class="star"></span>
                 <span class="star"></span>
                 <p style="display: inline-block;"> <span id="NumOfReviews">0</span> reviews / <span id="AveStars">0</span> average
-            </div>
+                <hr class="lineGray">
+              </div>
             <p class="recipeDescription">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non commodi nemo quidem, cumque omnis sit optio aspernatur esse placeat odit praesentium dolorem quo accusamus, provident ad! Ex ullam nemo nihil!
             </p>
@@ -65,13 +84,13 @@
             </form>
         -->
             
-        <div class="authorProfile">
+        <!-- <div class="authorProfile">
         <div class="authorCard">    
             <h2 >Aunt Jemima</h2>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non commodi nemo quidem, cumque omnis sit optio aspernatur esse placeat odit praesentium dolorem quo accusamus, provident ad! Ex ullam nemo nihil!</p>
             <img class="authorPicture stack-top" src="../assets/images/img_avatar.png" alt="Avatar">
 
-        </div>
+        </div> -->
 
         </div>
         </div>

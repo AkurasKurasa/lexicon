@@ -27,14 +27,49 @@ main {
     padding: 32px;
 }
 
+/*Next Recipe*/
+
+.nextRecipe {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffc34b;
+        padding: 10px 20px;
+        font-family: 'Lexend Deca';
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        margin-top: 80px; 
+        margin-bottom: 80px;
+}
+.selectRecipe {
+    text-align: center;
+    flex-wrap: nowrap;
+    color: #f8f8f8;
+    display: flex;
+    flex-grow: 3;
+}
+
+hr.lineGray{
+    border-top: 1px solid rgb(11, 11, 11);
+    margin: auto;
+}
+
 /*Container*/
 .recipeContainer {
+    display: flex;
     max-width: 80%; 
-    margin: 20px auto; 
-    background-color: #f8f8f8; 
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6); 
-    padding: 30px;
+    height: fit-content;
+    width:fit-content;
+    padding: 30px 40px;
+    margin: 10px; 
+    background-color: white; 
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.14);
     border-radius: 8px; 
+    border-style: solid;
 }
 
 /*Section for the title and the authorcard*/
@@ -52,17 +87,18 @@ main {
     flex-direction: column;
     width: 655px;
     height: fit-content;
+    margin: auto;
 }
 
 .recipeName {
     font-family: var(--domine);
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 700;
 }
 
 .recipeDescription {
     font-family: var(--bitter);
-    font-size: 16px;
+    font-size: 20px;
     font-style: italic;
     color: rgb(77, 77, 77);
     line-height: 25px;
