@@ -18,15 +18,19 @@
       <div class="selectRecipe">
         <li>
             <a href="#">
-                <h4>Previous Recipe</h4>
+              <span>
+                <h4>< Previous Recipe</h4>
+              </span>
             </a>
         </li>
 
-        <li >
+        <span><li>
             <a href="#">
-                <h4>Previous Recipe</h4>
+              <span>
+                <h4>Next Recipe ></h4>
+              </span>
             </a>
-        </li>
+        </li></span>
       </div>
     </ul>
     </div>
@@ -44,8 +48,9 @@
                 <span class="star"></span>
                 <span class="star"></span>
                 <p style="display: inline-block;"> <span id="NumOfReviews">0</span> reviews / <span id="AveStars">0</span> average
-                <hr class="lineGray">
+                <hr style="margin: 20px 15px 20px 15px">
               </div>
+
             <p class="recipeDescription">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Non commodi nemo quidem, cumque omnis sit optio aspernatur esse placeat odit praesentium dolorem quo accusamus, provident ad! Ex ullam nemo nihil!
             </p>
