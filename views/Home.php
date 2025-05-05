@@ -10,9 +10,7 @@
 
         <?php include '../components/Navbar.php'; ?>
 
-        /*
-        Test
-        */
+     
 
         <div class="featuredRecipes">
             <div class="featuredRecipe chicken" data-id="chicken">
@@ -80,6 +78,8 @@
             </div>
 
         </div>
+
+        <?php include '../components/Footer.php'; ?>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../script.js"></script>
