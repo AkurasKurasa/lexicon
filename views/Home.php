@@ -9,9 +9,7 @@
 <body>
 
         <?php include '../components/Navbar.php'; ?>
-
      
-
         <div class="featuredRecipes">
             <div class="featuredRecipe chicken" data-id="chicken">
                 <h1 class="featuredRecipe-name">CHICKEN</h1>
@@ -79,7 +77,8 @@
 
         </div>
 
-        <?php include '../components/Footer.php'; ?>
+      <?php include '../components/Footer.php'; ?>
+        
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../script.js"></script>

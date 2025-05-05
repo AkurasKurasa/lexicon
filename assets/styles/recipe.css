@@ -27,12 +27,12 @@ main {
     padding: 32px;
 }
 
+/*Container*/
 .recipeContainer {
     max-width: 80%; 
     margin: 20px auto; 
     background-color: #f8f8f8; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-    border-style: solid;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6); 
     padding: 30px;
     border-radius: 8px; 
 }

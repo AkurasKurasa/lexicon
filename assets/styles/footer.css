@@ -2,24 +2,85 @@
 
 footer {
     width: 100%;
-    position: fixed; /* Changed from absolute to fixed */
-    bottom: 0;
-    background: linear-gradient(to right, #00093c, #2d0b00);
+    justify-content: space-between;
+    background: black;
     color: #fff;
-    padding: 10px 0 30px;
-    border-top-left-radius: 125px;
+    padding: 15px 20px;
+    border-top-left-radius: 15px;
     font-size: 13px;
-    line-height: 20px;
+    line-height: 1.4;
     font-family: 'Lexend Deca', sans-serif;
-    box-sizing: border-box; /* Important for padding not to add to the width */
+    box-sizing: border-box;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    margin-top: 85px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-left: 20px;
+    padding: 20px 20px;
+    align-items: flex-start;
+
+}
+.Emails {
+ 
+    margin-left: 60px;
+
+}
+
+.col {
+    padding: 10px;
+
+}
+
+
+/* .col:first-child {
+    flex: 0 0 30%;
+} */
+
+.nav-logo {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
 }
 
 .nav-logo h1 {
-    font-family: var(--lexendDeca); /* Assuming you have a CSS variable defined */
+    font-family: 'Lexend Deca', sans-serif;
     font-weight: 800;
     font-size: 32px;
     letter-spacing: -7%;
     text-align: left;
     width: 100%;
     color: #fff;
+    margin: 0;
 }
+
+.nav-logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.col:first-child p {
+    margin-top: 10px;
+}
+
+
+.emailInfo {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+  }
+  
+  .emailSvg {
+  
+    width: 25px;
+    height: 25px;
+    background-image: url('../images/email.svg');
+    background-size: cover;
+    background-position: center;
+  }
+  

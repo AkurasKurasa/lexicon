@@ -17,6 +17,10 @@
         </li>
 
         <li>
+            <a href="#">Updated</a>
+        </li>
+
+        <li>
             <a href="#">Search</a>
         </li>
 
