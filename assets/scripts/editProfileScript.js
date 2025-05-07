@@ -52,7 +52,9 @@ $(document).ready(function () {
             success: function(response) {
                 $data = JSON.parse(response);
                 if($data.success) {
-                    alert('EDIT SUCCESSFUL!');
+                    $("input[name='birthday']").attr('disabled', true);
+                    $(".success").html('Edit Successful!');
+
                 }
                 console.log(response);
             },
@@ -61,6 +63,56 @@ $(document).ready(function () {
             }
         });
     });
+
+
+    $(".main-content").on("submit", "#changePasswordForm", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '../controllers/changePasswordProcess.php',
+            type: 'POST',
+            data: {
+                currentpassword: $('#currentPassword').val(),
+                newpassword: $('#newPassword').val()
+            },
+            success: function(response) {
+                var data = JSON.parse(response);
+                console.log(response);
+                if (data.success) {
+                    alert(data.message); 
+                } else {
+                    alert(data.message); 
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+        
+    });
+
+    $(".main-content").on("submit", "#securityForm", function (e) {
+        e.preventDefault(); 
+        var formData = $(this).serialize(); 
+    
+        $.ajax({
+            url: '../controllers/securityQuestionsProcess.php', 
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                let data = JSON.parse(response);
+                if (data.success) {
+                    alert("Security questions saved!");
+                    location.reload();
+                } else {
+                    alert("Error: " + data.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Failed to save:", error);
+            }
+        });
+    });
+    
     
     
     
@@ -72,6 +124,7 @@ $(document).ready(function () {
 
     $("#editPassword").on("click", function () {
         $(".main-content").load("passandsecurity.php");
+        loadSecurityQuestions();
     });
 
     $("#editProfile").on("click", function () {
@@ -89,13 +142,12 @@ function loadCurrentInfo() {
             $("input[name='first-name']").val(data.first_name);
             $("input[name='last-name']").val(data.last_name);
             $("input[name='email-address']").val(data.email);
+            $("input[name='occupation']").val(data.occupation);
             $("input[name='birthday']").val(data.birthday?.split(" ")[0]);
             $("select[name='gender']").val(data.gender);
             $("textarea[name='description']").val(data.description); 
             if (data.profile_picture_url) {
-                $("#userImage").attr('src', data.profile_picture_url);
-                console.log(data.birthday);
-            }
+                $("#userImage").attr('src', data.profile_picture_url);            }
             else {
                 $("#userImage").attr('src', '../assets/images/img_avatar.png');
             }
@@ -106,6 +158,32 @@ function loadCurrentInfo() {
         }
     });
 }
+
+function loadSecurityQuestions() {
+    $.ajax({
+        url: '../controllers/securityQuestionsProcess.php', 
+        type: 'GET',
+        success: function(response) {
+            let data = JSON.parse(response);
+            if (data.success) {
+                $("#petname").val(data.pet_name).prop('disabled', true).attr('type', 'password').removeAttr('placeholder');
+                $("#schoolname").val(data.school_name).prop('disabled', true).attr('type', 'password').removeAttr('placeholder');
+                $("#nickname").val(data.childhood_nickname).prop('disabled', true).attr('type', 'password').removeAttr('placeholder');
+                $("#cartoon").val(data.favorite_cartoon).prop('disabled', true).attr('type', 'password').removeAttr('placeholder');
+                $("#streetname").val(data.street_name).prop('disabled', true).attr('type', 'password').removeAttr('placeholder');
+                $("#favoritesweet").val(data.favorite_sweet).prop('disabled', true).attr('type', 'password').removeAttr('placeholder');
+                $("#confirmSecurity").attr("disabled", true);
+            } else {
+                console.log("No existing security questions found.");
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("Failed to fetch security questions:", error);
+        }
+    });
+}
+
+
 
 /*
 // === RESIZE ====
@@ -164,3 +242,4 @@ function resizeMe(img, callback) {
     }, "image/jpeg", 0.7);
 }
 */
+

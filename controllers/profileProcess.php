@@ -15,6 +15,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstName   = $_POST['first-name'] ?? '';
     $lastName    = $_POST['last-name'] ?? '';
     $email       = $_POST['email-address'] ?? '';
+    $occupation = $_POST['occupation'] ?? 'NULL';
     $gender      = $_POST['gender'] ?? '';
     $birthday    = $_POST['birthday'] ?? null;
     $description = $_POST['description'] ?? '';
@@ -45,15 +46,12 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        $newFileName = $userID . '.' . $fileExtension; // New file name based on user ID
+        $newFileName = $userID . '.' . $fileExtension; 
         $destPath = $uploadDir . '/' . $newFileName;
 
-        // Move the uploaded file to the destination folder
         if (move_uploaded_file($fileTmpPath, $destPath)) {
-            $profilePicturePath = $destPath; // Set the file path
-            $uploadNewImage = true; // Flag to update the image in the database
+            $profilePicturePath = $destPath; 
 
-            // Optionally, delete the old profile picture if it exists
             $stmtOld = $pdo->prepare("SELECT profile_picture_url FROM users WHERE id = :id");
             $stmtOld->execute([':id' => $userID]);
             $old = $stmtOld->fetch(PDO::FETCH_ASSOC);
@@ -71,6 +69,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 first_name = :firstName,
                 last_name = :lastName,
                 email = :email,
+                occupation = :occupation,
                 gender = :gender,
                 birthday = :birthday,
                 description = :description";
@@ -80,6 +79,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ':firstName' => $firstName,
         ':lastName'  => $lastName,
         ':email'     => $email,
+        ':occupation' => $occupation,
         ':gender'    => $gender,
         ':birthday'  => $birthday,
         ':description' => $description,

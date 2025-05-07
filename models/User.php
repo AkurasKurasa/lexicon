@@ -7,47 +7,74 @@ class User
     {
         $this->db = $db;
     }
-    //Inserts the registered information to the database
-    public function create($data)
-    {
-        $sql = "INSERT INTO users (first_name, last_name, gender, email, password, role)
-                VALUES (:first_name, :last_name, :gender, :email, :password, :role)";
-        $stmt = $this->db->prepare($sql);
-        return $stmt->execute([
-            ':first_name' => $data['first_name'],
-            ':last_name'  => $data['last_name'],
-            ':gender'     => $data['gender'],
-            ':email'      => $data['email'],
-            ':password'   => $data['password'],
-            ':role'       => $data['role']
-        ]);
-
-    }
-
-    //Checks if the account exists
-    public function verifyUser($email, $password)
-    {
-        $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([':email' => $email]);
+public function create($data)
+{
+    $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
     
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-        // if ($user && password_verify($password, $user['password'])) {
-        //     return $user;
-        // }
+    $sql = "INSERT INTO users (id, first_name, last_name, gender, email, password, role)
+            VALUES (:id, :first_name, :last_name, :gender, :email, :password, :role)";
+    $stmt = $this->db->prepare($sql);
 
-        if ( $user && $password == $user['password'] ) {
-            //Starts Session
-            session_start();
-            $_SESSION["loggedInUser"] = $user['id'];
-            return $user;
+    return $stmt->execute([
+        'id' => uniqid(),
+        ':first_name' => $data['first_name'],
+        ':last_name'  => $data['last_name'],
+        ':gender'     => $data['gender'],
+        ':email'      => $data['email'],
+        ':password'   => $hashedPassword,  // Ensure the password is hashed
+        ':role'       => $data['role']
+    ]);
+}
+
+public function changePassword($userId, $currentPassword, $newPassword)
+{
+    try {
+        $query = "SELECT password FROM users WHERE id = :user_id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $currentStoredPassword = $stmt->fetchColumn();
+
+        if ($currentStoredPassword && password_verify($currentPassword, $currentStoredPassword)) {
+            $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+            $updateQuery = "UPDATE users SET password = :new_password WHERE id = :user_id";
+            $updateStmt = $this->db->prepare($updateQuery);
+            $updateStmt->bindParam(':new_password', $newHashedPassword, PDO::PARAM_STR);
+            $updateStmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+            $updateStmt->execute();
+
+            return ['success' => true, 'message' => 'Password successfully updated.'];
+        } else {
+            return ['success' => false, 'message' => 'Current password is incorrect.'];
         }
-    
-        return false;
+    } catch (PDOException $e) {
+        return ['success' => false, 'message' => 'Database error: ' . $e->getMessage()];
     }
+}
+    
+    
 
-    //Checks if the emailExists
+public function verifyUser($email, $password)
+{
+    $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([':email' => $email]);
+    
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        session_start();
+        $_SESSION["loggedInUser"] = $user['id'];
+        return $user;
+    }
+    
+    return false; 
+}
+
+    
+
     public function emailExists($email)
     {
         $sql = "SELECT COUNT(*) FROM users WHERE email = :email";
@@ -58,7 +85,6 @@ class User
         return $count > 0;
     }
 
-    //Gets the information of the Player
     public function getUserInfo($id) {
         $sql = "SELECT * FROM users WHERE id = :id";
         $stmt = $this->db->prepare($sql);

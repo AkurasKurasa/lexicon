@@ -14,7 +14,6 @@ $(document).ready(function() {
             if (!data.checkLoggedIn) {
                 $("#userComment").attr('placeholder', 'You must be logged in to submit a review.');
                 $("#userComment").prop('disabled', true);
-                $(".userRating").off("click");
             } else if (data.alreadyCommented) {
                 $("#userComment").attr('placeholder', 'You may only enter a comment once.');
                 $("#userComment").prop('disabled', true);

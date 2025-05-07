@@ -49,7 +49,10 @@
                         <label for="phoneNo">About You (Maximum of 50 words)</label>
                         <textarea class="description" name="description"></textarea>
             </div>
-        <div style="display:flex; justify-content:center;"><button type="submit">Confirm Changes</button></div>
+        <div style="display:flex; flex-direction:column; align-items:center;">
+            <button type="submit">Confirm Changes</button>
+            <p class="success"></p>
+        </div>
     </div>   
 </div>
 </form>

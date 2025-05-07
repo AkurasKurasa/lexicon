@@ -27,9 +27,496 @@ body {
     display: flex;
     justify-content: flex-start;
     font-family: var(--openSans);
+
+}
+
+main {
+
+    height: fit-content;
+    margin: 32px;
+    padding: 32px;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*User Profile and Link*/
+
+.userLink {
+    display: flex;
+    align-items: center;
+    color: rgb(21, 62, 116);
+    font-size: 20px;
+}
+
+.userIcon {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-image: url('../images/user_ic.svg');
+    background-size: cover;
+    background-position: center;
+    display: inline-block
+}
+
+.userLink span {
+    display: inline;
+    margin-right: 5px;
+}
+
+.userSubmit {
+    display: inline;
+    font-weight: bold;
+}
+
+.userLink a {
+    text-decoration: none;
+    color: inherit;
+}
+/*Next Recipe*/
+
+
+
+.nextRecipe li:first-child a {
+    text-align: left;
+}
+
+.nextRecipe li:last-child a {
+    text-align: right;
+}
+
+.nextRecipe li span {
+    display: block;
+    width: 100%;
+}
+
+.nextRecipe li span h4 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: bold;
+}
+
+.selectRecipe {
+    text-align: center;
+    justify-content: space-between;
+    color: #f8f8f8;
+    padding: 10px 10px;
+    display: flex;
+    flex-grow: 3;
+}
+
+/*Container*/
+.recipeContainer {
+    display: flex;
+    max-width: 80%; 
+    height: fit-content;
+    width:fit-content;
+    max-width: fit-content;
+    padding: 30px 40px;
+    margin: 30px auto; 
+    background-color: white; 
+    box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.14);
+    border-radius: 8px; 
+    border-style: solid;
+    margin-top: 50px;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 30px;
+}
+
+/*Section for the title and the authorcard*/
+.headerSection {
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+    width: 100%;
+    height: fit-content;
+    flex: 1;
+}
+
+.recipeHeader {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 655px;
+    height: fit-content;
+    margin: auto;
+}
+
+.recipeName {
+    font-family: var(--domine);
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.recipeDescription {
+    font-family: var(--bitter);
+    font-size: 20px;
+    font-style: italic;
+    color: rgb(77, 77, 77);
+    line-height: 25px;
+    margin: 16px 0 16px 0;
+}
+
+.recipeImage {
+    /* border: 1px black solid; */
+    width: 655px;
+    height: 800px;
+    background-image: url('../images/chicken.jpg');
+    background-size: cover;
+    background-position: center; 
+}
+
+.recipeList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    border: 1px black solid;
+}
+
+.recipeListv2{
+    display: flex;
+    max-width: 80%; 
+    height: fit-content;
+    width:fit-content;
+    max-width: fit-content;
+    padding: 30px 40px;
+    margin: 30px auto; 
+    background: transparent;
+    /* box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.14);
+    border-radius: 8px; 
+    border-style: solid; */
+    margin-top: 20px;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.ingredients p{
+    font-family: var(--bitter);
+    font-size: 17px;
+    /* font-weight: 700; */
+    color: rgb(77, 77, 77);
+    width: 100%;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.directions p{
+    font-family: var(--bitter);
+    font-size: 17px;
+    /* font-weight: 700; */
+    color: rgb(36, 36, 36);
+    width: 100%;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.directions {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    padding: 20px 30px;
+    max-height: fit-content;
+    max-width: 700px;
+    overflow: hidden;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    padding: 20px 30px;
+    max-height: fit-content;
+    max-width: 700px;
+    overflow: hidden;
+
+}
+
+.recipeList h1 {
+    font-family: var(--openSans);
+    font-size: 25px;
+    font-weight: 700;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 16px;
+}
+
+.recipeList h2 {
+    font-family: var(--openSans);
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    text-align: left;
+}
+
+.recipeList p {
+    font-family: var(--bitter);
+    font-size: 17px;
+    /* font-weight: 700; */
+    color: rgb(77, 77, 77);
+    width: 100%;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+#reviewForm {
+    width: 100%;
+}
+
+#reviewForm h1 {
+    font-family: var(--openSans);
+    font-size: 20px;
+    font-weight: 700;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.fieldContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.fieldContainer label {
+    font-family: var(--arvo);
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(115, 64, 96);
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    width: 100%;
+}
+
+.fieldContainer input, textarea {
+    border: 1px rgb(204, 204, 204) solid;
+}
+
+.fieldContainer input {
+    width: 342px;
+    height: 41px;
+    margin: .5rem 0
+}
+
+.fieldContainer textarea {
+    width: 500px;
+    height: 210px;
+    margin: .5rem 0
+}
+
+.info {
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 355px;
+    height: 100%;
+}
+
+/* CSS For the stars */
+.starRecipe {
+    font-size: 20px;
+    width: 15px;
+    display: inline-block;
+    color: #FF0303;
+}
+.starRecipe:last-child {
+    margin-right: 0;
+}
+.starRecipe:before {
+    content:'\2606';
+}
+.starRecipe.on {
+    color: gold;
+}
+.starRecipe.half:after {
+    content:'\2605';
+    color: gold;
+    position: absolute;
+    margin-left: -20px;
+    width: 10px;
+    overflow: hidden;
+}
+
+/*CSS for the jump to recipe button */
+.jumpToRecipe {
+    font-size: 16px;
+    height: 5vh;
+    cursor: pointer;
+    background-color:rgb(236, 234, 231);
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/*CSS for the author card*/
+.authorProfile {
+    height:100%;
+    width: 100%;
+}
+.authorCard {
+    margin-top: 100px;
+    height: 80vh;
+    width: 60vh;
+    background-color: #444; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding: 1rem;
+}
+
+.authorCard h2 {
+    margin-top: 120px; 
+    font-family: var(--domine); 
+    color: white;
+}
+
+.authorCard p {
+    padding: 16px; 
+    font-family: var(--bitter); 
+    color: white; 
+    text-align: center;
+    line-height: 2rem;
+}
+
+/*CSS for the author's profile picture*/
+.authorPicture {
+    border-radius: 50%;
+    object-fit: contain;
+    height: 150px;
+    width: auto;
+    position: absolute;
+    margin-top: 120px;
+  }
+
+/*Section for the main content */
+.sectionMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    background-color: #fdfdfd; 
+    font-family: var(--openSans);
+    margin-bottom: 3rem;
+    flex: 1
+}
+
+.sectionCard {
+    width: 110vh;
+    background: white;
+    border-radius: 12px;
 }
 
 
+.prepTimeContainer {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    /* border: 2px solid rgb(0, 0, 0); */
+    border-radius: 8px;
+    overflow: hidden;
+    min-width: 300px;
+    width:fit-content;
+    height: fit-content;
+    margin: 20px auto;
+    font-family: 'Lexend Deca';
+    background-color: #fff;
+    position: center;
+}
+.prepTimeTitle {
+    font-family: 'Lexend Deca';
+    display: grid;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.listTitle {
+    font-family: 'Lexend Deca';
+    display: flex;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.repTitle {
+    font-family: 'Lexend Deca';
+    display: flex;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.repliesSection{
+    display: flex;
+    min-width: 100%; 
+    height: fit-content;
+    width:fit-content;
+    max-width: fit-content;
+    padding: 30px 40px;
+    margin: 30px; 
+    background: transparent;
+    /* box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.14);
+    border-radius: 8px; 
+    border-style: solid; */
+    flex-direction: column;
+    gap: 20px;
+}
+
+.prepTimeContents {
+    display: grid; 
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px auto;
+}
+.verticalLine {
+    border-left: 1px solid rgb(24, 24, 24);
+    width: 1px;
+  }
+.colorFill {
+    height: 10px;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 30px;
+}
+
+.timeHeader,
+.timeValues {
+    display: block; 
+    text-align: left; 
+    padding: auto;
+}
+
+.timeHeader {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.timeValues {
+    font-size: 15px;
+    color: #333;
+}
+
+.prepTimeContents hr {
+    margin: 15px 0;
+    grid-column: 1;
+}
 /* CSS For the stars */
 
 .star {

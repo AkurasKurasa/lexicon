@@ -17,6 +17,7 @@ if (!isset($_SESSION["loggedInUser"])) {
 </head>
 <body>
     <main>
+        
         <div class="navigation">
 
             <div class="logoContainer">
@@ -51,4 +52,5 @@ if (!isset($_SESSION["loggedInUser"])) {
     </main>
     <script src="../assets/scripts/editProfileScript.js"></script>
 </body>
+
 </html>

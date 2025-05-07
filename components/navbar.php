@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../assets/styles/navbar.css">
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <nav class="navbar">
 
     <ul class="nav-logo">
@@ -27,7 +27,7 @@
                     <a href="#">Edit Profile</a>
                 </li>
                 <li>
-                    <a href="#">Logout</a>
+                    <a href="../components/logout.php">Logout</a>
                 </li>
             </ul>
         </li>
@@ -35,3 +35,19 @@
     </ul>
 
 </nav>
+<div class="security-reminder">
+Warning! Set your security questions in <a href="../views/editProfile.php">User Settings</a> to enable password recovery.</div>
+<script>
+$(document).ready(function () {
+    $.ajax({
+        url: '../controllers/checkSecurityQuestions.php',
+        type: 'GET',
+        success: function(response) {
+            (response);
+            if (response.hasSecurity) {
+                $('.security-reminder').hide();
+            }
+        }
+    });
+});
+</script>

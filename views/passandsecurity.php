@@ -4,11 +4,11 @@
     <form id="changePasswordForm">
         <div class="fieldsContainer">
             <label for="currentpassword">Current Password</label>
-            <input type="password" id="currentpassword" name="currentpassword" placeholder="Current Password" autocomplete="current-password">
+            <input type="password" id="currentPassword" name="currentpassword" placeholder="Current Password" autocomplete="current-password">
         </div>
         <div class="fieldsContainer">
             <label for="newpassword">New Password</label>
-            <input type="password" id="newpassword" name="newpassword" placeholder="New Password" autocomplete="new-password">
+            <input type="password" id="newPassword" name="newpassword" placeholder="New Password" autocomplete="new-password">
         </div>
         <div class="fieldsContainer">
             <label for="confirmnewpassword">Confirm New Password</label>
@@ -20,7 +20,7 @@
     </form>
 
     <!-- Form for security questions -->
-    <label class="section-label">Security Questions</label>
+     <label class="section-label">Security Questions</label>
     <form id="securityForm">
         <div>
             <div class="wrapper">
@@ -51,14 +51,14 @@
                     <input class="name" id="streetname" type="text" name="streetname" placeholder="Answer">
                 </div>
                 <div class="fieldsContainer">
-                    <label for="favoritecartoon">Who was your favorite cartoon character as a child?</label>
-                    <input class="name" id="favoritecartoon" type="text" name="favoritecartoon" placeholder="Answer">
+                    <label for="favoritesweet">What was your favorite sweet to eat as a child?</label>
+                    <input class="name" id="favoritesweet" type="text" name="favoritesweet" placeholder="Answer">
                 </div>
             </div>
 
             <div style="display:flex; justify-content:center;">
-                <button type="submit">Confirm Answer</button>
+                <button id="confirmSecurity" type="submit">Confirm Answer </button>
             </div>
         </div>
-    </form>
+    </form> 
 </div>
