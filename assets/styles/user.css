@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    top: 0;
+}
+
+:root {
+    --bitter: "Bitter", serif;
+    --openSans: "Open Sans", sans-serif;
+    --instrumentSans: "Instrument Sans", sans-serif;
+    --lexendDeca: "Lexend Deca", sans-serif;
+}
+
+html {
+    min-height: 100vh;
+    height: fit-content;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    justify-content: flex-start;
+    font-family: var(--openSans);
+}
+
+main {
+    display: flex;
+    margin: 60px;
+    width: 100vw;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5rem;
+}
+
+.user-information {
+    height: fit-content;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-image-container {
+    margin-top:4rem;
+    position: relative; 
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%; 
+    overflow: hidden; 
+}
+
+.user-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; 
+    border: 0.1875rem solid #FF0303;
+    z-index: 1; /* Ensures the profile image is above the cover photo */
+}
+
+.cover-photo {
+    position: absolute; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 35%;
+    object-fit: cover;
+    opacity: 0.8; 
+    pointer-events: none; 
+    z-index: 0; 
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: .8rem;
+    max-width: 800px;
+}
+
+.user-details h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    font-family: var(--bitter);
+}
+
+.user-details p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    font-family: var(--lexendDeca);
+}
+
+.user-details p#occupation {
+    color: #333;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .user-information {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .user-image-container {
+        width: 10rem;
+        height: 10rem;
+    }
+
+}
+
+.user-recipes .header {
+    font-family: var(--bitter);
+    font-weight: 700;
+    font-size: xx-large;
+    margin-bottom: 3rem;
+}

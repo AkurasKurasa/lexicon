@@ -66,4 +66,31 @@ $(document).ready(function(){
       });
   });
 
+  $(".recipesSection").ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+
+      $.ajax({
+        url: "../controllers/fetch.php",
+        method: "GET",
+        data: { 
+          id: id,
+          type: 'fetchRecipes'
+        },
+        success: function(response) {
+          const data = JSON.parse(response);
+          if (data.success) {
+            $(".recipesSection").html(data.content);
+            console.log(data.id)
+          } else {
+            
+          }
+        },
+        error: function() {
+          alert("Something went wrong.");
+        }
+      });
+      
+  });
+
 });

@@ -5,11 +5,6 @@ if (isset($_SESSION['loggedInUser'])) {
         exit();
 } 
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

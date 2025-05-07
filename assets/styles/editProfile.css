@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    top: 0;
+}
+
+:root {
+    --bitter: "Bitter", serif;
+    --openSans: "Open Sans", sans-serif;
+    --instrumentSans: "Instrument Sans", sans-serif;
+    --lexendDeca: "Lexend Deca", sans-serif;
+}
+
+html {
+    min-height: 100vh;
+    height: fit-content;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+main {
+    padding-top:60px;
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    flex-direction: row;
+}
+    
+.navigation {
+    width: 15rem; 
+    border-right: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+.logo {
+    font-family: var(--lexendDeca);
+    font-weight: 800;
+    font-size: 1.125rem;
+    letter-spacing: -0.07em;
+    text-align: left;
+    margin-top: 1.25rem;
+}
+
+.logoAdmin {
+    font-family: var(--lexendDeca);
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.0625rem;
+    text-align: left;
+    color: #000;
+    margin-top: -0.1875rem;
+    margin-left: 0.1875rem;
+}
+
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 31.25rem;
+}
+
+.tab, .delete-account {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    color: #4d4d4d;
+    height: 3.125rem;
+    width: 100%;
+    font-family: var(--lexendDeca);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.0625rem;
+    padding-left: 2.5rem;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: rgba(194, 194, 194, 0.5);
+    pointer-events: none;
+}
+
+.tab:hover {
+    background-color: rgba(194, 194, 194, 0.5);
+}
+
+.sectionDivider {
+    width: 100%;
+    height: 0.1875rem;
+    background-color: black;
+    margin: 1.875rem 0;
+}
+
+.main-content {
+    flex-grow: 1;                  /* Take up all remaining horizontal space */
+    display: flex;
+    flex-direction: column;        /* Stack children vertically */
+    align-items: center;           /* Center content horizontally */
+    justify-content: flex-start;   /* Align content to the top */
+    padding: 2rem;
+    overflow-y: auto;              /* Allow vertical scroll if needed */
+    min-height: 100vh;             /* Optional: Ensure full screen height */
+}
+
+.change-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.875rem;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.edit-icon {
+    opacity: 0;
+    position: absolute;
+    width: 2.8125rem;
+    height: 2.8125rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.8s;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.user-image {
+    width: 12.5rem;
+    height: 12.5rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 0.1875rem solid #FF0303;
+    transition: 0.8s;
+}
+    
+.user-image:hover {
+    cursor: pointer;
+    filter: opacity(0.3) drop-shadow(0 0 0 grey);
+}
+
+.image-container:hover .edit-icon {
+    opacity: 1;
+}
+
+.picture-label {
+    padding: 0.625rem;
+    font-family: var(--lexendDeca);
+}
+
+.fieldsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+}
+
+.form,
+label:not([for="gender"]) {
+    font-family: var(--bitter);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form,
+input:not([type="radio"]),
+select {
+    height: 2rem;
+    width: 51.5625rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid black;
+    border-radius: 0;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+}
+
+input.name {
+    width: 25rem;
+}
+
+select.gender {
+    width: 25rem;
+}
+
+input::placeholder {
+    font-family: var(--bitter);
+    font-size: 1rem;
+}
+
+.description {
+    resize: none;
+    height: 6.25rem;
+    width: 51.5625rem;
+    border: 1px solid black;
+    border-radius: 0;
+    font-size: 1rem;
+    font-family: sans-serif;
+    padding: 0;
+    margin:0 0 1.5rem 0;
+}
+
+button {
+    padding: 0.625rem 1.875rem;
+    width: fit-content;
+    height: 3rem;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    font-family: var(--openSans);
+    font-weight: 700;
+    letter-spacing: 0.0625rem;
+    color: white;
+    background-color: #FF0303;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+
+}
+
+.delete-account {
+    background: #FF0303;
+    color: white;
+}
+
+.delete-account:hover {
+    background: #D00202;
+}
+
+form#securityForm label.section-label {
+    font-size: 2em;
+}
+
+label.section-label {
+    font-size: 2em;
+}

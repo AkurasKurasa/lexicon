@@ -60,12 +60,13 @@ class User
 
     //Gets the information of the Player
     public function getUserInfo($id) {
-        $sql = "SELECT * FROM users WHERE id = $id";
+        $sql = "SELECT * FROM users WHERE id = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([':id' => $id]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
+
 
     // public function getById($id)
     // {
