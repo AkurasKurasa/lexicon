@@ -27,24 +27,110 @@ main {
     padding: 32px;
 }
 
+.mainContent {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*User Profile and Link*/
+
+.userLink {
+    display: flex;
+    align-items: center;
+    color: rgb(21, 62, 116);
+    font-size: 20px;
+}
+
+.userIcon {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-image: url('../images/user_ic.svg');
+    background-size: cover;
+    background-position: center;
+    display: inline-block
+}
+
+.userLink span {
+    display: inline;
+    margin-right: 5px;
+}
+
+.userSubmit {
+    display: inline;
+    font-weight: bold;
+}
+
+.userLink a {
+    text-decoration: none;
+    color: inherit;
+}
 /*Next Recipe*/
 
 .nextRecipe {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #ffc34b;
-        padding: 10px 20px;
-        font-family: 'Lexend Deca';
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        margin-top: 80px; 
-        margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffad32;
+    padding: 10px 20px;
+    font-family: 'Lexend Deca';
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
+
+.nextRecipe ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nextRecipe li {
+    margin: 0;
+    padding: 0;
+}
+
+.nextRecipe li a {
+    text-decoration: none;
+    color: black; 
+    padding: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.nextRecipe li:first-child a {
+    text-align: left;
+}
+
+.nextRecipe li:last-child a {
+    text-align: right;
+}
+
+.nextRecipe li span {
+    display: block;
+    width: 100%;
+}
+
+.nextRecipe li span h4 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: bold;
+}
+
 .selectRecipe {
     text-align: center;
     justify-content: space-between;
@@ -60,12 +146,17 @@ main {
     max-width: 80%; 
     height: fit-content;
     width:fit-content;
+    max-width: fit-content;
     padding: 30px 40px;
-    margin: 10px; 
+    margin: 30px auto; 
     background-color: white; 
     box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.14);
     border-radius: 8px; 
     border-style: solid;
+    margin-top: 50px;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 30px;
 }
 
 /*Section for the title and the authorcard*/
@@ -75,6 +166,7 @@ main {
     gap: 5vw;
     width: 100%;
     height: fit-content;
+    flex: 1;
 }
 
 .recipeHeader {
@@ -294,6 +386,7 @@ main {
     background-color: #fdfdfd; 
     font-family: var(--openSans);
     margin-bottom: 3rem;
+    flex: 1
 }
 
 .sectionCard {
@@ -306,42 +399,54 @@ main {
 .prepTimeContainer {
     display: flex;
     flex-direction: column;
-    border: 2px solid rgb(0, 0, 0);
+    grid-template-columns: 1fr;
+    /* border: 2px solid rgb(0, 0, 0); */
     border-radius: 8px;
     overflow: hidden;
-    width: 80%;
-    max-width: auto;
-    margin: 2rem auto;
-    font-family: var(--openSans);
+    min-width: 300px;
+    width:fit-content;
+    height: fit-content;
+    margin: 20px auto;
+    font-family: 'Lexend Deca';
     background-color: #fff;
+    position: center;
 }
 
+.prepTimeContents {
+    display: grid; 
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px auto;
+}
+.verticalLine {
+    border-left: 1px solid black;
+    width: 1px;
+  }
 .colorFill {
     height: 10px;
     width: 100%;
-    background-color: orange;
+    background-color: rgb(0, 0, 0);
     margin-bottom: 30px;
 }
 
 .timeHeader,
 .timeValues {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+    display: block; 
+    text-align: left; 
+    padding: auto;
 }
 
-.timeHeader span,
-.timeValues span {
-    flex: 1; 
+.timeHeader {
     font-weight: bold;
     font-size: 16px;
 }
 
-.timeValues span {
+.timeValues {
     font-size: 15px;
     color: #333;
 }
 
-.timeHeader span {
-    margin-right: 10px;
+.prepTimeContents hr {
+    margin: 15px 0;
+    grid-column: 1;
 }
