@@ -202,7 +202,7 @@ main {
     background-position: center; 
 }
 
-.recipeList {
+.recipeList{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,6 +210,66 @@ main {
     width: 100%;
     height: fit-content;
     border: 1px black solid;
+}
+
+.recipeListv2{
+    display: flex;
+    max-width: 80%; 
+    height: fit-content;
+    width:fit-content;
+    max-width: fit-content;
+    padding: 30px 40px;
+    margin: 30px auto; 
+    background: transparent;
+    /* box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.14);
+    border-radius: 8px; 
+    border-style: solid; */
+    margin-top: 20px;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.ingredients p{
+    font-family: var(--bitter);
+    font-size: 17px;
+    /* font-weight: 700; */
+    color: rgb(77, 77, 77);
+    width: 100%;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.directions p{
+    font-family: var(--bitter);
+    font-size: 17px;
+    /* font-weight: 700; */
+    color: rgb(36, 36, 36);
+    width: 100%;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.directions {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    padding: 20px 30px;
+    max-height: fit-content;
+    max-width: 700px;
+    overflow: hidden;
+}
+
+.ingredients {
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    padding: 20px 30px;
+    max-height: fit-content;
+    max-width: 700px;
+    overflow: hidden;
+
 }
 
 .recipeList h1 {
@@ -411,6 +471,42 @@ main {
     background-color: #fff;
     position: center;
 }
+.prepTimeTitle {
+    font-family: 'Lexend Deca';
+    display: grid;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.listTitle {
+    font-family: 'Lexend Deca';
+    display: flex;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.repTitle {
+    font-family: 'Lexend Deca';
+    display: flex;
+    font-weight: bolder;
+    font-size: 40px;
+}
+
+.repliesSection{
+    display: flex;
+    min-width: 100%; 
+    height: fit-content;
+    width:fit-content;
+    max-width: fit-content;
+    padding: 30px 40px;
+    margin: 30px; 
+    background: transparent;
+    /* box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.14);
+    border-radius: 8px; 
+    border-style: solid; */
+    flex-direction: column;
+    gap: 20px;
+}
 
 .prepTimeContents {
     display: grid; 
@@ -419,7 +515,7 @@ main {
     padding: 10px auto;
 }
 .verticalLine {
-    border-left: 1px solid black;
+    border-left: 1px solid rgb(24, 24, 24);
     width: 1px;
   }
 .colorFill {

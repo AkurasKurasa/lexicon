@@ -69,9 +69,10 @@
         <div class="verticalLine"></div>
         <div class="prepTimeContainer">
           <div class="prepTimeContents">
-            <div class="colorFill"></div>
+            <div class="prepTimeTitle">Ready In:</div>
+            <hr style="margin: 30px 0px 30px 0px">
             <div class="timeHeader">
-                <span>Prep Time</span>
+                <span>Prep Time:</span>
             </div>
             <div class="timeValues">
                 <span>20 minutes</span>
@@ -79,32 +80,39 @@
             <br>
 
             <div class="timeHeader">
-                <span>Cook Time</span>
+                <span>Cook Time:</span>
             </div>
             <div class="timeValues">
                 <span>35 minutes</span>
             </div><br>
 
             <div class="timeHeader">
-                <span>Additional Time</span>
+                <span>Additional Time:</span>
             </div>
             <div class="timeValues">
                 <span>1 hour 20 minutes</span>
             </div><br>
-            
+
             <div class="timeHeader">
-                <span>Total Time</span>
+                <span>Total Time:</span>
             </div>
             <div class="timeValues">
                 <span>2 hours 15 minutes</span>
             </div><br>
+
+            <hr style="margin: 30px 0px 30px 0px">
+
             <div class="timeHeader">
-                <span>Servings</span>
+                        <div class="prepTimeTitle">   
+                          <span>Servings:</span> 
+                        </div>
             </div>
             <div class="timeValues">
                 <span>8</span>
             </div>
-            <hr style="margin: 30px 25px 30px 25px">
+
+            <hr style="margin: 30px 0px 30px 0px">
+
             <div class="timeHeader">
                 <span>Estimated Budget: </span>
             </div>
@@ -115,6 +123,53 @@
         </div>
       </div>
     </div>
+
+</div>
+<div class="recipeListv2">
+
+  <div class="directions">
+      <div class="listTitle">Directions</div>
+
+      <hr style="margin: 30px 0px 30px 0px">
+
+      <p>1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque reprehenderit a, nulla 
+        consequuntur autem totam voluptate facere natus dolorem atque magni aliquam asperiores in distinctio deleniti 
+        ducimus necessitatibus tempora error?
+      </p>
+      <p>2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque reprehenderit a, nulla 
+        consequuntur autem totam voluptate facere natus dolorem atque magni aliquam asperiores in distinctio deleniti 
+        ducimus necessitatibus tempora error?
+      </p>
+      <p>3. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque reprehenderit a, nulla 
+        consequuntur autem totam voluptate facere natus dolorem atque magni aliquam asperiores in distinctio deleniti 
+        ducimus necessitatibus tempora error?
+      </p>
+      <p>4. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque reprehenderit a, nulla 
+        consequuntur autem totam voluptate facere natus dolorem atque magni aliquam asperiores in distinctio deleniti 
+        ducimus necessitatibus tempora error?
+      </p>
+  </div>
+
+  <div class="ingredients">
+      <div class="listTitle">Ingredients</div>
+
+      <hr style="margin: 30px 0px 30px 0px">
+      <p>1 kilogram Chicken pieces</p>
+      <p>2 ½ cups All-Purpose Flour</p>
+      <p>2 teaspoons Salt</p>
+      <p>1 teaspoon Black Pepper</p>
+      <p>1 teaspoon Garlic Powder</p>
+      <p>1 teaspoon Onion Powder</p>
+      <p>1 teaspoon Paprika sweet or smoked</p>
+      <p>½ teaspoon Cayenne Pepper optional for heat</p>
+      <p>Cooking Oil for frying vegetable oil cooking oil - enough to submerge the chicken about 3-4 inches deep in your kawali or pan</p>
+  </div>
+  
+</div>
+
+<div class="repliesSection">
+<div class="repTitle">Questions and Replies:</div>
+<hr style="margin: 30px 0px 30px 0px">
 </div>
 
     </main>
