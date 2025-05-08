@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../assets/styles/adminDashboard.css">
+    <link rel="stylesheet" href="../assets/styles/adminExport.css">
     <link rel="stylesheet" href="../assets/styles/helper.css">
 </head>
 <body>
@@ -19,11 +19,6 @@
             <div class="tabs">
 
                 <h3 class="">GENERAL</h3>
-
-                <div class="tab dash">
-                    <div class="dashboard"></div>
-                    <p>DASHBOARD</p>
-                </div>
 
                 <div class="tab">
                     <div class="recipe"></div>
@@ -55,7 +50,6 @@
         </section>
 
         <section class="contentSection">
-
             <nav class="contentTop">
                 <div class="profileContainer">
                     <p>John Doe</p>
@@ -64,20 +58,48 @@
             </nav>
 
             <section class="contentBottom">
-                
-                <!-- <h1>Sentiment Bar Chart</h1>
-                <canvas id="sentimentBar"></canvas> -->
-                <h1>Sentiment Line Chart</h1>
-                <canvas id="sentimentTrend"></canvas>
+
+                <div class="exportContainers">
+
+                    <h1>Export Tables</h1>
+
+                    <button>Export recipes as .csv</button>
+                    <button>Export reviews as .csv</button>
+                    <button>Export users as .csv</button>
+                    <button>Export logs as .csv</button>
+                    <button>Export all as .csv</button>
+                </div>
 
             </section>
 
-        </section>   
+        </section>
 
     </main>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="../scripts/adminDashboard.js"></script>
+<!-- <script src="../scripts/adminLogs.js"></script> -->
 </html>
 
+<!-- <link rel="stylesheet" href="../assets/styles/adminExport.css">
+
+<nav class="contentTop">
+    <div class="profileContainer">
+        <p>John Doe</p>
+        <div class="profile"></div>
+    </div>
+</nav>
+
+<section class="contentBottom">
+
+    <div class="exportContainers">
+
+        <h1>Export Tables</h1>
+
+        <button>Export recipes as .csv</button>
+        <button>Export reviews as .csv</button>
+        <button>Export users as .csv</button>
+        <button>Export logs as .csv</button>
+        <button>Export all as .csv</button>
+    </div>
+
+</section> -->

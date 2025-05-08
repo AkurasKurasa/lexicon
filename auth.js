@@ -68,6 +68,7 @@ $(document).ready(function(){
         const data = JSON.parse(response);
         if (data.success) {
           $('.error').empty();
+          console.log(data.session);
           window.location.href = "Home.php";
         } else {
           let error = data.errors;

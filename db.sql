@@ -117,5 +117,5 @@ CREATE TABLE activity_logs (
     activity TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     activity_by INT NOT NULL,
-    FOREIGN KEY (activity_by) REFERENCES users(id)
+    FOREIGN KEY (activity_by) REFERENCES users(id) ON DELETE CASCADE
 );

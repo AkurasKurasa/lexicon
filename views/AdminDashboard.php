@@ -20,11 +20,6 @@
 
                 <h3 class="">GENERAL</h3>
 
-                <div class="tab dash">
-                    <div class="dashboard"></div>
-                    <p>DASHBOARD</p>
-                </div>
-
                 <div class="tab">
                     <div class="recipe"></div>
                     <p>RECIPES</p>
@@ -81,3 +76,8 @@
 <script src="../scripts/adminDashboard.js"></script>
 </html>
 
+<link rel="stylesheet" href="../assets/styles/adminDashboard.css">
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="../scripts/adminDashboard.js"></script> -->

@@ -168,186 +168,51 @@ main {
     background-color: rgba(128, 128, 128, 0.5);
 }
 
+/* .contentBottom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+} */
+
 .contentBottom {
     grid-area: 2 / 1 / 13 / 13;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: flex-start;
     flex-direction: column;
     width: 100%;
     height: 100%;
     padding: 1rem 1rem;
 }
 
-.controlContainer {
-    /* border: 1px black solid; */
-    height: fit-content;
-    width: 100%;
-    margin-top: 4rem;
+.exportContainers {
+    margin: 2rem;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: flex-start;
+    justify-self: flex-start;
     flex-direction: column;
-    gap: 0.5rem;
-}
-
-.controlWrapper1 {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    width: 100%;
-}
-
-.controlWrapper2 {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 100%;
-}
-  
-.searchBarContainer {
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 2rem;
-}
-  
-#filterName, #filterUser {
-    width: 300px;
-    height: 2rem;
-    background: #f5f5f5;
-    outline: none;
-    border: none;
-    /* border-radius: 1.625rem; */
-    border: 1px #42424247 solid;
-    padding: 0 3.5rem 0 1.5rem;
-    font-size: 12px;
-}
-  
-#searchQuerySubmit {
-    width: 3.5rem;
-    height: 2rem;
-    margin-left: -3.5rem;
-    background-color: none;
-    border-right: 1px #42424247 solid;
-    border-top: 1px #42424247 solid;
-    border-bottom: 1px #42424247 solid;
-    outline: none;
-}
-  
-#searchQuerySubmit:hover {
-    cursor: pointer;
-}
-
-.filtersContainer {
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     gap: 1rem;
 }
 
-.filtersContainer > select {
-    width: 215px;
-    height: 2rem;
-    background: #f5f5f5;
-    outline: none;
-    border: none;
-    border: 1px #42424247 solid;
-    padding: 0 3.5rem 0 1.5rem;
-    font-size: 12px;
-    cursor: pointer;
-}
-
-option {
+.exportContainers > h1 {
     font-family: var(--bitter);
-    cursor: pointer;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
 }
 
-.addBtn {
+.exportContainers > button {
     font-family: var(--bitter);
     font-weight: 700;
     margin-left: 1rem;
     height: 2rem;
     border-radius: 0;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     color: white;
-    background-color: #FF0303;
+    background-color: #a1a1a1;
     cursor: pointer;
-    margin-left: 2rem;
-    /* margin-right: 2rem; */
-    margin-top: 0.5rem;
-}
-
-.pages {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 0.5rem;
-    width: fit-content;
-    height: fit-content;
-    margin-left: 2rem;
-    margin-top: 1rem;
-    font-size: 10px;
-    font-family: var(--lexendDeca);
-}
-
-.page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 20px;
-    height: 24px;
-    background-color: #d9d9d9;
-    border-radius: 2px;
-    color: gray;
-    cursor: pointer;
-}
-
-.dataSectionLogs {
-    border: 1px #42424247 solid;
-    width: calc(100% - 4rem);
-    height: 78%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 3.5rem;
-    overflow: scroll;
-}
-
-.logContainer {
-    width: 100%;
-    height: 50px;
-    border-radius: 3px;
-    padding: 1rem 2rem;
-    background-color: #dfdfdf;
-    font-family: var(--bitter);
-    font-weight: 600;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.logTime {
-    font-family: var(--openSans);
-    font-size: 11px;
-    letter-spacing: 1px;
-    color: gray;
-    margin-right: 2rem;
-}
-
-.logInformation {
-    font-family: var(--lexendDeca);
-    font-size: 11px;
-    font-weight: 500;
-    color: #6a6a6a;
-    letter-spacing: 0.5px;
+    margin-left: 1rem;
+    /* margin-top: 0.5rem; */
 }

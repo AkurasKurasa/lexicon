@@ -309,7 +309,7 @@ option {
     cursor: pointer;
 }
 
-.dataSectionLogs {
+.dataSectionUsers {
     border: 1px #42424247 solid;
     width: calc(100% - 4rem);
     height: 78%;
@@ -317,37 +317,352 @@ option {
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 2rem;
     padding: 3.5rem;
     overflow: scroll;
 }
 
-.logContainer {
+.usersContainer {
+    /* border: 1px black solid; */
     width: 100%;
-    height: 50px;
-    border-radius: 3px;
-    padding: 1rem 2rem;
-    background-color: #dfdfdf;
+    height: fit-content;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.userContainer {
+    border: 1px solid rgba(0,0,0,.15);
+    width: 200px;
+    height: 158px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px; 
+    cursor: pointer;
+}
+
+.userTop {
+    grid-area: 1 / 1 / 10 / 13;
+    position: relative;
+}
+
+.userBottom {
+    grid-area: 10 / 1 / 13 / 13;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    padding: 0.5rem 1rem 0.75rem 1rem ;
+}
+
+.userBackground {
+    /* background-image: url('../images/chicken.jpg'); */
+    background-color: #dadada;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    filter:contrast(.7) brightness(.7);
+}
+
+.userContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    position: absolute;
+}
+
+.userContainer h1 {
     font-family: var(--bitter);
+    font-weight: 700;
+    font-size: 19px;
+    color: white;
+    letter-spacing: 1px;
+    width: 100%;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+.categoryName {
+    font-family: var(--openSans);
     font-weight: 600;
-    font-size: 11px;
+    font-size: 7px;
+    color: gray;
+}
+
+.authorName {
+    font-family: var(--lexendDeca);
+    font-weight: 600;
+    font-size: 9px;
+    color: rgb(128, 128, 128);
+}
+
+.btnContainer {
+    position: absolute;
+    top: calc(50% - 10px);
+    right: 0;
+    width: fit-content;
+    height: 20px;
+    /* border: 1px black solid; */
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.userBtn {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalUser {
+    position: absolute;
+    z-index: 10000; /* 1 */
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.modalUser.is-visible {
+    visibility: visible;
+}
+
+.modalUser.is-visible .modal-overlay {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.modalUser.is-visible .modal-transition {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modalUser-heading {
+    font-size: 1.125em;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: hsla(0, 0%, 0%, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.1s, opacity 0.1s;
+}
+
+.modal-wrapper {
+    position: absolute;
+    z-index: 9999;
+    top: 5em;
+    left: calc(50% - 12.5em);
+    width: 50em;
+    margin-left: -16em;
+    background-color: #fff;
+    box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+    height: fit-content;
+    overflow: hidden;
+}
+
+.modal-transition {
+  transition: all 0.3s 0.12s;
+  transform: translateY(-10%);
+  opacity: 0;
+}
+
+.modal-body {
+    height: 30em;
+    overflow: hidden;
+}
+
+.modal-header,
+.modal-content {
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modal-header {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.06);
+  border-bottom: 1px solid #e8e8e8;
+  font-family: var(--bitter);
+}
+
+.modal-content {
+    height: 100%;
+    padding: 1em 1em 3em 1em;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  color: #aaa;
+  background: none;
+  border: 0;
+}
+
+.modal-close:hover {
+  color: #777;
+}
+
+.modal-content > *:first-child {
+  margin-top: 0;
+}
+
+.modal-content > *:last-child {
+  margin-bottom: 0;
+}
+
+.userForm {
+    /* border: 1px black solid; */
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+    position: relative;
 }
 
-.logTime {
-    font-family: var(--openSans);
-    font-size: 11px;
-    letter-spacing: 1px;
-    color: gray;
-    margin-right: 2rem;
+.fieldsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+    width: 100%;
+    height: fit-content;
 }
 
-.logInformation {
-    font-family: var(--lexendDeca);
-    font-size: 11px;
+.fieldsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.25rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.fieldsContainer.recipe-name {
+    width: 100%;
+}
+
+.fieldsContainer.category {
+    width: 100%;
+}
+
+.fieldsContainer.description {
+    width: 100%;
+}
+
+.fieldsContainer.buttons {
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.fieldsContainer.buttons > button {
+    border: none;
+    border-radius: 0;
+    padding: 0.3rem 2rem;
+    font-family: var(--bitter);
     font-weight: 500;
-    color: #6a6a6a;
-    letter-spacing: 0.5px;
+    font-size: 11px;
+    color: white;
+    background: green;
+    cursor: pointer;
+}
+
+.fieldsContainer.buttons > button.submit {
+    background: green;
+} 
+
+.fieldsContainer.buttons > button.clear {
+    background: crimson;
+} 
+
+.fieldsContainer.recipe-name input {
+    width: 100%;
+}
+
+.fieldsContainer > label {
+    font-family: var(--lexendDeca);
+    font-weight: 600;
+    font-size: 8px;
+    color: gray;
+    margin-left: 0.25rem;
+}
+
+.fieldsContainer > input {
+    width: 100%; /* 350px */
+    height: 2rem;
+    background: #f5f5f5;
+    outline: none;
+    /* border: none; */
+    /* border-radius: 1.625rem; */
+    border: 1px #42424247 solid;
+    border-radius: 1px;
+    padding: 0 3.5rem 0 0.5rem;
+    font-size: 10px;
+}
+
+.fieldsContainer > select {
+    width: 100%;
+    height: 2rem;
+    background: #f5f5f5;
+    outline: none;
+    /* border: none; */
+    /* border-radius: 1.625rem; */
+    border: 1px #42424247 solid;
+    border-radius: 1px;
+    padding: 0 3.5rem 0 0.5rem;
+    font-size: 10px;
+}
+
+.fieldsContainer > textarea {
+    width: 100%;
+    height: 5rem;
+    background: #f5f5f5;
+    outline: none;
+    /* border: none; */
+    /* border-radius: 1.625rem; */
+    border: 1px #42424247 solid;
+    border-radius: 1px;
+    padding: 0.5rem;
+    font-size: 10px;
+    resize: none;
 }

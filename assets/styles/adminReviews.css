@@ -322,9 +322,9 @@ option {
     overflow: scroll;
 }
 
-.logContainer {
+.reviewContainer {
     width: 100%;
-    height: 50px;
+    height: 100px;
     border-radius: 3px;
     padding: 1rem 2rem;
     background-color: #dfdfdf;
@@ -333,21 +333,46 @@ option {
     font-size: 11px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
-.logTime {
+.reviewTime {
     font-family: var(--openSans);
     font-size: 11px;
     letter-spacing: 1px;
     color: gray;
-    margin-right: 2rem;
+    /* margin-right: 2rem; */
 }
 
-.logInformation {
+.reviewInformation {
     font-family: var(--lexendDeca);
     font-size: 11px;
     font-weight: 500;
-    color: #6a6a6a;
+    height: 100%;
+    max-height: 100%;
+    width: 550px;
+    max-width: 550px;
+    color: #919191;
     letter-spacing: 0.5px;
+    text-align: justify;
+    overflow: hidden;
+    /* white-space: wrap; */
+    text-overflow: ellipsis;
+}
+
+.reviewAuthor {
+    font-family: var(--openSans);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: gray;
+    /* margin-left: 2rem; */
+}
+
+.reviewResults {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: left;
+    width: 100px;
 }

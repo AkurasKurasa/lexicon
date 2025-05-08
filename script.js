@@ -80,6 +80,7 @@ $(document).ready(function(){
         success: function(response) {
           const data = JSON.parse(response);
           if (data.success) {
+            $(".recipesSection").empty();
             $(".recipesSection").html(data.content);
             console.log(data.id)
           } else {

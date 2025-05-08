@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../assets/styles/adminRecipes-1.css">
+    <link rel="stylesheet" href="../assets/styles/adminRecipes.css">
     <link rel="stylesheet" href="../assets/styles/helper.css">
 </head>
 <body>
@@ -63,21 +63,15 @@
                     <div class="controlWrapper1">
 
                         <div class="searchBarContainer">
-                            <input id="filterName" type="text" name="searchQueryInput" class="filterFieldInput" placeholder="Search recipe..." value="" />
-                            <!-- <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
-                                <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
-                            </button> -->
+                            <input id="filterName" type="text" name="searchQueryInput" class="filterRecipeFieldInput" placeholder="Search recipe..." value="" />
                         </div>
 
                         <div class="searchBarContainer" style="margin-left: 0;">
-                            <input id="filterUser" type="text" name="searchQueryInput" class="filterFieldInput" placeholder="Search user..." value="" />
-                            <!-- <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
-                                <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
-                            </button> -->
+                            <input id="filterUser" type="text" name="searchQueryInput" class="filterRecipeFieldInput" placeholder="Search user..." value="" />
                         </div>
 
                         <div class="filtersContainer">
-                            <select name="" id="filterCategory" class="filterField">
+                            <select name="" id="filterCategory" class="filterRecipeField">
                                 <option value="" selected>Select a category...</option>
                                 <option value="chicken">Chicken</option>
                                 <option value="ramen">Ramen</option>
@@ -94,7 +88,7 @@
                                 <option value="seafood">Seafood</option>
                             </select>
 
-                            <select name="" id="" class="filterField">
+                            <select name="" id="" class="filterRecipeField">
                                 <option value="" selected>Choose rating...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -112,17 +106,16 @@
  
                 </div>
 
-                <div class="dataSection">
-                    <!-- data here -->
+                <div class="dataSectionRecipe">
                 </div>
             </section>
 
-            <div class="modal">
+            <div class="modalRecipe">
                 <div class="modal-overlay modal-toggle"></div>
                 <div class="modal-wrapper modal-transition">
                     <div class="modal-header">
                         <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
-                        <h2 class="modal-heading">Add a Recipe</h2>
+                        <h2 class="modalRecipe-heading">Add a Recipe</h2>
                     </div>
                 
                 <div class="modal-body">
@@ -162,35 +155,41 @@
 
                             <div class="fieldsContainer description">
                                 <label for="">INGREDIENTS</label>
-                                <textarea id="" name="ingredients" placeholder="e.g., carrots - 2, eggs - 5, ..."></textarea>
+                                <textarea name="ingredients" id="recipeIngredients" placeholder="e.g., carrots - 2, eggs - 5, ..."></textarea>
                             </div>
 
                             <div class="fieldsContainer description">
-                                <label for="">IMAGES</label>
-                                <textarea id="" name="images" placeholder="e.g., https://i.imgur.com/RYbaxaF.jpeg, https://i.imgur.com/jzFOtOS.jpeg (seperate image url by a comma)"></textarea>
+                                <label for="">PROCEDURE</label>
+                                <textarea name="procedure" id="recipeProcedure" placeholder="e.g., carrots - 2, eggs - 5, ..."></textarea>
+                            </div>
+
+
+                            <div class="fieldsContainer description">
+                                <label for="">IMAGE</label>
+                                <textarea name="image" id="recipeImage" placeholder="e.g., https://i.imgur.com/RYbaxaF.jpeg, https://i.imgur.com/jzFOtOS.jpeg (seperate image url by a comma)"></textarea>
                             </div>
 
                             <div class="fieldsWrapper">
                                 <div class="fieldsContainer description">
                                     <label for="">PREP TIME</label>
-                                    <input type="text" name="prepTime" placeholder="e.g., 60 minutes">
+                                    <input type="text" name="prepTime" id="recipePrepTime" placeholder="e.g., 60 minutes">
                                 </div>
 
                                 <div class="fieldsContainer description">
                                     <label for="">COOKING TIME</label>
-                                    <input type="text" name="cookingTime" placeholder="e.g., Delicious Spaghetti">
+                                    <input type="text" name="cookingTime" id="recipeCookingTime" placeholder="e.g., Delicious Spaghetti">
                                 </div>
                             </div>
 
                             <div class="fieldsWrapper">
                                 <div class="fieldsContainer description">
                                     <label for="">ADDITIONAL TIME</label>
-                                    <input type="text" name="additionalTime" placeholder="e.g., Delicious Spaghetti">
+                                    <input type="text" name="additionalTime" id="recipeAdditionalTime" placeholder="e.g., Delicious Spaghetti">
                                 </div>
 
                                 <div class="fieldsContainer description">
                                     <label for="">BUDGET</label>
-                                    <input type="text" name="budget" placeholder="e.g., Delicious Spaghetti">
+                                    <input type="text" name="budget" id="recipeBudget" placeholder="e.g., Delicious Spaghetti">
                                 </div>
                             </div>
 
@@ -204,10 +203,10 @@
                 </div>
             </div>
 
-        </div>   
+        </section>   
 
     </main>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="../scripts/admin-1.js"></script>
+<script src="../scripts/adminRecipes.js"></script>
 </html>

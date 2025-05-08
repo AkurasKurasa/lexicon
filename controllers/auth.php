@@ -1,4 +1,6 @@
 <?php
+    session_start(); // REQUIRED!
+
     require_once '../config.php';        
     require_once '../models/User.php';
 
@@ -75,7 +77,7 @@
 
                 if ( !($user->verifyUser($email, $password)) ) {
                     $errors = "Invalid credentials!";
-                }
+                } 
 
                 if ( !($user->emailExists($email)) ) {
                     $errors = "Email does not exist!";
@@ -86,9 +88,16 @@
                 }
                 
                 if ( empty($errors) ) {
+                    
+                    $session = $user->verifyUser($email, $password);
+
+                    $_SESSION['id'] = $session['uuid'];
+                    $_SESSION['first_name'] = $session['first_name'];
+                    $_SESSION['last_name'] = $session['last_name'];
+                    $_SESSION['email'] = $session['email'];
+                    $_SESSION['password'] = $session['password'];
     
-    
-                    echo json_encode(['success' => true, 'message' => "Login works fine homie"]);
+                    echo json_encode(['success' => true, 'message' => "Login works fine homie", 'session' => $session]);
                 } else {
                     echo json_encode([ 'success' => false, 'errors' => $errors ]);
                 }

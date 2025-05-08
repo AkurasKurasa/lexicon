@@ -1,6 +1,7 @@
 <?php
     include('../config.php');
     require_once '../models/Recipe.php';
+    require_once '../models/User.php';
 
     $type = $_GET['type'];
 
@@ -30,12 +31,12 @@
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
                 // product_name, product_image, category, id
-            
-                    if ($counter % 4 == 0) {
-                        $output .= "<div class='recipesContainer'>";
-                    }
 
                     if ( $id == $row['category'] ) {
+
+                        if ($counter % 4 == 0) {
+                            $output .= "<div class='recipesContainer'>";
+                        }
             
                         $output .= "
                             <div class='recipeContainer' data-name='{$row['id']}'>
@@ -154,10 +155,10 @@
                             <p class='categoryName'>" . strtoupper($row['category']) . "</p>
                             <p class='authorName'>{$row['author_name']}</p>  <!-- Now showing the combined author name -->
                             <div class='btnContainer'>
-                                <div class='btn delete'>
+                                <div class='recipeBtn delete'>
                                     <img src='' alt='' class='trash'>
                                 </div>
-                                <div class='btn edit'>
+                                <div class='recipeBtn-update'>
                                     <img src='' alt='' class='edit'>
                                 </div>
                             </div>
@@ -190,6 +191,185 @@
             echo json_encode(['success' => true, 'content' => $output]);
             break;
 
+        case 'fetchUsersAdmin':
+            $filterName = $_GET['filterName'] ?? null; 
+            $filterRole = $_GET['filterRole'] ?? null; 
+        
+            $params = [];
+            $conditions = [];
+        
+            $query = "
+                SELECT 
+                    users.id,
+                    users.first_name,
+                    users.last_name,
+                    images.image,
+                    users.role
+                FROM 
+                    users
+                LEFT JOIN images
+                    ON images.related_id = users.id 
+                    AND images.related_type = 'user'
+            ";
+
+            if (!empty($filterName)) {
+                $conditions[] = "CONCAT(users.first_name, ' ', users.last_name) LIKE :filterName";
+                $params[':filterName'] = '%' . $filterName . '%';
+            }
+
+            if (!empty($filterRole)) {
+                $conditions[] = "users.role = :filterRole";
+                $params[':filterRole'] = $filterRole;
+            }
+
+            if (!empty($conditions)) {
+                $query .= " WHERE " . implode(" AND ", $conditions);
+            }
+        
+            $result = $pdo->prepare($query);
+            $result->execute($params);
+        
+            $output = "";
+            $counter = 0;
+        
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        
+                if ($counter % 5 == 0) {
+                    $output .= "<div class='usersContainer'>";
+                }
+        
+                $output .= "
+
+                    <div class='userContainer' data-name='{$row['id']}'>
+                            <div class='userTop'>
+                                <img src='' alt='' class='userBackground' style='background-image: url({$row['image']});'>
+                                <div class='userContent'>
+                                    <h1></h1>
+                                </div>
+                            </div>
+                            <div class='userBottom'>
+                                <p class='categoryName'>" . strtoupper($row['role']) . "</p>
+                                <p class='authorName'>{$row['first_name']} {$row['last_name']}</p>  
+                                <div class='btnContainer'>
+                                    <div class='userBtn delete'>
+                                        <img src='' alt='' class='trash'>
+                                    </div>
+                                    <div class='userBtn update'>
+                                        <img src='' alt='' class='edit'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                ";
+        
+                $counter++;
+        
+                if ($counter % 5 == 0) {
+                    $output .= "</div>";
+                }
+            }
+        
+            if ($counter % 5 != 0) {
+                $output .= "</div>";
+            }
+        
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
+
+
+        case 'fetchUser':
+
+            $id = $_GET['id'];
+            $user = new User($pdo);
+
+            $output = $user->fetchUser($id);
+
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
+
+        case 'fetchLogs':
+
+            $filterName = $_GET['filterName'] ?? null; 
+            $filterRole = $_GET['filterRole'] ?? null; 
+            $filterStartDate = $_GET['filterStartDate'] ?? null;
+            $filterStartTime = $_GET['filterStartTime'] ?? null;
+            $filterEndDate = $_GET['filterEndDate'] ?? null;
+            $filterEndTime = $_GET['filterEndTime'] ?? null;
+        
+            $params = [];
+            $conditions = [];
+        
+            $query = "
+                SELECT 
+                    activity_logs.id,
+                    activity_logs.activity,
+                    activity_logs.activity_by,
+                    activity_logs.created_at,
+                    users.role,
+                    users.first_name,
+                    users.last_name
+                FROM 
+                    activity_logs
+                LEFT JOIN users
+                    ON activity_logs.activity_by = users.id
+            ";
+
+            if (!empty($filterName)) {
+                $conditions[] = "CONCAT(users.first_name, ' ', users.last_name) LIKE :filterName";
+                $params[':filterName'] = '%' . $filterName . '%';
+            }
+
+            if (!empty($filterRole)) {
+                $conditions[] = "users.role = :filterRole";
+                $params[':filterRole'] = $filterRole;
+            }
+
+            if (!empty($filterStartDate)) {
+                $conditions[] = "DATE(activity_logs.created_at) >= :startDate";
+                $params[':startDate'] = $filterStartDate;
+            }
+            
+            if (!empty($filterStartTime)) {
+                $conditions[] = "TIME(activity_logs.created_at) >= :startTime";
+                $params[':startTime'] = $filterStartTime;
+            }
+            
+            if (!empty($filterEndDate)) {
+                $conditions[] = "DATE(activity_logs.created_at) <= :endDate";
+                $params[':endDate'] = $filterEndDate;
+            }
+            
+            if (!empty($filterEndTime)) {
+                $conditions[] = "TIME(activity_logs.created_at) <= :endTime";
+                $params[':endTime'] = $filterEndTime;
+            }
+
+            if (!empty($conditions)) {
+                $query .= " WHERE " . implode(" AND ", $conditions);
+            }
+
+            $query .= " ORDER BY activity_logs.created_at DESC";
+        
+            $result = $pdo->prepare($query);
+            $result->execute($params);
+        
+            $output = "";
+        
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        
+                $output .= "
+
+                    <div class='logContainer'>
+                        <p class='logTime'>{$row['created_at']}</p>
+                        <p class='logInformation'><b style='color: black;'>{$row['first_name']} {$row['last_name']} (ID: {$row['activity_by']})</b>  {$row['activity']}.</p>
+                    </div>
+                ";
+                
+            }
+
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
+        
         case 'fetchComments':
             break;
         
