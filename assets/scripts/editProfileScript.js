@@ -50,8 +50,8 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function(response) {
-                $data = JSON.parse(response);
-                if($data.success) {
+                data = JSON.parse(response);
+                if(data.success) {
                     $("input[name='birthday']").attr('disabled', true);
                     $(".success").html('Edit Successful!');
 

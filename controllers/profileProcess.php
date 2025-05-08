@@ -51,7 +51,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (move_uploaded_file($fileTmpPath, $destPath)) {
             $profilePicturePath = $destPath; 
-
+            $uploadNewImage = true;
             $stmtOld = $pdo->prepare("SELECT profile_picture_url FROM users WHERE id = :id");
             $stmtOld->execute([':id' => $userID]);
             $old = $stmtOld->fetch(PDO::FETCH_ASSOC);
@@ -99,7 +99,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $stmt = $pdo->prepare($sql);
         $success = $stmt->execute($params);
-        echo json_encode(['success' => $success]);
+        echo json_encode(['success' => $profilePicturePath]);
     } catch (PDOException $e) {
         echo json_encode(['error' => 'Error updating profile: ' . $e->getMessage()]);
     }

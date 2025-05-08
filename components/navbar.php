@@ -36,7 +36,7 @@
 
 </nav>
 <div class="security-reminder">
-Warning! Set your security questions in <a href="../views/editProfile.php">User Settings</a> to enable password recovery.</div>
+<p>Warning! Set your security questions in <a href="../views/editProfile.php">User Settings</a> to enable password recovery.</p></div>
 <script>
 $(document).ready(function () {
     $.ajax({

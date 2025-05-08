@@ -11,7 +11,7 @@ if (isset($_SESSION['loggedInUser'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
-    <link rel="stylesheet" href="../assets/styles/auth.css">
+    <link rel="stylesheet" href="../assets/styles/forgotPassword.css">
 </head>
 <body>
     <main>
@@ -19,7 +19,7 @@ if (isset($_SESSION['loggedInUser'])) {
         <section class="contentSection">
             <form id="loginForm">
                 <h1>Cooked.</h1>
-                <h2>Log in</h2>
+                <h2>Reset Password</h2>
                 <div class="fieldsContainer">
                     <label for="">Email</label>
                     <input type="text" name="email" placeholder="yourname@example.com">
@@ -34,8 +34,7 @@ if (isset($_SESSION['loggedInUser'])) {
                 
                 <li class="error"></li>
 
-                <p>Don't have an account? <a href="Signup.php">Sign up</a></p>
-                <p>Forgot your Password? <a href="resetPassword.php">Reset Password</a></p>
+                <p>Remember Your Account? <a href="Login.php">Log In</a></p>
 
             </form>
         </section>
