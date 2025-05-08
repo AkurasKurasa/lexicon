@@ -23,14 +23,18 @@
         <li>
             <a href="#">User ▼</a>
             <ul class="dropdown">
-                <li>
+            <li>
+            
+       </li>
+            <li>
                     <a href="#">Edit Profile</a>
-                </li>
+            </li>
                 <li>
                     <a href="#">Logout</a>
                 </li>
             </ul>
         </li>
+        <script src="../scripts/admin.js"></script>
 
     </ul>
 
