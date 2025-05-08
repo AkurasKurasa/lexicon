@@ -7,15 +7,6 @@ class User
     {
         $this->db = $db;
     }
-<<<<<<< HEAD
-public function create($data)
-{
-    $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
-    
-    $sql = "INSERT INTO users (id, first_name, last_name, gender, email, password, role)
-            VALUES (:id, :first_name, :last_name, :gender, :email, :password, :role)";
-    $stmt = $this->db->prepare($sql);
-=======
 
     public function create($data)
     {
@@ -94,7 +85,6 @@ public function create($data)
         $stmt->execute([':email' => $email]);
     
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
->>>>>>> version_1_merge
 
     return $stmt->execute([
         'id' => uniqid(),
@@ -137,20 +127,20 @@ public function changePassword($userId, $currentPassword, $newPassword)
     
     
 
-public function verifyUser($email, $password)
-{
-    $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute([':email' => $email]);
+// public function verifyUser($email, $password)
+// {
+//     $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+//     $stmt = $this->db->prepare($sql);
+//     $stmt->execute([':email' => $email]);
     
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+//     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
-        return $user;
-    }
+//     if ($user && password_verify($password, $user['password'])) {
+//         return $user;
+//     }
     
-    return false; 
-}
+//     return false; 
+// }
 
     
 
@@ -164,24 +154,6 @@ public function verifyUser($email, $password)
         return $count > 0;
     }
 
-<<<<<<< HEAD
-    public function getUserInfo($id) {
-        $sql = "SELECT * FROM users WHERE id = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $user;
-    }
-
-
-    // public function getById($id)
-    // {
-    //     $sql = "SELECT * FROM users WHERE id = :id LIMIT 1";
-    //     $stmt = $this->db->prepare($sql);
-    //     $stmt->execute([':id' => $id]);
-    //     return $stmt->fetch(PDO::FETCH_ASSOC);
-    // }
-=======
     public function fetchUser($id)
     {
         $sql = "SELECT * FROM users WHERE id = :id LIMIT 1";
@@ -189,6 +161,5 @@ public function verifyUser($email, $password)
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
->>>>>>> version_1_merge
 
 }

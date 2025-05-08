@@ -88,17 +88,6 @@
                 }
                 
                 if ( empty($errors) ) {
-<<<<<<< HEAD
-                    $session = $user->verifyUser($email, $password);
-                    $_SESSION["loggedInUser"] = $user['id'];
-                    $_SESSION["first_name"] = $user['id'];
-                    $_SESSION["last_name"] = $user['id'];
-                    $_SESSION["email"] = $user['id'];
-                    $_SESSION["password"] = $session['password'];
-
-    
-                    echo json_encode(['success' => true, 'message' => "Login works fine homie"]);
-=======
                     
                     $session = $user->verifyUser($email, $password);
 
@@ -109,7 +98,6 @@
                     $_SESSION['password'] = $session['password'];
     
                     echo json_encode(['success' => true, 'message' => "Login works fine homie", 'session' => $session]);
->>>>>>> version_1_merge
                 } else {
                     echo json_encode([ 'success' => false, 'errors' => $errors ]);
                 }
