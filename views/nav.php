@@ -3,7 +3,7 @@
 require_once '../config.php';
 require_once '../models/User.php';
 
-session_start();
+// session_start();
 
 // Gets the info of the user currently logged in 
 if (isset($_SESSION['loggedInUser'])) {

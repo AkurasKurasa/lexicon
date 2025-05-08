@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../assets/styles/recipe.css">
 </head>
 <body>
-<<<<<<< HEAD
 <?php include '../components/navbar.php'; ?>
 
 <main>
@@ -21,14 +20,6 @@
 <div class="recipeContainer">
 
     <section class="headerSection">
-=======
-
-    <?php include '../components/Navbar.php'; ?>
-
-    <main>
-        <!-- Section for the header -->
-        <section class="headerSection">
->>>>>>> version_1_merge
         <div class="recipeHeader">
             <h1 class="recipeName">Aunt Jemima's Beloved Fried Chicken</h1>
             <span></span>

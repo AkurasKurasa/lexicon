@@ -17,13 +17,7 @@ if (empty($_SESSION['id'])) {
     <link rel="stylesheet" href="../assets/styles/home.css">
 </head>
 <body>
-<<<<<<< HEAD
-<?php require_once(__DIR__.'../nav.php'); ?>
-=======
-
-        <?php include '../components/Navbar.php'; ?>
-
->>>>>>> version_1_merge
+<?php require_once(__DIR__.'../components/navbar.php'); ?>
         <div class="featuredRecipes">
             <div class="featuredRecipe chicken" data-id="chicken">
                 <h1 class="featuredRecipe-name">CHICKEN</h1>
