@@ -1,10 +1,22 @@
 <?php
+<<<<<<< HEAD
 session_start();
 if (isset($_SESSION['loggedInUser'])) {
         header("Location: home.php");
         exit();
 } 
 ?>
+=======
+// Start the session
+session_start();
+
+if (!empty($_SESSION['id'])) {
+    header("Location: Home.php");
+    exit();
+}
+?>
+
+>>>>>>> version_1_merge
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +26,7 @@ if (isset($_SESSION['loggedInUser'])) {
     <link rel="stylesheet" href="../assets/styles/auth.css">
 </head>
 <body>
+
     <main>
         <section class="imageSection"></section>
         <section class="contentSection">

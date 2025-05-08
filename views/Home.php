@@ -1,3 +1,13 @@
+<?php
+// Start the session
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header("Location: Login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +17,13 @@
     <link rel="stylesheet" href="../assets/styles/home.css">
 </head>
 <body>
+<<<<<<< HEAD
 <?php require_once(__DIR__.'../nav.php'); ?>
+=======
+
+        <?php include '../components/Navbar.php'; ?>
+
+>>>>>>> version_1_merge
         <div class="featuredRecipes">
             <div class="featuredRecipe chicken" data-id="chicken">
                 <h1 class="featuredRecipe-name">CHICKEN</h1>
@@ -33,43 +49,43 @@
                 <h3 class="otherRecipe-name">PIZZA</h3>
             </div>
 
-            <div class="otherRecipe-wrapper" data-id="burger">
-                <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">BURGER</h3>
-            </div>
-
-            <div class="otherRecipe-wrapper" data-id="asian">
-                <div class="otherRecipe pizza"></div>
-                <h3 class="otherRecipe-name">ASIAN</h3>
-            </div>
-
             <div class="otherRecipe-wrapper" data-id="sandwich">
-                <div class="otherRecipe pizza"></div>
+                <div class="otherRecipe sandwich"></div>
                 <h3 class="otherRecipe-name">SANDWICHES</h3>
             </div>
 
+            <div class="otherRecipe-wrapper" data-id="asian">
+                <div class="otherRecipe asian"></div>
+                <h3 class="otherRecipe-name">ASIAN</h3>
+            </div>
+
+            <div class="otherRecipe-wrapper" data-id="steak">
+                <div class="otherRecipe steak"></div>
+                <h3 class="otherRecipe-name">STEAK</h3>
+            </div>
+
             <div class="otherRecipe-wrapper" data-id="soup">
-                <div class="otherRecipe pizza"></div>
+                <div class="otherRecipe soup"></div>
                 <h3 class="otherRecipe-name">SOUP</h3>
             </div>
 
             <div class="otherRecipe-wrapper" data-id="pasta">
-                <div class="otherRecipe pizza"></div>
+                <div class="otherRecipe pasta"></div>
                 <h3 class="otherRecipe-name">PASTA</h3>
             </div>
 
             <div class="otherRecipe-wrapper" data-id="healthy">
-                <div class="otherRecipe pizza"></div>
+                <div class="otherRecipe healthy"></div>
                 <h3 class="otherRecipe-name">HEALTHY</h3>
             </div>
 
             <div class="otherRecipe-wrapper" data-id="breakfast">
-                <div class="otherRecipe pizza"></div>
+                <div class="otherRecipe breakfast"></div>
                 <h3 class="otherRecipe-name">BREAKFAST</h3>
             </div>
 
             <div class="otherRecipe-wrapper" data-id="seafood">
-                <div class="otherRecipe pizza"></div>
+                <div class="otherRecipe seafood"></div>
                 <h3 class="otherRecipe-name">SEAFOOD</h3>
             </div>
 

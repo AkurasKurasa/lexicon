@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap');
+<<<<<<< HEAD
+=======
+
+>>>>>>> version_1_merge
 :root {
     --lexendDeca: "Lexend Deca", sans-serif;
 }
@@ -12,9 +16,15 @@
     font-family: 'Lexend Deca';
     width: 100%;
     position: fixed;
+<<<<<<< HEAD
     z-index: 2;
 }
 
+=======
+    z-index: 1;
+  }
+  
+>>>>>>> version_1_merge
 ul {
     list-style: none;
     padding: 0;
@@ -34,11 +44,19 @@ ul {
     color: #fff;
 }
 
+<<<<<<< HEAD
 nav>ul li {
     position: relative;
 }
 
 nav>ul li a {
+=======
+nav > ul li {
+position: relative;
+}
+
+nav > ul li a {
+>>>>>>> version_1_merge
     display: block;
     padding: 10px 15px;
     color: #FFF;
@@ -52,6 +70,7 @@ nav>ul li a {
     margin-right: 5rem;
 }
 
+<<<<<<< HEAD
 nav>ul li ul.dropdown li {
     display: block;
 }
@@ -97,4 +116,30 @@ nav>ul li:hover ul.dropdown {
 
 .security-reminder a {
     color: black; 
+=======
+nav > ul li ul.dropdown li {
+display: block;
+}
+
+nav > ul li ul.dropdown {
+width: 120px;
+background: #000000;
+position: absolute;
+top: 100%;
+left: 0;
+z-index: 999;
+display: none;
+}
+
+nav > ul li a:hover {
+/* background: #1c1c1c; */
+}
+
+nav > ul li:hover ul.dropdown {
+display: block;
+}
+
+#nav-logo-li {
+padding: 0 !important;
+>>>>>>> version_1_merge
 }

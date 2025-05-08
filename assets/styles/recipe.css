@@ -17,6 +17,7 @@
     --lexendDeca: "Lexend Deca", sans-serif;
 }
 
+<<<<<<< HEAD
 html {
     min-height: 100vh;
     height: fit-content;
@@ -28,6 +29,10 @@ body {
     justify-content: flex-start;
     font-family: var(--openSans);
 
+=======
+body {
+    padding: 0 7rem 0 5rem;
+>>>>>>> version_1_merge
 }
 
 main {

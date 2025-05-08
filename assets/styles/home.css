@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 
 *, *::after, *::before {
     box-sizing: border-box;
@@ -16,13 +18,14 @@
 
 body {
     min-height: 100vh;
-    height: 100vh;
+    height: fit-content;
     min-width: 100vw;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 6rem 0 0 0;
 }
 
 .featuredRecipes {
@@ -34,13 +37,13 @@ body {
     justify-content: center;
     flex-direction: row;
     gap: 1rem;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 .featuredRecipe {
     /* border: 1px black solid; */
-    height: 500px;
-    width: 300px;
+    height: 458px; /* 500px, 458px */
+    width: 275px; /* 300px, 275px */
     position: relative;
     background-position: center;
     background-size: cover;
@@ -72,6 +75,39 @@ body {
 .pizza {
     background-image: url('../images/pizza.jpg');
 }
+
+.sandwich {
+    background-image: url('../images/sandwich.jpg');
+}
+
+.asian {
+    background-image: url('../images/asian.jpg');
+}
+
+.steak {
+    background-image: url('../images/steak.jpg');
+}
+
+.soup {
+    background-image: url('../images/soup.jpg');
+}
+
+.pasta {
+    background-image: url('../images/pasta.jpg');
+}
+
+.healthy {
+    background-image: url('../images/healthy.jpg');
+}
+
+.breakfast {
+    background-image: url('../images/breakfast.jpg');
+}
+
+.seafood {
+    background-image: url('../images/seafood.jpg');
+}
+
 
 .featuredRecipe-name {
     display: flex;

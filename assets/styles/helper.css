@@ -1,0 +1,47 @@
+.dashboard {
+    content: url('../images/dashboard.svg');
+    width: 24px;
+    height: 24px;
+}
+
+.recipe {
+    content: url('../images/recipe.svg');
+    width: 23px;
+    height: 23px;
+}
+
+.reviews {
+    content: url('../images/reviews.svg');
+    width: 23px;
+    height: 23px;
+}
+
+.logs {
+    content: url('../images/logs.svg');
+    width: 23px;
+    height: 23px;
+}
+
+.users {
+    content: url('../images/users.svg');
+    width: 23px;
+    height: 23px;
+}
+
+.export {
+    content: url('../images/export.svg');
+    width: 23px;
+    height: 23px;
+}
+
+.trash {
+    content: url('../images/trash.svg');
+    width: 14px;
+    height: 14px;
+}
+
+.edit {
+    content: url('../images/edit.svg');
+    width: 14px;
+    height: 14px;
+}

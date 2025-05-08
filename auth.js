@@ -52,6 +52,7 @@ $(document).ready(function() {
     $("#loginForm").submit(function(e) {
         e.preventDefault();
 
+<<<<<<< HEAD
         let formData = $('#loginForm').serializeArray().reduce(function(obj, item) {
             obj[item.name] = item.value;
             return obj;
@@ -82,5 +83,33 @@ $(document).ready(function() {
             }
         });
     })
+=======
+    $.ajax({
+      url: "../controllers/auth.php",
+      method: "POST",
+      data: { 
+        email: formData['email'],
+        password: formData['password'],
+        type: 'login'
+      },
+      success: function(response) {
+        const data = JSON.parse(response);
+        if (data.success) {
+          $('.error').empty();
+          console.log(data.session);
+          window.location.href = "Home.php";
+        } else {
+          let error = data.errors;
+          $('.error').empty();
+          let message = `<li>${error}</li>`;
+          $('.error').append(message);          
+        }
+      },
+      error: function() {
+      
+      }
+    });
+  })
+>>>>>>> version_1_merge
 
 });
