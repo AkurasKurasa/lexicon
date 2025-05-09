@@ -18,7 +18,7 @@ if (!empty($_SESSION['id'])) {
 </head>
 <body>
 
-    <main>
+    <main>  
         <section class="imageSection"></section>
         <section class="contentSection">
             <form id="loginForm" method="POST">

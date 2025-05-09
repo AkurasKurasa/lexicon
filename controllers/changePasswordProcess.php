@@ -6,8 +6,8 @@ require_once '../models/User.php';
 $response = ['success' => false];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_SESSION['loggedInUser'])) {
-        $userId = $_SESSION['loggedInUser'];
+    if (isset($_SESSION['id'])) {
+        $userId = $_SESSION['id'];
         
         $currentPassword = $_POST['currentpassword'] ?? '';
         $newPassword = $_POST['newpassword'] ?? '';

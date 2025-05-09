@@ -11,7 +11,7 @@ $(document).ready(function() {
         },
         success: function(response) {
             data = JSON.parse(response);
-
+            console.log(data);
             // Checks if there is a user logged in and if he has already commented
             if (!data.checkLoggedIn) {
                 $("#userComment").attr('placeholder', 'You must be logged in to submit a review.');
@@ -21,14 +21,14 @@ $(document).ready(function() {
                 $("#userComment").prop('disabled', true);
             }
             $(".userImage").attr('src', data.profile_picture_url);
-
+            
             // Populates the comment
             $.each(data.usersCommented, function(index, user) {
-                populateComment(user.first_name, user.last_name, user.profile_picture_url ?? "../assets/images/img_avatar.png", user.comment, user.rating, user.created_at);
+                console.log(user.image);
+                populateComment(user.first_name, user.last_name, user.image ?? "../assets/images/img_avatar.png", user.comment, user.rating, user.created_at);
             });
 
             // Populates the recipe page
-            console.log(data.recipeInfo);
             recipe_name = data.recipeInfo['product_name'];
             author = data.recipeInfo['author'];
             author_name = data.recipeInfo['first_name'] + " " + data.recipeInfo['last_name'];

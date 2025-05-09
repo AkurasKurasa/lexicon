@@ -34,9 +34,9 @@
                 <div class="fieldsContainer">
                     <label for="gender_field">Gender</label>
                     <select class="gender" name="gender" id="genderSelect">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 <div class="fieldsContainer">
@@ -46,8 +46,8 @@
             </div>
 
             <div class="fieldsContainer">
-                        <label for="phoneNo">About You (Maximum of 50 words)</label>
-                        <textarea class="description" name="description"></textarea>
+                        <label for="phoneNo">About You (Maximum of 300 characters)</label>
+                        <textarea class="description" name="description" maxlength=300></textarea>
             </div>
         <div style="display:flex; flex-direction:column; align-items:center;">
             <button type="submit">Confirm Changes</button>

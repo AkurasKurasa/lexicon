@@ -141,6 +141,6 @@ class Recipe
                 WHERE products.id = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);         
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);         
     }
 }

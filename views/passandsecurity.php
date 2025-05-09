@@ -19,7 +19,7 @@
         </div>
     </form>
 
-    <!-- Form for security questions -->
+    <!-- Form for security questions
      <label class="section-label">Security Questions</label>
     <form id="securityForm">
         <div>
@@ -60,5 +60,5 @@
                 <button id="confirmSecurity" type="submit">Confirm Answer </button>
             </div>
         </div>
-    </form> 
+    </form>  -->
 </div>

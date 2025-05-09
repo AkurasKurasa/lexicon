@@ -157,7 +157,7 @@
             <div class="input-comment-details">
                 <div id="rateRecipe">
                     <input name="starsGiven" id="starsGiven" value="" hidden>
-                    <input name="product_id" id="product_id" value="<?php //echo $_GET['name']; ?>1" hidden>
+                    <input name="product_id" id="product_id" value="<?php echo $_GET['id']; ?>" hidden>
                     <p style="display: inline-block;margin:0;"> <span id="userStar">0</span> / 5 stars </p>
                     <span class="star userRating" id="ratingOne">&#9734;</span>
                     <span class="star userRating" id="ratingTwo">&#9734;</span>
@@ -178,7 +178,7 @@
 
     <div class="comments-container">
     <hr>
-        <!-- <div class="other-comment">
+        <div class="other-comment">
             <div class="img-container"> 
                 <img src="../assets/images/img_avatar.png" class="img">
             </div>
@@ -196,7 +196,7 @@
                 <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
             </div>
             <p class="time-posted">12h ago</p>
-        </div> -->
+        </div>
     </div>
 <main>
 </section>

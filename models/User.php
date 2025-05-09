@@ -105,7 +105,7 @@ class User
             $stmt->bindParam(':user_id', $userId, PDO::PARAM_STR);
             $stmt->execute();
             $currentStoredPassword = $stmt->fetchColumn();
-
+            
             // Check if the current password matches the stored password
             if ($currentStoredPassword && password_verify($currentPassword, $currentStoredPassword)) {
                 $newHashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -128,7 +128,7 @@ class User
 
     public function fetchUser($id)
     {
-        $sql = "SELECT * FROM users WHERE id = :id LIMIT 1";
+        $sql = "SELECT users.*, images.image FROM users LEFT JOIN images ON users.id = images.related_user WHERE users.id = :id LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

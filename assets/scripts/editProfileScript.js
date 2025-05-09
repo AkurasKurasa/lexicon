@@ -139,15 +139,16 @@ function loadCurrentInfo() {
         type: 'GET',
         success: function(response){
             const data = JSON.parse(response); // Parse JSON response
+            console.log(data.birthday);
             $("input[name='first-name']").val(data.first_name);
             $("input[name='last-name']").val(data.last_name);
             $("input[name='email-address']").val(data.email);
             $("input[name='occupation']").val(data.occupation);
-            $("input[name='birthday']").val(data.birthday?.split(" ")[0]);
+            $("input[name='birthday']").val(data.birthday);
             $("select[name='gender']").val(data.gender);
             $("textarea[name='description']").val(data.description); 
-            if (data.profile_picture_url) {
-                $("#userImage").attr('src', data.profile_picture_url);            }
+            if (data.image) {
+                $("#userImage").attr('src', data.image);}
             else {
                 $("#userImage").attr('src', '../assets/images/img_avatar.png');
             }

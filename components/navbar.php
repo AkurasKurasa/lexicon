@@ -31,7 +31,7 @@
                     <a href="../views/myRecipes.php">My Recipes</a>
                 </li>
                 <li>
-                    <a href="#">Logout</a>
+                    <a href="../components/logout.php">Logout</a>
                 </li>
             </ul>
         </li>
