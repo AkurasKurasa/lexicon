@@ -87,13 +87,13 @@ class User
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     return $stmt->execute([
-        'id' => uniqid(),
-        ':first_name' => $data['first_name'],
-        ':last_name'  => $data['last_name'],
-        ':gender'     => $data['gender'],
-        ':email'      => $data['email'],
-        ':password'   => $hashedPassword,  // Ensure the password is hashed
-        ':role'       => $data['role']
+        // 'id' => uniqid(),
+        // ':first_name' => $data['first_name'],
+        // ':last_name'  => $data['last_name'],
+        // ':gender'     => $data['gender'],
+        ':email'      => $data['email']
+        // ':password'   => $hashedPassword,  // Ensure the password is hashed
+        // ':role'       => $data['role']
     ]);
 }
 
