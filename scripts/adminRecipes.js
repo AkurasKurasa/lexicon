@@ -114,6 +114,21 @@ $(document).ready(function() {
     
     })
 
+    $(".clear").click(function(e) {
+      e.preventDefault();
+      $("#recipeName").val(null);
+      $("#recipeDescription").val(null);
+      $("#recipeCategory").val(null);
+      $("#recipeDescription").val(null);
+      $("#recipeIngredients").val(null);
+      $("#recipeProcedure").val(null);
+      $("#recipeImage").val(null);
+      $("#recipePrepTime").val(null);
+      $("#recipeAdditionalTime").val(null);
+      $("#recipeCookingTime").val(null);
+      $("#recipeBudget").val(null);
+    }); 
+
     $(".dataSectionRecipe").ready(function() {
         fetchRecipes();
     });

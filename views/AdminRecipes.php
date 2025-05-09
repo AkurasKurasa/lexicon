@@ -1,3 +1,13 @@
+<?php
+// Start the session
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header("Location: Login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

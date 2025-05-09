@@ -56,11 +56,13 @@ CREATE TABLE product_instructions (
 -- images
 CREATE TABLE images (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    related_id INT,
-    related_type ENUM('product', 'user', 'categories') NOT NULL,
+    related_product INT,
+    related_user INT,
     image TEXT NOT NULL,
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-); 
+    uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (related_product) REFERENCES products(id),
+    FOREIGN KEY (related_user) REFERENCES users(id)
+);
 
 -- product_review_comments table query
 CREATE TABLE product_review_comments (

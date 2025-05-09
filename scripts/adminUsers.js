@@ -97,7 +97,18 @@ $(document).ready(function() {
   
         }
     
-      })
+      });
+
+      $(".clear").click(function(e) {
+        e.preventDefault();
+        $('#userFirstName').val(null);
+        $('#userLastName').val(null);
+        $('#userCategory').val(null);
+        $('#userGender').val(null);
+        $('#userEmail').val(null);
+        $('#userPassword').val(null);
+      }); 
+
   
       $(".dataSectionUser").ready(function() {
         fetchUsers();
