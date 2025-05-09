@@ -10,8 +10,10 @@ class Recipe
 
     public function create($data)
     {
+        $generatedId = uniqid('recipe_');
 
         $sql = "INSERT INTO products (
+            id,
             product_name, 
             category, 
             ingredients, 
@@ -19,8 +21,10 @@ class Recipe
             prep_time, 
             cooking_time, 
             additional_time, 
-            budget
+            budget,
+            author
         ) VALUES (
+            :id,
             :name, 
             :category, 
             :ingredients, 
@@ -28,12 +32,14 @@ class Recipe
             :prep_time, 
             :cooking_time, 
             :additional_time, 
-            :budget
+            :budget,
+            :author
         )";
 
         $stmt = $this->db->prepare($sql);
 
         $stmt->execute([
+            ':id'               => $generatedId,
             ':name'             => $data['name'],
             ':category'         => $data['category'],
             ':ingredients'      => $data['ingredients'],
@@ -41,19 +47,17 @@ class Recipe
             ':prep_time'        => $data['prep_time'],
             ':cooking_time'     => $data['cooking_time'],
             ':additional_time'  => $data['additional_time'],
-            ':budget'           => $data['budget']
+            ':budget'           => $data['budget'],
+            ':author'           => $data['author']
         ]);
 
-        $productId = $this->db->lastInsertId();
-
-        $sqlImage = "INSERT INTO images (related_id, image, related_type) VALUES (:related_id, :image, :related_type)";
+        $sqlImage = "INSERT INTO images (related_product, image) VALUES (:related_id, :image)";
 
         $stmtImage = $this->db->prepare($sqlImage);
 
         return $stmtImage->execute([
-            ':related_id'   => $productId,
+            ':related_id'   => $generatedId,
             ':image'        => $data['image'],  // assuming $data['image'] contains image text/path
-            ':related_type' => "product"
         ]);
 
     }
@@ -97,17 +101,14 @@ class Recipe
         ]);
 
         $sqlImage = "UPDATE images
-                    SET image = :image,
-                        related_type = :type   
-                    WHERE related_id = :id 
-                    ";
+                    SET image = :image
+                    WHERE related_product = :id";
         
         $stmt = $this->db->prepare($sqlImage);
 
         $resultImg = $stmt->execute([
             ':id'    => $data['id'],
             ':image' => $data['image'],
-            ':type'  => "product"
         ]);
 
     }

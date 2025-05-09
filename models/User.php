@@ -10,10 +10,14 @@ class User
 
     public function create($data)
     {
-        $sql = "INSERT INTO users (first_name, last_name, gender, email, password, role)
-                VALUES (:first_name, :last_name, :gender, :email, :password, :role)";
+
+        $generatedId = uniqid('user_');
+
+        $sql = "INSERT INTO users (id, first_name, last_name, gender, email, password, role)
+                VALUES (:id, :first_name, :last_name, :gender, :email, :password, :role)";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([
+            ':id'         => $generatedId,
             ':first_name' => $data['first_name'],
             ':last_name'  => $data['last_name'],
             ':gender'     => $data['gender'],
@@ -24,14 +28,13 @@ class User
 
         $userId = $this->db->lastInsertId();
 
-        $sqlImage = "INSERT INTO images (related_id, image, related_type) VALUES (:related_id, :image, :related_type)";
+        $sqlImage = "INSERT INTO images (related_user, image) VALUES (:related_user, :image)";
 
         $stmtImage = $this->db->prepare($sqlImage);
 
         return $stmtImage->execute([
-            ':related_id'   => $userId,
-            ':image'        => $data['image'],
-            ':related_type' => "user"
+            ':related_user'   => $generatedId,
+            ':image'        => $data['image']
         ]);
 
     }
@@ -64,9 +67,8 @@ class User
         ]);
 
         $sqlImage = "UPDATE images
-                    SET image = :image,
-                        related_type = :type   
-                    WHERE related_id = :id 
+                    SET image = :image
+                    WHERE related_user = :id
                     ";
         
         $stmt = $this->db->prepare($sqlImage);
@@ -74,27 +76,38 @@ class User
         $resultImg = $stmt->execute([
             ':id'    => $data['id'],
             ':image' => $data['image'],
-            ':type'  => "user"
         ]);
     }
 
     public function verifyUser($email, $password)
     {
+        // $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+        // $stmt = $this->db->prepare($sql);
+        // $stmt->execute([':email' => $email]);
+    
+        // $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // return $stmt->execute([
+        //     'id' => uniqid(),
+        //     ':first_name' => $data['first_name'],
+        //     ':last_name'  => $data['last_name'],
+        //     ':gender'     => $data['gender'],
+        //     ':email'      => $data['email'],
+        //     ':password'   => $hashedPassword,  // Ensure the password is hashed
+        //     ':role'       => $data['role']
+        // ]);
+
         $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':email' => $email]);
     
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    return $stmt->execute([
-        // 'id' => uniqid(),
-        // ':first_name' => $data['first_name'],
-        // ':last_name'  => $data['last_name'],
-        // ':gender'     => $data['gender'],
-        ':email'      => $data['email']
-        // ':password'   => $hashedPassword,  // Ensure the password is hashed
-        // ':role'       => $data['role']
-    ]);
+        if ( $user && $password == $user['password'] ) {
+            return $user;
+        }
+    
+        return false;
 }
 
 public function changePassword($userId, $currentPassword, $newPassword)

@@ -70,7 +70,7 @@
 
                     <button>Export recipes as .csv</button>
                     <button>Export reviews as .csv</button>
-                    <button>Export users as .csv</button>
+                    <button id="exportUsers">Export users as .csv</button>
                     <button>Export logs as .csv</button>
                     <button>Export all as .csv</button>
                 </div>
@@ -83,7 +83,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../scripts/admin.js"></script>
-<!-- <script src="../scripts/adminLogs.js"></script> -->
+<script src="../scripts/adminExports.js"></script>
 </html>
 
 <!-- <link rel="stylesheet" href="../assets/styles/adminExport.css">

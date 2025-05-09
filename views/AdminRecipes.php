@@ -68,7 +68,9 @@ if (empty($_SESSION['id'])) {
         <section class="contentSection">
             <nav class="contentTop">
                 <div class="profileContainer">
-                    <p>John Doe</p>
+                    <p>
+                        <?php echo $_SESSION['first_name'] ?>
+                    </p>
                     <div class="profile"></div>
                 </div>
             </nav>

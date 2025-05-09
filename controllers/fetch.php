@@ -104,8 +104,7 @@
                 FROM 
                     products
                 LEFT JOIN images 
-                    ON images.related_id = products.id 
-                    AND images.related_type = 'product'
+                    ON images.related_product = products.id 
                 LEFT JOIN users 
                     ON users.id = products.author
             ";
@@ -204,12 +203,13 @@
                     users.first_name,
                     users.last_name,
                     images.image,
-                    users.role
+                    roles.name AS role_name
                 FROM 
                     users
                 LEFT JOIN images
-                    ON images.related_id = users.id 
-                    AND images.related_type = 'user'
+                    ON images.related_user = users.id
+                LEFT JOIN roles
+                    ON users.role = roles.id
             ";
 
             if (!empty($filterName)) {
@@ -248,7 +248,7 @@
                                 </div>
                             </div>
                             <div class='userBottom'>
-                                <p class='categoryName'>" . strtoupper($row['role']) . "</p>
+                                <p class='categoryName'>" . strtoupper($row['role_name']) . "</p>
                                 <p class='authorName'>{$row['first_name']} {$row['last_name']}</p>  
                                 <div class='btnContainer'>
                                     <div class='userBtn delete'>
@@ -371,6 +371,52 @@
             break;
         
         case 'fetchComments':
+
+            $query = "
+                SELECT 
+                    prc.comment, 
+                    prc.created_at, 
+                    prc.positive,
+                    prc.negative,
+                    prc.neutral,
+                    u.first_name, 
+                    u.last_name
+                FROM 
+                    product_review_comments prc
+                LEFT JOIN 
+                    users u ON prc.authored_by = u.id
+            ";
+        
+            $result = $pdo->prepare($query);
+            $result->execute();
+        
+            $output = "";
+        
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        
+                $output .= "
+
+                    <div class='reviewContainer'>
+                        <p class='reviewTime'>{$row['created_at']}</p>
+                        <p class='reviewInformation'>
+                            {$row['comment']}   
+                        </p>
+
+                        <p class='reviewAuthor'>{$row['first_name']} {$row['last_name']}</p>
+
+                        <p class='reviewResults'>
+                            <span>Positive: {$row['positive']}</span>
+                            <span>Neutral: {$row['neutral']}</span>
+                            <span>Negative: {$row['negative']}</span>
+                        </p>
+                    </div>
+                ";
+                
+            }
+
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
+
             break;
         
         default:

@@ -1,3 +1,13 @@
+<?php
+// Start the session
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header("Location: Login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +68,9 @@
         <section class="contentSection">
             <nav class="contentTop">
                 <div class="profileContainer">
-                    <p>John Doe</p>
+                    <p>
+                        <?php echo $_SESSION['first_name'] ?>
+                    </p>
                     <div class="profile"></div>
                 </div>
             </nav>
@@ -75,9 +87,9 @@
                         <div class="filtersContainer">
                             <select name="" id="filterUserCategory" class="filterUserField">
                                 <option value="" selected>Select user type...</option>
-                                <option value="User">User</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Super-admin">Super-Admin</option>
+                                <option value="3">User</option>
+                                <option value="2">Admin</option>
+                                <option value="1">Super-Admin</option>
                             </select>
                         </div>
 
@@ -124,9 +136,14 @@
                                 <label for="">USER TYPE</label>
                                 <select name="userType" id="userCategory">
                                     <option value="" selected>Select user type...</option>
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="super-admin">Super-Admin</option>
+                                    <option value="3">User</option>
+                                    <?php if ( $_SESSION['role'] == 1 ): ?>
+                                        <option value="2">Admin</option>
+                                        <option value="1">Super-Admin</option>
+                                    <?php else: ?>
+                                        <option value="2" disabled>Admin</option>
+                                        <option value="1" disabled>Super-Admin</option>
+                                    <?php endif; ?>
                                 </select>
                             </div>
 

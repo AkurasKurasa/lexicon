@@ -1,7 +1,11 @@
 <?php
+
+    session_start();
+
     include('../config.php');
     require_once '../models/Recipe.php';
     require_once '../models/User.php';
+    require_once '../models/Log.php';
 
     $type = $_POST['type'];
 
@@ -24,6 +28,16 @@
 
             if ( strlen($id) > 0 ) {
                 $recipe->delete($id);
+
+                $log = new Log($pdo);
+
+                $logInfo = [
+                    'id' => $_SESSION['id'],
+                    'action'=> 'deleted recipe ' . $id 
+                ];
+
+                $log->addLog($logInfo);
+
                 echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success' => false]);
@@ -42,6 +56,15 @@
 
             if ( strlen($id) > 0 ) {
                 $user->delete($id);
+
+                $log = new Log($pdo);
+
+                $logInfo = [
+                    'id' => $_SESSION['id'],
+                    'action'=> 'deleted user ' . $id 
+                ];
+
+                $log->addLog($logInfo);
                 echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success' => false]);

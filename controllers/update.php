@@ -1,7 +1,11 @@
 <?php
+
+    session_start();
+
     include('../config.php');
     require_once '../models/Recipe.php';
     require_once '../models/User.php';
+    require_once '../models/Log.php';
 
     $type = $_POST['type'];
 
@@ -44,6 +48,16 @@
 
             if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
                 $recipe->update($recipeId, $recipeInfo);
+
+                $log = new Log($pdo);
+
+                $logInfo = [
+                    'id' => $_SESSION['id'],
+                    'action'=> 'updated recipe ' . $recipeId 
+                ];
+
+                $log->addLog($logInfo);
+                
                 echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success' => false]);
@@ -75,6 +89,15 @@
 
             if ( strlen($userFirstName) > 0 && strlen($userLastName) > 0 && strlen($userGender) > 0 && strlen($userEmail) > 0 && strlen($userPassword) > 0 && strlen($userRole) > 0 ) {
                 $user->update($userId, $userInfo);
+
+                $log = new Log($pdo);
+
+                $logInfo = [
+                    'id' => $_SESSION['id'],
+                    'action'=> 'updated user ' . $userId
+                ];
+
+                $log->addLog($logInfo);
                 echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success' => false]);

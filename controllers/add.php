@@ -1,7 +1,11 @@
 <?php
+
+    session_start();
+
     include('../config.php');
     require_once '../models/Recipe.php';
     require_once '../models/User.php';
+    require_once '../models/Log.php';
 
     $type = $_POST['type'];
 
@@ -39,11 +43,22 @@
                 'prep_time'        => $recipePrepTime,
                 'cooking_time'     => $recipeCookingTime,
                 'additional_time'  => $recipeAdditionalTime,
-                'budget'           => $recipeBudget
+                'budget'           => $recipeBudget,
+                'author'           => $_SESSION['id']
             ];
 
             if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
                 $recipe->create($recipeInfo);
+                
+                $log = new Log($pdo);
+
+                $logInfo = [
+                    'id' => $_SESSION['id'],
+                    'action'=> 'added a recipe named ' . $recipeName  
+                ];
+
+                $log->addLog($logInfo);
+
                 echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success' => false]);
@@ -74,6 +89,15 @@
             ];
 
             $user->create($userInfo);
+
+            $log = new Log($pdo);
+
+            $logInfo = [
+                'id' => $_SESSION['id'],
+                'action'=> 'added a user named ' . $firstName . " " . $lastName 
+            ];
+
+            $log->addLog($logInfo);
 
             echo json_encode(['success' => true]);
             break;

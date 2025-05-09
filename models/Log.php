@@ -8,13 +8,13 @@ class Log
         $this->db = $db;
     }
 
-    public function addLog($id, $action) {
+    public function addLog($data) {
         $sql = "INSERT INTO activity_logs (activity_by, activity)
                 VALUES (:id, :activity)";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
-            ':id'        => $id,
-            ':activity'  => $action
+            ':id'        => $data['id'],
+            ':activity'  => $data['action']
         ]);
     }
 }

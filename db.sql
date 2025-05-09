@@ -55,26 +55,29 @@ CREATE TABLE product_instructions (
 
 -- images
 CREATE TABLE images (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    related_product INT,
-    related_user INT,
-    image TEXT NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    related_product VARCHAR(30),
+    related_user VARCHAR(30),
+    image VARCHAR(255) NOT NULL,
     uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (related_product) REFERENCES products(id),
-    FOREIGN KEY (related_user) REFERENCES users(id)
+    FOREIGN KEY (related_product) REFERENCES products(id) ON DELETE CASCADE,
+    FOREIGN KEY (related_user) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- product_review_comments table query
 CREATE TABLE product_review_comments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    comment TEXT NOT NULL,
-    product_id INT NOT NULL,
-    authored_by INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
-    FOREIGN KEY (authored_by) REFERENCES users(id) ON DELETE SET NULL
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  comment TEXT NOT NULL,
+  product_id VARCHAR(30) DEFAULT NULL,
+  authored_by VARCHAR(30) DEFAULT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  positive INT DEFAULT 0,
+  negative INT DEFAULT 0,
+  neutral INT DEFAULT 0
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+  FOREIGN KEY (authored_by) REFERENCES users(id) ON DELETE SET NULL
 );
-
+    
 -- product_votes table query
 CREATE TABLE product_votes (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -115,9 +118,9 @@ CREATE TABLE roles (
 
 -- activity_logs table query
 CREATE TABLE activity_logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     activity TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    activity_by INT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    activity_by VARCHAR(30),
     FOREIGN KEY (activity_by) REFERENCES users(id) ON DELETE CASCADE
 );

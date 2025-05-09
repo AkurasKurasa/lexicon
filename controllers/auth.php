@@ -3,6 +3,7 @@
 
     require_once '../config.php';        
     require_once '../models/User.php';
+    require_once '../models/Log.php';
 
     $type = $_POST['type'];
 
@@ -51,6 +52,8 @@
                         'password'   => $password,
                         'role'       => 'User'
                     ];
+
+                $log->addLog($logInfo);
     
                     $user->create($userInfo);
     
@@ -91,11 +94,21 @@
                     
                     $session = $user->verifyUser($email, $password);
 
-                    $_SESSION['id'] = $session['uuid'];
+                    $_SESSION['id'] = $session['id'];
                     $_SESSION['first_name'] = $session['first_name'];
                     $_SESSION['last_name'] = $session['last_name'];
+                    $_SESSION['role'] = $session['role'];
                     $_SESSION['email'] = $session['email'];
                     $_SESSION['password'] = $session['password'];
+
+                    $log = new Log($pdo);
+
+                    $logInfo = [
+                        'id' => $_SESSION['id'],
+                        'action'=> 'logged in' 
+                    ];
+
+                $log->addLog($logInfo);
     
                     echo json_encode(['success' => true, 'message' => "Login works fine homie", 'session' => $session]);
                 } else {

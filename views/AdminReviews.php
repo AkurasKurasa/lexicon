@@ -71,6 +71,10 @@
                         <div class="searchBarContainer">
                             <input id="filterName" type="text" name="searchQueryInput" class="filterLogFieldInput" placeholder="Search keyword..." value="" />
                         </div>
+                        
+                        <div class="searchBarContainer" style="margin: 0">
+                            <input id="filterName" type="text" name="searchQueryInput" class="filterLogFieldInput" placeholder="Search recipe..." value="" />
+                        </div>
 
                         <div class="filtersContainer">
                             <select name="" id="filterLogsCategory" class="filterLogField">
@@ -84,11 +88,27 @@
                         </div>
 
                         <div class="filtersContainer">
+                            <select name="" id="filterLogsCategory" class="filterLogField">
+                                <option value="" selected>Select sentiment...</option>
+                                <option value="positive">Positive</option>
+                                <option value="neutral">Neutral</option>
+                                <option value="negative">Negative</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <div class="controlWrapper1">
+
+                        <div class="filtersContainer" style="margin-left: 2rem;">
+                            FROM
                             <input type="date" name="filterLogStartDate" id="filterLogStartDate" class="filterLogField"> :
                             <input type="time" name="filterLogStartTime" id="filterLogStartTime" class="filterLogField">
                         </div>
-                        -
+                        
                         <div class="filtersContainer">
+                            TO
                             <input type="date" name="filterLogEndDate" id="filterLogEndDate" class="filterLogField"> :
                             <input type="time" name="filterLogEndTime" id="filterLogEndTime" class="filterLogField">
                         </div>
@@ -97,17 +117,15 @@
 
                 </div>
 
-                <div class="dataSectionLogs">
+                <div class="dataSectionReviews">
                     
-                    <div class='reviewContainer'>
+                    <!-- <div class='reviewContainer'>
                         <p class='reviewTime'>00:00</p>
                         <p class='reviewInformation'>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusantium quas non! Sit in vero iusto quae! Labore, blanditiis sapiente deleniti, hic perferendis dolore suscipit doloribus voluptas laudantium nam minima!
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, vel magnam quaerat explicabo eveniet sequi, rerum officiis minima quod inventore et ratione, esse laboriosam vitae odio. Quibusdam beatae aliquam neque?
                             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis natus, aliquam placeat accusamus ullam odio nulla expedita officia delectus obcaecati, enim beatae atque molestias cum quod ratione asperiores dicta quasi.    
                         </p>
-
-                        <p class="reviewRatings">0 stars</p>
 
                         <p class="reviewAuthor">John Doe</p>
 
@@ -116,7 +134,7 @@
                             <span>Neutral:</span>
                             <span>Negative:</span>
                         </p>
-                    </div>
+                    </div> -->
 
                 </div>
 
