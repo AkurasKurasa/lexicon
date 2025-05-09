@@ -12,6 +12,7 @@ class Recipe
     {
 
         $sql = "INSERT INTO products (
+            id,
             product_name, 
             category, 
             ingredients, 
@@ -19,8 +20,10 @@ class Recipe
             prep_time, 
             cooking_time, 
             additional_time, 
-            budget
+            budget,
+            author
         ) VALUES (
+            :id,
             :name, 
             :category, 
             :ingredients, 
@@ -28,12 +31,14 @@ class Recipe
             :prep_time, 
             :cooking_time, 
             :additional_time, 
-            :budget
+            :budget,
+            :author
         )";
-
+        $uniqueId = uniqid("recipe_");
         $stmt = $this->db->prepare($sql);
 
         $stmt->execute([
+            ':id'               => $uniqueId,
             ':name'             => $data['name'],
             ':category'         => $data['category'],
             ':ingredients'      => $data['ingredients'],
@@ -41,7 +46,8 @@ class Recipe
             ':prep_time'        => $data['prep_time'],
             ':cooking_time'     => $data['cooking_time'],
             ':additional_time'  => $data['additional_time'],
-            ':budget'           => $data['budget']
+            ':budget'           => $data['budget'],
+            ':author'           => $data['author']
         ]);
 
         $productId = $this->db->lastInsertId();

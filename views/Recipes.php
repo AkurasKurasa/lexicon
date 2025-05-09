@@ -8,11 +8,7 @@
 </head>
 <body>
 
-<<<<<<< HEAD
-    <?php include '../assets/components/navbar.php'; ?>
-=======
     <?php include '../components/Navbar.php'; ?>
->>>>>>> version_1_merge
 
     <h1 class="header">Explore Food Recipes</h1>
 

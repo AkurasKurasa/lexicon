@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "cooked";
+$dbname = "cookedv1";
 $username = "root";
 $password = "";
 

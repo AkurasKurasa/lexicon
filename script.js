@@ -80,11 +80,8 @@ $(document).ready(function(){
         success: function(response) {
           const data = JSON.parse(response);
           if (data.success) {
-<<<<<<< HEAD
-=======
             $(".recipesSection").empty();
->>>>>>> version_1_merge
-            $(".recipesSection").html(data.content);
+            $(".recipesSection").prepend(data.content);
             console.log(data.id)
           } else {
             

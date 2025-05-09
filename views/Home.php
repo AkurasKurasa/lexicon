@@ -7,7 +7,6 @@ if (empty($_SESSION['id'])) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,15 +14,14 @@ if (empty($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cooked.</title>
     <link rel="stylesheet" href="../assets/styles/home.css">
+    <link rel="stylesheet" href="../assets/styles/adminRecipes-1.css">
+
 </head>
 <body>
-<<<<<<< HEAD
-<?php require_once(__DIR__.'../nav.php'); ?>
-=======
+
 
         <?php include '../components/Navbar.php'; ?>
 
->>>>>>> version_1_merge
         <div class="featuredRecipes">
             <div class="featuredRecipe chicken" data-id="chicken">
                 <h1 class="featuredRecipe-name">CHICKEN</h1>
@@ -41,7 +39,12 @@ if (empty($_SESSION['id'])) {
                 <h1 class="featuredRecipe-name">BARBEQUE</h1>
             </div>
         </div>
-
+        <form method="GET" action="../views/userRecipe.php">
+            <div class="controlWrapper2" style="width: 100%; display: flex; justify-content: center;">
+                <button type="submit" class="addBtn" id="recipeButton" style="width: 1200px; display: block; margin: auto; margin-top: -15px; position: relative; background-color: #e9b251; height: 60px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">Add Recipe</button>
+            </div>
+        </form>
+            <br><br>
         <div class="otherRecipes">
 
             <div class="otherRecipe-wrapper" data-id="pizza">
@@ -93,4 +96,10 @@ if (empty($_SESSION['id'])) {
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../script.js"></script>
+<script src="../scripts/user.js"></script>
+<script>
+document.querySelector('.addBtn').addEventListener('click', function() {
+    window.location.href = 'userRecipe.php';
+});
+</script>
 </html>

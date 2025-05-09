@@ -9,7 +9,43 @@
 
         case 'addRecipeByUser':
 
-            echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
+            $recipe = new Recipe($pdo);
+
+            $recipeId = $_POST['id'];
+            $recipeName = $_POST['name'];
+            $recipeDescription = $_POST['description'];
+            $recipeCategory = $_POST['category'];
+            $recipeIngredients = $_POST['ingredients'];
+            $recipeProcedure = $_POST['procedure'];
+            $recipeImage = $_POST['image'];
+            $recipePrepTime = $_POST['prepTime'];
+            $recipeCookingTime = $_POST['cookingTime'];
+            $recipeAdditionalTime = $_POST['additionalTime'];
+            $recipeBudget = $_POST['budget'];
+            session_start();
+            $author = $_SESSION['id'];
+
+            $recipeInfo = [
+                'id'               => $recipeId,
+                'name'             => $recipeName,
+                'description'      => $recipeDescription,
+                'category'         => $recipeCategory,
+                'ingredients'      => $recipeIngredients,
+                'procedure'        => $recipeProcedure,
+                'image'            => $recipeImage,
+                'prep_time'        => $recipePrepTime,
+                'cooking_time'     => $recipeCookingTime,
+                'additional_time'  => $recipeAdditionalTime,
+                'budget'           => $recipeBudget,
+                'author'           => $author
+            ];
+
+            if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
+                $recipe->create($recipeInfo);
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
             break;
 
         case 'addRecipeByAdmin':

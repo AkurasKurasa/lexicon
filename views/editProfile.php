@@ -1,7 +1,6 @@
-<?php include_once("../components/navbar.php");
-$website = "changeInfo.php";
+<?php 
 session_start();
-if (!isset($_SESSION["loggedInUser"])) {
+if (!isset($_SESSION["id"])) {
         header("Location: Login.php");
         exit;
 }
@@ -16,6 +15,7 @@ if (!isset($_SESSION["loggedInUser"])) {
     <link rel="stylesheet" href="../assets/styles/editProfile.css">
 </head>
 <body>
+    <?php include_once("../components/navbar.php"); ?>
     <main>
         
         <div class="navigation">

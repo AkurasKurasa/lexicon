@@ -32,7 +32,7 @@ $(document).ready(function() {
           obj[item.name] = item.value;
           return obj;
         }, {});
-
+        console.log(formData['id']);
         if ( formData['id'].length > 0 ) {
 
           $.ajax({

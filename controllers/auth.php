@@ -66,62 +66,47 @@
             break;
         
         case 'login':
-    
             if (isset($_POST['email']) && isset($_POST['password'])) {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
-
+        
                 $user = new User($pdo);
-
                 $errors = [];
-
-                if ( !($user->verifyUser($email, $password)) ) {
-                    $errors = "Invalid credentials!";
+        
+                if (empty($email) || empty($password)) {
+                    $errors[] = "Fill out all fields!";
                 } 
-
-                if ( !($user->emailExists($email)) ) {
-                    $errors = "Email does not exist!";
-                }
-
-                if ( empty($email) || empty($password) ) {
-                    $errors = "Fill out all fields!";
-                }
                 
-                if ( empty($errors) ) {
-<<<<<<< HEAD
-                    $session = $user->verifyUser($email, $password);
-                    $_SESSION["loggedInUser"] = $user['id'];
-                    $_SESSION["first_name"] = $user['id'];
-                    $_SESSION["last_name"] = $user['id'];
-                    $_SESSION["email"] = $user['id'];
-                    $_SESSION["password"] = $session['password'];
-
-    
-                    echo json_encode(['success' => true, 'message' => "Login works fine homie"]);
-=======
-                    
-                    $session = $user->verifyUser($email, $password);
-
-                    $_SESSION['id'] = $session['uuid'];
+                if (!$user->emailExists($email)) {
+                    $errors[] = "Email does not exist!";
+                } 
+                
+                // Check user credentials
+                $session = $user->verifyUser($email, $password);
+                if (!$session) {
+                    $errors[] = "Invalid credentials!";
+                }
+        
+                if (empty($errors)) {
+                    // User is valid, set session
+                    $_SESSION['id'] = $session['id'];
                     $_SESSION['first_name'] = $session['first_name'];
                     $_SESSION['last_name'] = $session['last_name'];
                     $_SESSION['email'] = $session['email'];
                     $_SESSION['password'] = $session['password'];
-    
-                    echo json_encode(['success' => true, 'message' => "Login works fine homie", 'session' => $session]);
->>>>>>> version_1_merge
+        
+                    echo json_encode(['success' => true, 'message' => "Login successful!", 'session' => $session]);
                 } else {
-                    echo json_encode([ 'success' => false, 'errors' => $errors ]);
+                    echo json_encode(['success' => false, 'errors' => $errors]);
                 }
-
             } else {
-
-                echo json_encode(['success' => false]);
+                echo json_encode(['success' => false, 'errors' => 'Invalid request.']);
             }
             break;
-    
+        
         default:
-            echo json_encode(['success' => false]);
+            echo json_encode(['success' => false, 'errors' => 'Something went wrong.']);
             break;
+        
     }
 ?>

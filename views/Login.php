@@ -1,12 +1,4 @@
 <?php
-<<<<<<< HEAD
-session_start();
-if (isset($_SESSION['loggedInUser'])) {
-        header("Location: home.php");
-        exit();
-} 
-?>
-=======
 // Start the session
 session_start();
 
@@ -16,7 +8,6 @@ if (!empty($_SESSION['id'])) {
 }
 ?>
 
->>>>>>> version_1_merge
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,17 +21,17 @@ if (!empty($_SESSION['id'])) {
     <main>
         <section class="imageSection"></section>
         <section class="contentSection">
-            <form id="loginForm">
+            <form id="loginForm" method="POST">
                 <h1>Cooked.</h1>
                 <h2>Log in</h2>
                 <div class="fieldsContainer">
                     <label for="">Email</label>
-                    <input type="text" name="email" placeholder="yourname@example.com">
+                    <input type="text" id="email" name="email" placeholder="yourname@example.com">
                 </div>
 
                 <div class="fieldsContainer">
                     <label for="">Password</label>
-                    <input type="password" name="password">
+                    <input type="password" id="password" name="password">
                 </div>
 
                 <button>Log In</button>

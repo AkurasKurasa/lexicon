@@ -54,7 +54,7 @@ symbol {
 
 .recipesSection {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex-direction: column;
     gap: 1.5rem;
@@ -150,4 +150,156 @@ symbol {
     font-size: 10px;
     margin-left: 0.5rem;
     color: rgba(0, 0, 0, 0.65);
+}
+
+.addRecipe {
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+.addRecipe:hover {
+    background-color: grey;
+}
+
+/* FOR MODAL */
+
+.modalRecipe {
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.modalRecipe.is-visible {
+    visibility: visible;
+}
+
+.modalRecipe.is-visible .modal-transition {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modalRecipe.is-visible .modal-overlay {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.modal-overlay {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsla(0, 0%, 0%, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.1s, opacity 0.1s;
+}
+
+.modal-wrapper {
+    position: absolute;
+    z-index: 9999;
+    top: 2em;
+    left: calc(50% - 12.5em);
+    width: 50em;
+    margin-left: -16em;
+    background-color: #fff;
+    box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+    height: fit-content;
+    overflow: hidden;
+}
+
+.modal-transition {
+    transition: all 0.3s 0.12s;
+    transform: translateY(-10%);
+    opacity: 0;
+}
+
+.modal-header {
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.06);
+    border-bottom: 1px solid #e8e8e8;
+    font-family: var(--bitter);
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+}
+
+.modal-body {
+    height: 43em;
+    overflow: hidden;
+}
+
+.modal-content {
+    height: 100%;
+    padding: 1em 1em 3em 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipeForm {
+    width: 100%;
+}
+
+.fieldsContainer {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--bitter);
+}
+
+.fieldsWrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.fieldsContainer.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.fieldsContainer input,
+.fieldsContainer textarea,
+.fieldsContainer select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    font-family: var(--bitter);
+}
+
+button.submit,
+button.clear {
+    padding: 0.5rem 1.5rem;
+    font-family: var(--bitter);
+    border: none;
+    cursor: pointer;
+    background-color: #FF0303;
+    color: white;
+}
+
+button.clear {
+    background-color: #ccc;
+    color: black;
 }

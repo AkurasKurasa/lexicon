@@ -179,7 +179,80 @@
         
             echo json_encode(['success' => true, 'content' => $output]);
             break;
-
+            
+            case 'fetchMyRecipes':
+                session_start();
+                $userId = $_SESSION['id'] ?? null;
+            
+                if (!$userId) {
+                    echo json_encode(['success' => false, 'message' => 'User not logged in.']);
+                    break;
+                }
+            
+                $query = "
+                    SELECT 
+                        products.product_name,
+                        products.category,
+                        products.id,
+                        images.image,
+                        CONCAT(users.first_name, ' ', users.last_name) AS author_name
+                    FROM 
+                        products
+                    LEFT JOIN images 
+                        ON images.related_id = products.id 
+                        AND images.related_type = 'product'
+                    LEFT JOIN users 
+                        ON users.id = products.author
+                    WHERE 
+                        products.author = :author
+                ";
+            
+                $result = $pdo->prepare($query);
+                $result->execute([':author' => $userId]);
+            
+                $output = "";
+                $counter = 0;
+            
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                    if ($counter % 4 == 0) {
+                        $output .= "<div class='recipesContainer'>";
+                    }
+            
+                    $output .= " 
+                        <div class='recipeContainer' data-name='{$row['id']}'>
+                            <div class='recipeTop'>
+                                <img src='' alt='' class='recipeBackground' style='background-image: url({$row['image']});'>
+                                <div class='recipeContent'>
+                                    <h1>{$row['product_name']}</h1>
+                                </div>
+                            </div>
+                            <div class='recipeBottom'>
+                                <p class='categoryName'>" . strtoupper($row['category']) . "</p>
+                                <p class='authorName'>{$row['author_name']}</p>
+                                <div class='btnContainer'>
+                                    <div class='recipeBtn delete'>
+                                        <img src='' alt='' class='trash'>
+                                    </div>
+                                    <div class='recipeBtn-update'>
+                                        <img src='' alt='' class='edit'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ";
+            
+                    $counter++;
+                    if ($counter % 4 == 0) {
+                        $output .= "</div>";
+                    }
+                }
+                $output .= "<div class='addRecipe'>+</div>";
+                if ($counter % 4 != 0) {
+                    $output .= "</div>";
+                }
+                echo json_encode(['success' => true, 'content' => $output]);
+                break;
+            
         
         case 'fetchRecipe':
 

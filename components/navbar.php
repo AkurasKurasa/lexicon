@@ -24,7 +24,10 @@
             <a href="#"><?php echo $_SESSION['first_name']; ?> ▼</a>
             <ul class="dropdown">
                 <li>
-                    <a href="#">Edit Profile</a>
+                    <a href="../views/editProfile.php">Edit Profile</a>
+                </li>
+                <li>
+                    <a href="../views/myRecipes.php">My Recipes</a>
                 </li>
                 <li>
                     <a href="#">Logout</a>

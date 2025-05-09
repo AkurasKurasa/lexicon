@@ -32,6 +32,10 @@ $(document).ready(function() {
                     $('.error').hide();
                     let message = `<span>Account successfully created</span>`;
                     $('.success').append(message);
+                    setTimeout(function() {
+                        window.location.href = "Login.php";  // Redirect on success
+                        yourFunction();
+                    }, 1000);
                 } else {
                     let errors = data.errors;
                     $('.error').empty();
@@ -51,65 +55,32 @@ $(document).ready(function() {
 
     $("#loginForm").submit(function(e) {
         e.preventDefault();
-
-<<<<<<< HEAD
-        let formData = $('#loginForm').serializeArray().reduce(function(obj, item) {
-            obj[item.name] = item.value;
-            return obj;
-        }, {});
-
-        $.ajax({
-            url: "../controllers/auth.php",
-            method: "POST",
-            data: {
-                email: formData['email'],
-                password: formData['password'],
-                type: 'login'
-            },
-            success: function(response) {
-                const data = JSON.parse(response);
-                if (data.success) {
-                    $('.error').empty();
-                    window.location.href = "Home.php";
-                } else {
-                    let error = data.errors;
-                    $('.error').empty();
-                    let message = `<li>${error}</li>`;
-                    $('.error').append(message);
-                }
-            },
-            error: function() {
-
-            }
-        });
-    })
-=======
-    $.ajax({
-      url: "../controllers/auth.php",
-      method: "POST",
-      data: { 
-        email: formData['email'],
-        password: formData['password'],
-        type: 'login'
-      },
-      success: function(response) {
-        const data = JSON.parse(response);
-        if (data.success) {
-          $('.error').empty();
-          console.log(data.session);
-          window.location.href = "Home.php";
-        } else {
-          let error = data.errors;
-          $('.error').empty();
-          let message = `<li>${error}</li>`;
-          $('.error').append(message);          
-        }
-      },
-      error: function() {
+        
+        const email = $("#email").val();
+        const password = $("#password").val();
       
-      }
-    });
-  })
->>>>>>> version_1_merge
+        $.ajax({
+          url: "../controllers/auth.php",
+          method: "POST",
+          data: { 
+            email: email,
+            password: password,
+            type: 'login'
+          },
+          success: function(response) {
+            console.log(response);
+            const data = JSON.parse(response);
+            if (data.success) {
+              $('.error').empty();
+              window.location.href = "Home.php";  // Redirect on success
+            } else {
+              $('.error').empty().append(`<li>${data.errors}</li>`); // Display error
+            }
+          },
+          error: function() {
+            $('.error').text('An error occurred while processing your request.');
+          }
+        });
+      });      
 
 });
