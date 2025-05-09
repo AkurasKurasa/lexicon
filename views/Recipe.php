@@ -9,26 +9,18 @@
     <link rel="stylesheet" href="../assets/styles/recipe.css">
 </head>
 <body>
-<<<<<<< HEAD
-<?php include '../components/navbar.php'; ?>
+<?php   session_start();
+        include '../components/Navbar.php'; 
+      ?>
 
 <main>
-
-<div class="nextRecipe">
-"Warning! Set your security questions in <a href="">User Settings</a> to enable password recovery."</div>
-
 <div class="mainContent">
 <div class="recipeContainer">
-
     <section class="headerSection">
-=======
-
-    <?php include '../components/Navbar.php'; ?>
 
     <main>
         <!-- Section for the header -->
         <section class="headerSection">
->>>>>>> version_1_merge
         <div class="recipeHeader">
             <h1 class="recipeName">Aunt Jemima's Beloved Fried Chicken</h1>
             <span></span>
@@ -47,7 +39,7 @@
                 <span class="userIcon"></span>
                 <span>Submitted by: </span>
             <a href="#">
-                <span class="userSubmit">Aunt Jemima</span>
+                <span class="userSubmit" id="userSubmit">Aunt Jemima</span>
             </a>
             </div>
 
@@ -68,7 +60,7 @@
             <span>Prep Time:</span>
         </div>
         <div class="timeValues">
-            <span>20 minutes</span>
+            <span class="preptime">20 minutes</span>
         </div>
         <br>
 
@@ -76,23 +68,15 @@
             <span>Cook Time:</span>
         </div>
         <div class="timeValues">
-            <span>35 minutes</span>
+            <span class="cooktime">35 minutes</span>
         </div><br>
 
         <div class="timeHeader">
             <span>Additional Time:</span>
         </div>
         <div class="timeValues">
-            <span>1 hour 20 minutes</span>
+            <span class="additionaltime">1 hour 20 minutes</span>
         </div><br>
-
-        <div class="timeHeader">
-            <span>Total Time:</span>
-        </div>
-        <div class="timeValues">
-            <span>2 hours 15 minutes</span>
-        </div><br>
-
         <hr style="margin: 30px 0px 30px 0px">
 
         <div class="timeHeader">
@@ -101,7 +85,7 @@
                     </div>
         </div>
         <div class="timeValues">
-            <span>8</span>
+            <span class="servings">8</span>
         </div>
 
         <hr style="margin: 30px 0px 30px 0px">
@@ -111,7 +95,7 @@
         </div>
 
         <div class="timeValues">
-            <span>&#8369;00.00</span>
+            <span class="budget">&#8369;00.00</span>
         </div><br>
     </div>
   </div>

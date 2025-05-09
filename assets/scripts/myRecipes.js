@@ -19,6 +19,16 @@ $(document).ready(function() {
         $("#recipeBudget").val(null);
     });
 
+    $('.modal-toggle').on('click', function(e) {
+        e.preventDefault();
+        $('.modalRecipe').toggleClass('is-visible');
+    });
+
+    // Clicks a recipe
+    $(".dataSectionRecipe").on('click','.recipeContainer', function() {
+        window.location.href = '../views/recipe.php?id='+$(this).data('name');
+    })
+
     // SUBMITS THE RECIPE
     $("#userRecipeForm").submit(function(e) {
         e.preventDefault();

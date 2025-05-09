@@ -36,7 +36,8 @@ class Recipe
         )";
         $uniqueId = uniqid("recipe_");
         $stmt = $this->db->prepare($sql);
-
+        session_start();
+        $author = $_SESSION['id'];
         $stmt->execute([
             ':id'               => $uniqueId,
             ':name'             => $data['name'],
@@ -47,19 +48,19 @@ class Recipe
             ':cooking_time'     => $data['cooking_time'],
             ':additional_time'  => $data['additional_time'],
             ':budget'           => $data['budget'],
-            ':author'           => $data['author']
+            ':author'           => $author
         ]);
 
-        $productId = $this->db->lastInsertId();
 
-        $sqlImage = "INSERT INTO images (related_id, image, related_type) VALUES (:related_id, :image, :related_type)";
+        // $productId = $this->db->lastInsertId();
+        // echo("AOSIDJASOIDJASIODJ".$productId);
+        $sqlImage = "INSERT INTO images (related_product, image) VALUES (:related_product, :image)";
 
         $stmtImage = $this->db->prepare($sqlImage);
 
         return $stmtImage->execute([
-            ':related_id'   => $productId,
-            ':image'        => $data['image'],  // assuming $data['image'] contains image text/path
-            ':related_type' => "product"
+            ':related_product'   => $uniqueId,
+            ':image'        => $data['image']
         ]);
 
     }
@@ -124,5 +125,22 @@ class Recipe
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function fetchAllRecipeDetails($id) {
+        $sql = "SELECT products.*, 
+                users.id AS user_id, 
+                users.first_name, 
+                users.last_name, 
+                recipe_image.image AS product_image, 
+                profile_image.image AS author_image
+                FROM products
+                JOIN users ON products.author = users.id
+                LEFT JOIN images AS recipe_image ON recipe_image.related_product = products.id
+                LEFT JOIN images AS profile_image ON profile_image.related_user = users.id
+                WHERE products.id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);         
     }
 }

@@ -199,8 +199,7 @@
                     FROM 
                         products
                     LEFT JOIN images 
-                        ON images.related_id = products.id 
-                        AND images.related_type = 'product'
+                        ON images.related_product = products.id 
                     LEFT JOIN users 
                         ON users.id = products.author
                     WHERE 
@@ -281,8 +280,7 @@
                 FROM 
                     users
                 LEFT JOIN images
-                    ON images.related_id = users.id 
-                    AND images.related_type = 'user'
+                    ON images.related_users = users.id 
             ";
 
             if (!empty($filterName)) {

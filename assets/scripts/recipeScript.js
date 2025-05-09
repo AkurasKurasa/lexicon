@@ -1,16 +1,18 @@
 $(document).ready(function() {
-
+    const urlParams = new URLSearchParams(window.location.search);
+    const product_id = urlParams.get('id');
 
     //Ajax for the recipe rating and the number of comments
     $.ajax({
         url: "../controllers/recipeProcess.php",
         type: "GET",
         data: {
-            product_id: "1"
+            product_id: product_id
         },
         success: function(response) {
             data = JSON.parse(response);
-        
+
+            // Checks if there is a user logged in and if he has already commented
             if (!data.checkLoggedIn) {
                 $("#userComment").attr('placeholder', 'You must be logged in to submit a review.');
                 $("#userComment").prop('disabled', true);
@@ -20,10 +22,34 @@ $(document).ready(function() {
             }
             $(".userImage").attr('src', data.profile_picture_url);
 
-        
+            // Populates the comment
             $.each(data.usersCommented, function(index, user) {
                 populateComment(user.first_name, user.last_name, user.profile_picture_url ?? "../assets/images/img_avatar.png", user.comment, user.rating, user.created_at);
             });
+
+            // Populates the recipe page
+            console.log(data.recipeInfo);
+            recipe_name = data.recipeInfo['product_name'];
+            author = data.recipeInfo['author'];
+            author_name = data.recipeInfo['first_name'] + " " + data.recipeInfo['last_name'];
+            description = data.recipeInfo['description'];
+            category = data.recipeInfo['category'];
+            ingredients = data.recipeInfo['ingredients'];
+            procedures = data.recipeInfo['procedures'];
+            prep_time = data.recipeInfo['prep_time'];
+            cooking_time = data.recipeInfo['cooking_time'];
+            additional_time = data.recipeInfo['additional_time'];
+            budget = data.recipeInfo['budget'];
+            product_image = data.recipeInfo['product_image'];
+            $(".recipeName").html(recipe_name);
+            $(".userSubmit").html(author_name);
+            $(".recipeDescription").html(description);
+            $(".preptime").html(prep_time);
+            $(".cooktime").html(cooking_time);
+            $(".additionaltime").html(additional_time);
+            $(".budget").html(budget);
+            $("#userSubmit").attr("data-id", author);
+            $(".recipeImage").css('background-image', 'url(' + product_image + ')');
         }
         ,
         error: function(xhr, status, error) {
