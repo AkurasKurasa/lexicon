@@ -30,22 +30,22 @@
                     <p>RECIPES</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab review">
                     <div class="reviews"></div>
                     <p>REVIEWS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab log">
                     <div class="logs"></div>
                     <p>LOGS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab user">
                     <div class="users"></div>
                     <p>USERS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab exports">
                     <div class="export"></div>
                     <p>EXPORT</p>
                 </div>

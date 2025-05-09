@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <section class="navigationSection">
+       <section class="navigationSection">
 
             <div class="logo">
                 <h1 class="">Cooked.</h1>
@@ -21,27 +21,32 @@
 
                 <h3 class="">GENERAL</h3>
 
-                <div class="tab">
+                <div class="tab dash">
+                    <div class="dashboard"></div>
+                    <p>DASHBOARD</p>
+                </div>
+
+                <div class="tab recipes">
                     <div class="recipe"></div>
                     <p>RECIPES</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab review">
                     <div class="reviews"></div>
                     <p>REVIEWS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab log">
                     <div class="logs"></div>
                     <p>LOGS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab user">
                     <div class="users"></div>
                     <p>USERS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab exports">
                     <div class="export"></div>
                     <p>EXPORT</p>
                 </div>
@@ -166,6 +171,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../scripts/adminUsers.js"></script>
+<script src="../scripts/admin.js"></script>
 </html>
 <!-- 
 <link rel="stylesheet" href="../assets/styles/adminUsers.css">

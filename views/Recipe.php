@@ -1,3 +1,12 @@
+<?php
+// Start the session
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header("Location: Login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +18,7 @@
     <link rel="stylesheet" href="../assets/styles/recipe.css">
 </head>
 <body>
+
 <?php include '../components/navbar.php'; ?>
 
 <main>

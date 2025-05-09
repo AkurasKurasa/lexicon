@@ -1,3 +1,13 @@
+<?php
+// Start the session
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header("Location: Login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +18,7 @@
 </head>
 <body>
 
-<<<<<<< HEAD
-    <?php include '../assets/components/navbar.php'; ?>
-=======
     <?php include '../components/Navbar.php'; ?>
->>>>>>> version_1_merge
 
     <h1 class="header">Explore Food Recipes</h1>
 

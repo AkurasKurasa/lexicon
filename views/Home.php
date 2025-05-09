@@ -17,7 +17,7 @@ if (empty($_SESSION['id'])) {
     <link rel="stylesheet" href="../assets/styles/home.css">
 </head>
 <body>
-<?php require_once(__DIR__.'../components/navbar.php'); ?>
+    <?php include '../components/Navbar.php'; ?>
         <div class="featuredRecipes">
             <div class="featuredRecipe chicken" data-id="chicken">
                 <h1 class="featuredRecipe-name">CHICKEN</h1>
