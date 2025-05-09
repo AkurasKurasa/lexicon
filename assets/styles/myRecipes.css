@@ -251,7 +251,7 @@ symbol {
 }
 
 .modal-body {
-    height: 43em;
+    height: fit-content;
     overflow: hidden;
 }
 
@@ -265,6 +265,7 @@ symbol {
 
 .recipeForm {
     width: 100%;
+    height:fit-content;
 }
 
 .fieldsContainer {
@@ -352,8 +353,8 @@ button.clear {
 .modal-wrapper {
     position: absolute;
     z-index: 9999;
-    top: 50%;
-    left: 50%;
+    top: 10em;
+    left: calc(50% - 8.5em);
     transform: translate(-50%, -50%);
     width: 50em;
     background-color: #fff;
@@ -370,7 +371,7 @@ button.clear {
 }
 
 .modal-body {
-    height: 43em;
+    height: fit-content;
     overflow: hidden;
 }
 
