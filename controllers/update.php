@@ -27,7 +27,7 @@
             $recipeCookingTime = $_POST['cookingTime'];
             $recipeAdditionalTime = $_POST['additionalTime'];
             $recipeBudget = $_POST['budget'];
-
+            echo($recipeDescription."update.php");
             $recipeInfo = [
                 'id'               => $recipeId,
                 'name'             => $recipeName,

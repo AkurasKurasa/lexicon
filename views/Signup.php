@@ -67,6 +67,27 @@ if (isset($_SESSION['id'])) {
                     <input type="password" name="confirmPassword">
                 </div>
 
+                <div class="fieldsContainer">
+                    <label for="securityNickname">What was your childhood nickname?</label>
+                    <input type="password" name="securityNickname" id="securityNickname" placeholder="e.g. Johnny" required>
+                </div>
+
+                <div class="fieldsContainer">
+                    <label for="securityCartoon">Who was your favorite cartoon character as a child?</label>
+                    <input type="password" name="securityCartoon" id="securityCartoon" placeholder="e.g. SpongeBob" required>
+                </div>
+
+                <div class="fieldsContainer">
+                    <label for="securityStreet">What is the name of the street you grew up on?</label>
+                    <input type="password" name="securityStreet" id="securityStreet" placeholder="e.g. Maple Street" required>
+                </div>
+
+                <div class="fieldsContainer">
+                    <label for="securitySweet">What was your favorite sweet to eat as a child?</label>
+                    <input type="password" name="securitySweet" id="securitySweet" placeholder="e.g. Lollipop" required>
+                </div>
+
+
                 <button>SIGN UP</button>
 
                 <li class="error"></li>

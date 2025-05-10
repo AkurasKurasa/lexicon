@@ -10,10 +10,10 @@ class Recipe
 
     public function create($data)
     {
-
         $sql = "INSERT INTO products (
             id,
-            product_name, 
+            product_name,
+            description,
             category, 
             ingredients, 
             procedures, 
@@ -25,6 +25,7 @@ class Recipe
         ) VALUES (
             :id,
             :name, 
+            :description,
             :category, 
             :ingredients, 
             :procedure, 
@@ -34,13 +35,13 @@ class Recipe
             :budget,
             :author
         )";
-        $uniqueId = uniqid("recipe_");
         $stmt = $this->db->prepare($sql);
         session_start();
         $author = $_SESSION['id'];
         $stmt->execute([
-            ':id'               => $uniqueId,
+            ':id'               => $data['id'],
             ':name'             => $data['name'],
+            ':description'      => $data['description'],
             ':category'         => $data['category'],
             ':ingredients'      => $data['ingredients'],
             ':procedure'        => $data['procedure'],

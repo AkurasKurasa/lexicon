@@ -69,12 +69,12 @@ if (isset($_SESSION['loggedInUser'])) {
 
                             <div class="fieldsContainer description">
                                 <label for="">INGREDIENTS</label>
-                                <textarea name="ingredients" id="recipeIngredients" placeholder="e.g., carrots - 2, eggs - 5, ..."></textarea>
-                            </div>
+                                <textarea name="ingredients" id="recipeIngredients"></textarea>
+                                </div>
 
                             <div class="fieldsContainer description">
                                 <label for="">PROCEDURE</label>
-                                <textarea name="procedure" id="recipeProcedure" placeholder="e.g., carrots - 2, eggs - 5, ..."></textarea>
+                                <textarea name="procedure" id="recipeProcedure"></textarea>
                             </div>
 
 
@@ -111,6 +111,7 @@ if (isset($_SESSION['loggedInUser'])) {
                                 <button class="submit">Submit</button>
                                 <button class="clear">Clear</button>
                             </div>
+                            <ul class="error"></ul>
 
                         </form>
                     </div>
@@ -120,4 +121,7 @@ if (isset($_SESSION['loggedInUser'])) {
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../assets/scripts/myRecipes.js"></script>
+<script>
+
+</script>
 </html>

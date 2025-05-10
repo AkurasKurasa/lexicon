@@ -10,11 +10,12 @@
         case 'addRecipeByUser':
 
             $recipe = new Recipe($pdo);
+            $errors = [];
 
-            $recipeId = $_POST['id'];
+            $recipeId = uniqid("recipe_");
             $recipeName = $_POST['name'];
             $recipeDescription = $_POST['description'];
-            $recipeCategory = $_POST['category'];
+            $recipeCategory = $_POST['category'] ?? NULL;
             $recipeIngredients = $_POST['ingredients'];
             $recipeProcedure = $_POST['procedure'];
             $recipeImage = $_POST['image'];
@@ -24,33 +25,52 @@
             $recipeBudget = $_POST['budget'];
             session_start();
             $author = $_SESSION['id'];
+            if (empty($recipeId) || empty($recipeName) || empty($recipeDescription) || empty($recipeCategory) ||
+            empty($recipeIngredients) || empty($recipeProcedure) || empty($recipeImage) || 
+            empty($recipePrepTime) || empty($recipeCookingTime) || empty($recipeAdditionalTime) || empty($recipeBudget)) {
+            $errors[] = "Please enter all necessary fields!";
+        }   
 
-            $recipeInfo = [
-                'id'               => $recipeId,
-                'name'             => $recipeName,
-                'description'      => $recipeDescription,
-                'category'         => $recipeCategory,
-                'ingredients'      => $recipeIngredients,
-                'procedure'        => $recipeProcedure,
-                'image'            => $recipeImage,
-                'prep_time'        => $recipePrepTime,
-                'cooking_time'     => $recipeCookingTime,
-                'additional_time'  => $recipeAdditionalTime,
-                'budget'           => $recipeBudget,
-                'author'           => $author
-            ];
+            $ingredientsArray = explode(",", $recipeIngredients); 
+            if (count($ingredientsArray) < 3) {
+                $errors[] = "Please enter at least 3 ingredients!";
+            }
 
-            if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
+            $procedureSteps = explode(",", $recipeProcedure);
+            if (count($procedureSteps) < 3) {
+                $errors[] = "Please enter at least 3 procedure steps!";
+            }
+
+            if (strlen($recipeDescription) < 300) {
+                $errors[] = "The description must be at least 300 characters long!";
+            }
+
+            if (empty($errors)) {
+                $recipeInfo = [
+                    'id'               => $recipeId,
+                    'name'             => $recipeName,
+                    'description'      => $recipeDescription,
+                    'category'         => $recipeCategory,
+                    'ingredients'      => $recipeIngredients,
+                    'procedure'        => $recipeProcedure,
+                    'image'            => $recipeImage,
+                    'prep_time'        => $recipePrepTime,
+                    'cooking_time'     => $recipeCookingTime,
+                    'additional_time'  => $recipeAdditionalTime,
+                    'budget'           => $recipeBudget,
+                    'author'           => $author
+                ];
                 $recipe->create($recipeInfo);
                 echo json_encode(['success' => true]);
             } else {
-                echo json_encode(['success' => false]);
+                echo json_encode(['success' => false, 'errors' => $errors]);
             }
             break;
 
         case 'addRecipeByAdmin':
 
             $recipe = new Recipe($pdo);
+            $errors = [];
 
             $recipeId = $_POST['id'];
             $recipeName = $_POST['name'];
@@ -64,25 +84,44 @@
             $recipeAdditionalTime = $_POST['additionalTime'];
             $recipeBudget = $_POST['budget'];
 
-            $recipeInfo = [
-                'id'               => $recipeId,
-                'name'             => $recipeName,
-                'description'      => $recipeDescription,
-                'category'         => $recipeCategory,
-                'ingredients'      => $recipeIngredients,
-                'procedure'        => $recipeProcedure,
-                'image'            => $recipeImage,
-                'prep_time'        => $recipePrepTime,
-                'cooking_time'     => $recipeCookingTime,
-                'additional_time'  => $recipeAdditionalTime,
-                'budget'           => $recipeBudget
-            ];
+            if (empty($recipeId) || empty($recipeName) || empty($recipeDescription) || empty($recipeCategory) ||
+            empty($recipeIngredients) || empty($recipeProcedure) || empty($recipeImage) || 
+            empty($recipePrepTime) || empty($recipeCookingTime) || empty($recipeAdditionalTime) || empty($recipeBudget)) {
+            $errors[] .= "Please enter all necessary fields!";
+        }   
 
-            if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
+            $ingredientsArray = explode(",", $recipeIngredients); 
+            if (count($ingredientsArray) < 3) {
+                $errors[] .= "Please enter at least 3 ingredients!";
+            }
+
+            $procedureSteps = explode(",", $recipeProcedure);
+            if (count($procedureSteps) < 3) {
+                $errors[] .= "Please enter at least 3 procedure steps!";
+            }
+
+            if (strlen($recipeDescription) < 300) {
+                $errors[] .= "The description must be at least 300 characters long!";
+            }
+
+            if (empty($errors)) {
+                $recipeInfo = [
+                    'id'               => $recipeId,
+                    'name'             => $recipeName,
+                    'description'      => $recipeDescription,
+                    'category'         => $recipeCategory,
+                    'ingredients'      => $recipeIngredients,
+                    'procedure'        => $recipeProcedure,
+                    'image'            => $recipeImage,
+                    'prep_time'        => $recipePrepTime,
+                    'cooking_time'     => $recipeCookingTime,
+                    'additional_time'  => $recipeAdditionalTime,
+                    'budget'           => $recipeBudget
+                ];
                 $recipe->create($recipeInfo);
                 echo json_encode(['success' => true]);
             } else {
-                echo json_encode(['success' => false]);
+                echo json_encode(['success' => false, 'errors' => $errors]);
             }
             break;
 

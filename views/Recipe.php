@@ -109,37 +109,12 @@
 
   <hr style="margin: 30px 0px 30px 0px">
 
-  <p>1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque reprehenderit a, nulla 
-    consequuntur autem totam voluptate facere natus dolorem atque magni aliquam asperiores in distinctio deleniti 
-    ducimus necessitatibus tempora error?
-  </p>
-  <p>2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque reprehenderit a, nulla 
-    consequuntur autem totam voluptate facere natus dolorem atque magni aliquam asperiores in distinctio deleniti 
-    ducimus necessitatibus tempora error?
-  </p>
-  <p>3. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque reprehenderit a, nulla 
-    consequuntur autem totam voluptate facere natus dolorem atque magni aliquam asperiores in distinctio deleniti 
-    ducimus necessitatibus tempora error?
-  </p>
-  <p>4. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque reprehenderit a, nulla 
-    consequuntur autem totam voluptate facere natus dolorem atque magni aliquam asperiores in distinctio deleniti 
-    ducimus necessitatibus tempora error?
-  </p>
 </div>
 
 <div class="ingredients">
   <div class="listTitle">Ingredients</div>
 
   <hr style="margin: 30px 0px 30px 0px">
-  <p>1 kilogram Chicken pieces</p>
-  <p>2 ½ cups All-Purpose Flour</p>
-  <p>2 teaspoons Salt</p>
-  <p>1 teaspoon Black Pepper</p>
-  <p>1 teaspoon Garlic Powder</p>
-  <p>1 teaspoon Onion Powder</p>
-  <p>1 teaspoon Paprika sweet or smoked</p>
-  <p>½ teaspoon Cayenne Pepper optional for heat</p>
-  <p>Cooking Oil for frying vegetable oil cooking oil - enough to submerge the chicken about 3-4 inches deep in your kawali or pan</p>
 </div>
 
 </div>
@@ -178,25 +153,6 @@
 
     <div class="comments-container">
     <hr>
-        <div class="other-comment">
-            <div class="img-container"> 
-                <img src="../assets/images/img_avatar.png" class="img">
-            </div>
-            <div class="comment-details">
-                <div class="comment-container">
-                    <p class="comment-username">Ralph Ganzon</p>
-                    <div class="otherUserRatingContainer">
-                            <span class="star otherUserRating">&#9734;</span>  
-                            <span class="star otherUserRating">&#9734;</span>  
-                            <span class="star otherUserRating">&#9734;</span>  
-                            <span class="star otherUserRating">&#9734;</span>  
-                            <span class="star otherUserRating">&#9734;</span>  
-                    </div>
-                </div>
-                <p class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>
-            <p class="time-posted">12h ago</p>
-        </div>
     </div>
 <main>
 </section>

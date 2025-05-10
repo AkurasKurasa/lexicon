@@ -11,7 +11,6 @@ $(document).ready(function() {
         },
         success: function(response) {
             data = JSON.parse(response);
-            console.log(data);
             // Checks if there is a user logged in and if he has already commented
             if (!data.checkLoggedIn) {
                 $("#userComment").attr('placeholder', 'You must be logged in to submit a review.');
@@ -24,38 +23,51 @@ $(document).ready(function() {
             
             // Populates the comment
             $.each(data.usersCommented, function(index, user) {
-                console.log(user.image);
                 populateComment(user.first_name, user.last_name, user.image ?? "../assets/images/img_avatar.png", user.comment, user.rating, user.created_at);
             });
+            
+        // Populates the recipe page
+        author_image = data.recipeInfo['author_image'] ?? '../assets/images/img_avatar.png';
+        recipe_name = data.recipeInfo['product_name'];
+        author = data.recipeInfo['author'];
+        author_name = data.recipeInfo['first_name'] + " " + data.recipeInfo['last_name'];
+        description = data.recipeInfo['description'];
+        category = data.recipeInfo['category'];
+        ingredients = data.recipeInfo['ingredients']; // Assuming ingredients are passed with \n
+        procedures = data.recipeInfo['procedures']; // Assuming procedures are passed with \n
+        prep_time = data.recipeInfo['prep_time'];
+        cooking_time = data.recipeInfo['cooking_time'];
+        additional_time = data.recipeInfo['additional_time'];
+        budget = data.recipeInfo['budget'];
+        product_image = data.recipeInfo['product_image'];
 
-            // Populates the recipe page
-            recipe_name = data.recipeInfo['product_name'];
-            author = data.recipeInfo['author'];
-            author_name = data.recipeInfo['first_name'] + " " + data.recipeInfo['last_name'];
-            description = data.recipeInfo['description'];
-            category = data.recipeInfo['category'];
-            ingredients = data.recipeInfo['ingredients'];
-            procedures = data.recipeInfo['procedures'];
-            prep_time = data.recipeInfo['prep_time'];
-            cooking_time = data.recipeInfo['cooking_time'];
-            additional_time = data.recipeInfo['additional_time'];
-            budget = data.recipeInfo['budget'];
-            product_image = data.recipeInfo['product_image'];
-            $(".recipeName").html(recipe_name);
-            $(".userSubmit").html(author_name);
-            $(".recipeDescription").html(description);
-            $(".preptime").html(prep_time);
-            $(".cooktime").html(cooking_time);
-            $(".additionaltime").html(additional_time);
-            $(".budget").html(budget);
-            $("#userSubmit").attr("data-id", author);
-            $(".recipeImage").css('background-image', 'url(' + product_image + ')');
-        }
-        ,
+        // Update the recipe content
+        $(".recipeName").html(recipe_name);
+        $(".userSubmit").html(author_name);
+        $(".recipeDescription").html(description);
+        $(".preptime").html(prep_time);
+        $(".cooktime").html(cooking_time);
+        $(".additionaltime").html(additional_time);
+        $(".budget").html(budget);
+        $("#userSubmit").attr("data-id", author);
+        $(".recipeImage").css('background-image', 'url(' + product_image + ')');
+        $(".userIcon").css('background-image', 'url(' + author_image + ')');
+
+        var ingredientList = ingredients.split("\n");
+        $.each(ingredientList, function(index, ingredient) {
+            $(".ingredients").append("<p>" + ingredient + "</p>");
+        });
+
+        var procedureList = procedures.split("\n");
+        $.each(procedureList, function(index, procedure) {
+            $(".directions").append("<p>" + procedure + "</p>");
+        });
+        
+    },
         error: function(xhr, status, error) {
             console.log(error);
         }
-    })
+    });
     $("#userComment").on("input", function() {
         checkInput();
     });
@@ -63,8 +75,8 @@ $(document).ready(function() {
     /* Jump to Recipe */
     $(".jumpToRecipe").click(function() {
         $('html, body').animate({
-            scrollTop: $('.mainSection').offset().top
-        }, 100);
+            scrollTop: $('.recipeListv2').offset().top
+        }, 1000);
         console.log
     })
 
@@ -103,7 +115,6 @@ $(document).ready(function() {
                     resetCommment();
                     $("#userComment").attr('placeholder', 'You may only enter a comment once.');
                     $("#userComment").prop('disabled', true);
-                    console.log(data.profile_picture_url);
                     populateComment(data.first_name, data.last_name, data.profile_picture_url, data.comment, data.rating, data.created_at);
                 }
             },
