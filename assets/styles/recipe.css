@@ -201,18 +201,18 @@ main {
     gap: 30px;
 }
 
-.ingredients p{
+.ingredients li {
     font-family: var(--bitter);
     font-size: 17px;
     /* font-weight: 700; */
     color: rgb(77, 77, 77);
     width: 100%;
     line-height: 24px;
-    text-align: center;
-    margin-bottom: 24px;
+    /* text-align: center; */
+    margin-bottom: 15px;
 }
 
-.directions p{
+.directions li{
     font-family: var(--bitter);
     font-size: 17px;
     /* font-weight: 700; */
@@ -220,7 +220,7 @@ main {
     width: 100%;
     line-height: 24px;
     text-align: left;
-    margin-bottom: 24px;
+    margin-bottom: 15px;
 }
 
 .directions {
@@ -235,13 +235,13 @@ main {
 
 .ingredients {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     margin: 50px;
     padding: 20px 30px;
     max-height: fit-content;
     max-width: 700px;
     overflow: hidden;
-
 }
 
 .recipeList h1 {
@@ -711,4 +711,9 @@ main {
 .comments-container {
     display: flex;
     flex-direction: column;
+}
+
+.ingredients ol {
+    list-style-type: disc;
+    padding-left: 20px; 
 }

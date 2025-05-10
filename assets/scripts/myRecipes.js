@@ -6,17 +6,17 @@ $(document).ready(function() {
         $('.modalRecipe').toggleClass('is-visible');
         $('.modalRecipe-heading').text('Add a Recipe');
         const placeholderText = "e.g.\n" +
-        "- 2 cups of flour\n" +
-        "- 1 cup of sugar\n" +
-        "- 2 eggs\n\n" +
+        "2 cups of flour\n" +
+        "1 cup of sugar\n" +
+        "2 eggs\n\n" +
         "# Instructions\n" +
-        "1. Mix all dry ingredients.\n" +
-        "2. Add eggs and stir well.\n" +
-        "3. Bake at 180°C for 30 minutes.";
+        "Mix all dry ingredients.\n" +
+        "Add eggs and stir well.\n" +
+        "Bake at 180°C for 30 minutes.";
         const procedurePlaceholder = "e.g.\n" +
-        "1. Mix all dry ingredients.\n" +
-        "2. Add eggs and stir well.\n" +
-        "3. Bake at 180°C for 30 minutes.";
+        "Mix all dry ingredients.\n" +
+        "Add eggs and stir well.\n" +
+        "Bake at 180°C for 30 minutes.";
 
         document.getElementById("recipeIngredients").placeholder = placeholderText;
         document.getElementById("recipeProcedure").placeholder = procedurePlaceholder;

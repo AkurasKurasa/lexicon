@@ -60,7 +60,7 @@ class Recipe
         $stmtImage = $this->db->prepare($sqlImage);
 
         return $stmtImage->execute([
-            ':related_product'   => $uniqueId,
+            ':related_product'   => $data['id'],
             ':image'        => $data['image']
         ]);
 

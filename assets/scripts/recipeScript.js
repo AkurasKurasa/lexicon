@@ -25,7 +25,7 @@ $(document).ready(function() {
             $.each(data.usersCommented, function(index, user) {
                 populateComment(user.first_name, user.last_name, user.image ?? "../assets/images/img_avatar.png", user.comment, user.rating, user.created_at);
             });
-            
+
         // Populates the recipe page
         author_image = data.recipeInfo['author_image'] ?? '../assets/images/img_avatar.png';
         recipe_name = data.recipeInfo['product_name'];
@@ -54,13 +54,18 @@ $(document).ready(function() {
         $(".userIcon").css('background-image', 'url(' + author_image + ')');
 
         var ingredientList = ingredients.split("\n");
+        const $olIngredient = $("<ol></ol>");
+        $(".ingredients").append($olIngredient);
+
         $.each(ingredientList, function(index, ingredient) {
-            $(".ingredients").append("<p>" + ingredient + "</p>");
+            $olIngredient.append("<li>" + ingredient + "</li>");
         });
 
         var procedureList = procedures.split("\n");
+        const $olProcedure = $("<ol></ol>");
+        $(".directions").append($olProcedure);
         $.each(procedureList, function(index, procedure) {
-            $(".directions").append("<p>" + procedure + "</p>");
+            $olProcedure.append("<li>" + procedure + "</li>");
         });
         
     },
@@ -165,7 +170,6 @@ function populateComment(first_name, last_name, profile_picture_url, comment, ra
     var image = $("<img>").addClass("img").attr('src', profile_picture_url);
     imgContainer.append(image);
 
-    // comment-details
     var commentDetails = $("<div>").addClass("comment-details");
     var commentContainer = $("<div>").addClass("comment-container");
     var commentUsername = $("<p>").addClass("comment-username").html(first_name + " " + last_name);

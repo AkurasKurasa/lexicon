@@ -91,19 +91,19 @@ if (isset($_SESSION['loggedInUser'])) {
 
                                 <div class="fieldsContainer description">
                                     <label for="">COOKING TIME</label>
-                                    <input type="text" name="cookingTime" id="recipeCookingTime" placeholder="e.g., Delicious Spaghetti">
+                                    <input type="text" name="cookingTime" id="recipeCookingTime" placeholder="e.g., 1 hour">
                                 </div>
                             </div>
 
                             <div class="fieldsWrapper">
                                 <div class="fieldsContainer description">
                                     <label for="">ADDITIONAL TIME</label>
-                                    <input type="text" name="additionalTime" id="recipeAdditionalTime" placeholder="e.g., Delicious Spaghetti">
+                                    <input type="text" name="additionalTime" id="recipeAdditionalTime" placeholder="e.g., 5 minutes">
                                 </div>
 
                                 <div class="fieldsContainer description">
                                     <label for="">BUDGET</label>
-                                    <input type="text" name="budget" id="recipeBudget" placeholder="e.g., Delicious Spaghetti">
+                                    <input type="text" name="budget" id="recipeBudget" placeholder="e.g., 500.00">
                                 </div>
                             </div>
 
