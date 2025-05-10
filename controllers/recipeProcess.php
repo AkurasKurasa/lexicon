@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         {
         //Echoes the inputted comment immediately
         $sql = "SELECT first_name, last_name, images.image FROM users
-                INNER JOIN images ON users.id = images.related_user
+                LEFT JOIN images ON users.id = images.related_user
                 WHERE users.id = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([':id' => $author]);
