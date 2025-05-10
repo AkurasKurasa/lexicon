@@ -71,6 +71,8 @@ $(document).ready(function() {
           });
           
         } else {
+          
+          console.log(formData);
 
           $.ajax({
             url: "../controllers/add.php",
@@ -210,7 +212,7 @@ $(document).ready(function() {
             $("#recipeDescription").val(data.content['description']);
             $("#recipeIngredients").val(data.content['ingredients']);
             $("#recipeProcedure").val(data.content['procedures']);
-            // $("#recipeImage").val(data.content['image']);
+            $("#recipeImage").val(data.content['image']);
             $("#recipePrepTime").val(data.content['prep_time']);
             $("#recipeAdditionalTime").val(data.content['additional_time']);
             $("#recipeCookingTime").val(data.content['cooking_time']);

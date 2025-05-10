@@ -369,26 +369,118 @@
 
             echo json_encode(['success' => true, 'content' => $output]);
             break;
+
+        case 'fetchComment':
+
+            $id = $_GET['id'];
+
+            $sql = "
+                    SELECT 
+                        prc.id,
+                        prc.comment, 
+                        prc.created_at, 
+                        prc.positive,
+                        prc.negative,
+                        prc.neutral,
+                        prc.sentiment,
+                        u.first_name, 
+                        u.last_name,
+                        p.product_name
+                    FROM 
+                        product_review_comments_test prc
+                    LEFT JOIN 
+                        users u ON prc.authored_by = u.id
+                    LEFT JOIN
+                        products p ON prc.product_id = p.id
+                    WHERE
+                        prc.id = :id
+                    LIMIT 1;
+                ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            $output = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
         
         case 'fetchComments':
 
+            $filterName = $_GET['filterName'] ?? null; 
+            $filterRecipe = $_GET['filterRecipe'] ?? null; 
+            $filterRating = $_GET['filterRating'] ?? null;
+            $filterSentiment = $_GET['filterSentiment'] ?? null;  
+            $filterStartDate = $_GET['filterStartDate'] ?? null;
+            $filterStartTime = $_GET['filterStartTime'] ?? null;
+            $filterEndDate = $_GET['filterEndDate'] ?? null;
+            $filterEndTime = $_GET['filterEndTime'] ?? null;
+
+            $params = [];
+            $conditions = [];
+
             $query = "
                 SELECT 
+                    prc.id,
                     prc.comment, 
                     prc.created_at, 
                     prc.positive,
                     prc.negative,
                     prc.neutral,
+                    prc.sentiment,
+                    prc.created_at,
                     u.first_name, 
-                    u.last_name
+                    u.last_name,
+                    p.product_name
                 FROM 
-                    product_review_comments prc
+                    product_review_comments_test prc
                 LEFT JOIN 
                     users u ON prc.authored_by = u.id
+                LEFT JOIN
+                    products p ON prc.product_id = p.id
             ";
+
+            if (!empty($filterName)) {
+                $conditions[] = "CONCAT(u.first_name, ' ', u.last_name) LIKE :filterName";
+                $params[':filterName'] = '%' . $filterName . '%';
+            }
+
+            if (!empty($filterRecipe)) {
+                $conditions[] = "p.product_name LIKE :filterRecipe";
+                $params[':filterRecipe'] = '%' . $filterRecipe . '%';
+            }
+
+            if (!empty($filterSentiment)) {
+                $conditions[] = "prc.sentiment = :filterSentiment";
+                $params[':filterSentiment'] = $filterSentiment;
+            }
+
+            if (!empty($filterStartDate)) {
+                $conditions[] = "DATE(prc.created_at) >= :startDate";
+                $params[':startDate'] = $filterStartDate;
+            }
+            
+            if (!empty($filterStartTime)) {
+                $conditions[] = "TIME(prc.created_at) >= :startTime";
+                $params[':startTime'] = $filterStartTime;
+            }
+            
+            if (!empty($filterEndDate)) {
+                $conditions[] = "DATE(prc.created_at) <= :endDate";
+                $params[':endDate'] = $filterEndDate;
+            }
+            
+            if (!empty($filterEndTime)) {
+                $conditions[] = "TIME(prc.created_at) <= :endTime";
+                $params[':endTime'] = $filterEndTime;
+            }
+
+            if (!empty($conditions)) {
+                $query .= " WHERE " . implode(" AND ", $conditions);
+            }
+
+            $query .= " ORDER BY prc.created_at DESC";
         
             $result = $pdo->prepare($query);
-            $result->execute();
+            $result->execute($params);
         
             $output = "";
         
@@ -396,7 +488,7 @@
         
                 $output .= "
 
-                    <div class='reviewContainer'>
+                    <div class='reviewContainer' data-name='{$row['id']}>
                         <p class='reviewTime'>{$row['created_at']}</p>
                         <p class='reviewInformation'>
                             {$row['comment']}   
@@ -417,8 +509,6 @@
             echo json_encode(['success' => true, 'content' => $output]);
             break;
 
-            break;
-        
         default:
             # code...
             break;

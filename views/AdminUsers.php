@@ -182,7 +182,7 @@ if (empty($_SESSION['id'])) {
                 </div>
             </div>
 
-        </div>   
+        </section>   
 
     </main>
 </body>

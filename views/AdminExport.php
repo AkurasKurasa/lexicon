@@ -68,11 +68,11 @@
 
                     <h1>Export Tables</h1>
 
-                    <button>Export recipes as .csv</button>
-                    <button>Export reviews as .csv</button>
+                    <button id="exportRecipes">Export recipes as .csv</button>
+                    <button id="exportReviews">Export reviews as .csv</button>
                     <button id="exportUsers">Export users as .csv</button>
-                    <button>Export logs as .csv</button>
-                    <button>Export all as .csv</button>
+                    <button id="exportLogs">Export logs as .csv</button>
+                    <button id="exportAll">Export all as .csv</button>
                 </div>
 
             </section>
@@ -83,7 +83,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../scripts/admin.js"></script>
-<script src="../scripts/adminExports.js"></script>
+<script src="../scripts/adminExports-1.js"></script>
 </html>
 
 <!-- <link rel="stylesheet" href="../assets/styles/adminExport.css">

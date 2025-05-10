@@ -16,6 +16,7 @@ class Recipe
             id,
             product_name, 
             category, 
+            description,
             ingredients, 
             procedures, 
             prep_time, 
@@ -27,6 +28,7 @@ class Recipe
             :id,
             :name, 
             :category, 
+            :description,
             :ingredients, 
             :procedure, 
             :prep_time, 
@@ -42,6 +44,7 @@ class Recipe
             ':id'               => $generatedId,
             ':name'             => $data['name'],
             ':category'         => $data['category'],
+            ':description'      => $data['description'],
             ':ingredients'      => $data['ingredients'],
             ':procedure'        => $data['procedure'],
             ':prep_time'        => $data['prep_time'],
@@ -115,7 +118,12 @@ class Recipe
 
     public function fetchRecipe($id)
     {
-        $sql = "SELECT * FROM products WHERE id = :id";
+        $sql = "
+                SELECT *
+                FROM products
+                LEFT JOIN images ON images.related_product = products.id
+                WHERE products.id = :id;
+                ";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

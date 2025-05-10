@@ -1,8 +1,25 @@
 -- categories table query 
+
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    category_name VARCHAR(255) NOT NULL
+    category_name VARCHAR(255) NOT NULL UNIQUE
 );
+
+INSERT INTO categories (id, category_name) VALUES
+(7, 'asian'),
+(4, 'barbeque'),
+(12, 'breakfast'),
+(1, 'chicken'),
+(11, 'healthy'),
+(10, 'pasta'),
+(5, 'pizza'),
+(2, 'ramen'),
+(3, 'salad'),
+(6, 'sandwiches'),
+(13, 'seafood'),
+(9, 'soup'),
+(8, 'steak');
+
 
 -- products table query
 CREATE TABLE products (
@@ -21,37 +38,19 @@ CREATE TABLE products (
         ON DELETE SET NULL
 );
 
--- ingredients table query
-CREATE TABLE ingredients (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    description TEXT
-);
+CREATE TABLE products (
+    id VARCHAR(30) NOT NULL,
+    product_name VARCHAR(255) NOT NULL,
+    description text DEFAULT NULL,
+    category INT DEFAULT NULL,
+    author INT(11) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
--- product_ingredients
-CREATE TABLE product_ingredients (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    ingredient_id INT,
-    quantity VARCHAR(100),
-
-    FOREIGN KEY (product_id) REFERENCES products(id)
-        ON DELETE CASCADE,
-
-    FOREIGN KEY (ingredient_id) REFERENCES ingredients(id)
-        ON DELETE CASCADE
-);
-
--- product_instructions 
-CREATE TABLE product_instructions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    product_id INT,
-    step INT,
-    description TEXT,
-
-    FOREIGN KEY (product_id) REFERENCES products(id)
-        ON DELETE CASCADE
-);
+    FOREIGN KEY (category) REFERENCES categories(category_name)
+            ON DELETE SET NULL,
+    FOREIGN KEY (author) REFERENCES users(id)
+        ON DELETE SET NULL
+)
 
 -- images
 CREATE TABLE images (
@@ -65,6 +64,19 @@ CREATE TABLE images (
 );
 
 -- product_review_comments table query
+-- CREATE TABLE product_review_comments (
+--   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+--   comment TEXT NOT NULL,
+--   product_id VARCHAR(30) DEFAULT NULL,
+--   authored_by VARCHAR(30) DEFAULT NULL,
+--   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+--   positive INT DEFAULT 0,
+--   negative INT DEFAULT 0,
+--   neutral INT DEFAULT 0
+--   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+--   FOREIGN KEY (authored_by) REFERENCES users(id) ON DELETE SET NULL
+-- );
+
 CREATE TABLE product_review_comments (
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   comment TEXT NOT NULL,
@@ -73,10 +85,19 @@ CREATE TABLE product_review_comments (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   positive INT DEFAULT 0,
   negative INT DEFAULT 0,
-  neutral INT DEFAULT 0
+  neutral INT DEFAULT 0,
+  sentiment VARCHAR(10) AS (
+    CASE
+      WHEN positive > negative AND positive > neutral THEN 'positive'
+      WHEN negative > positive AND negative > neutral THEN 'negative'
+      WHEN neutral > positive AND neutral > negative THEN 'neutral'
+      ELSE 'neutral'
+    END
+  ) STORED,
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
   FOREIGN KEY (authored_by) REFERENCES users(id) ON DELETE SET NULL
 );
+
     
 -- product_votes table query
 CREATE TABLE product_votes (
@@ -99,7 +120,7 @@ CREATE TABLE sentiments (
 
 -- users table query
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id int(11) NOT NULL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     gender ENUM('Male', 'Female', 'Other', 'Prefer not to say') NOT NULL,
@@ -124,3 +145,15 @@ CREATE TABLE activity_logs (
     activity_by VARCHAR(30),
     FOREIGN KEY (activity_by) REFERENCES users(id) ON DELETE CASCADE
 );
+
+DROP TABLE IF EXISTS 
+    activity_logs,
+    categories,
+    images,
+    products,
+    product_review_comments,
+    product_votes,
+    roles,
+    security_questions,
+    sentiments,
+    users;
