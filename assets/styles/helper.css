@@ -38,10 +38,12 @@
     content: url('../images/trash.svg');
     width: 14px;
     height: 14px;
+    cursor: pointer;
 }
 
 .edit {
     content: url('../images/edit.svg');
     width: 14px;
     height: 14px;
+    cursor: pointer;
 }

@@ -48,6 +48,24 @@
             }
             break;
 
+
+        case 'deleteComment':
+            $comment_id = $_POST['comment_id'];
+            
+           if(isset($comment_id)) {
+                $query = 'DELETE FROM product_review_comments WHERE id = :comment_id';
+                $result = $pdo->prepare($query);
+                $result->execute([':comment_id' => $comment_id]);
+                if ($result->rowCount() > 0) {
+                    $response["success"] = "Comment Deleted Successfully!";
+                } else {
+                    $response["error"] = "No comment found to delete!";
+                }
+            } else {
+                $response["error"] = "Comment not Deleted!";
+            }
+            echo json_encode($response);
+            break;
         default:
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;

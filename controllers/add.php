@@ -153,47 +153,59 @@
             echo json_encode(['success' => true]);
             break;
 
-        case 'addComment':
-            session_start();
-            if (isset($_POST['starsGiven'], $_POST['userComment'], $_POST['product_id']) && isset($_SESSION['id'])) {    
-                $starsGiven = filter_var($_POST['starsGiven'], FILTER_SANITIZE_NUMBER_INT);
-                $userComment = filter_var($_POST['userComment'], FILTER_SANITIZE_STRING);
-                $product_id = $_POST['product_id']; 
-                $author = $_SESSION['id'];
-                $currentTimestamp = date('Y-m-d H:i:s');
-        
-                $sql = "INSERT INTO product_review_comments (comment, product_id, authored_by, created_at)
-                        VALUES (:comment, :product_id, :authored_by, :created_at)";
-                $stmt = $pdo->prepare($sql);
-                if ($stmt->execute([
-                    ':comment' => $userComment,
-                    ':product_id' => $product_id,
-                    ':authored_by' => $author,
-                    ':created_at' => $currentTimestamp
-                ]))
-                $commentId = $pdo->lastInsertId();
-        
-                
-                $sql = "INSERT INTO product_votes (comment_id, rating)
-                        VALUES (:comment_id, :rating)";
-                $stmt = $pdo->prepare($sql);
-                if ($stmt->execute([
-                    ':comment_id' => $commentId,
-                    ':rating' => $starsGiven
-                ]))
-        
-                {
-                    $response = [
-                        'success' => 'CommentID Fetched SuccessFully',
-                        'comment_id' => $commentId
-                    ];
-                } else {
-                    // Error handling
-                    $response["error"] = "Comment error!";
+            case 'addComment':
+                session_start();
+                if (isset($_POST['starsGiven'], $_POST['userComment'], $_POST['product_id']) && isset($_SESSION['id'])) {
+                    $starsGiven = filter_var($_POST['starsGiven'], FILTER_SANITIZE_NUMBER_INT);
+                    $userComment = filter_var($_POST['userComment'], FILTER_SANITIZE_STRING);
+                    $product_id = $_POST['product_id'];
+                    $author = $_SESSION['id'];
+                    date_default_timezone_set('Asia/Manila');
+                    $currentTimestamp = date('Y-m-d H:i:s');
+            
+                    $sql = "INSERT INTO product_review_comments (comment, product_id, authored_by, created_at)
+                            VALUES (:comment, :product_id, :authored_by, :created_at)
+                            ON DUPLICATE KEY UPDATE 
+                            comment = VALUES(comment), 
+                            created_at = VALUES(created_at)";
+                    $stmt = $pdo->prepare($sql);
+                    $success = $stmt->execute([
+                        ':comment' => $userComment,
+                        ':product_id' => $product_id,
+                        ':authored_by' => $author,
+                        ':created_at' => $currentTimestamp
+                    ]);
+            
+                    if ($success) {
+                        $commentId = $pdo->lastInsertId();
+                        if ($commentId == 0) {
+                            $stmt = $pdo->prepare("SELECT id FROM product_review_comments WHERE authored_by = :author AND product_id = :product_id");
+                            $stmt->execute([':author' => $author, ':product_id' => $product_id]);
+                            $commentId = $stmt->fetchColumn();
+                        }
+            
+                        $sql = "INSERT INTO product_votes (comment_id, rating)
+                                VALUES (:comment_id, :rating)
+                                ON DUPLICATE KEY UPDATE rating = VALUES(rating)";
+                        $stmt = $pdo->prepare($sql);
+                        if ($stmt->execute([
+                            ':comment_id' => $commentId,
+                            ':rating' => $starsGiven
+                        ])) {
+                            $response = [
+                                'success' => 'CommentID Fetched Successfully',
+                                'comment_id' => $commentId
+                            ];
+                        } else {
+                            $response["error"] = "Comment error!";
+                        }
+                    } else {
+                        $response["error"] = "Comment error!";
+                    }
+            
+                    echo json_encode($response);
                 }
-            echo(json_encode($response));
-            }
-            break;
+                break;            
         default:
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;

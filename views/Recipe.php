@@ -140,6 +140,8 @@
                     <span class="star userRating" id="ratingFour">&#9734;</span>
                     <span class="star userRating" id="ratingFive">&#9734;</span>
                 </div>
+                <input type="hidden" name="comment_id" id="comment_id" value="">
+
                 <textarea name="userComment" id="userComment" placeholder="Enter your comment..."></textarea>
                 <li class="error"></li>
                 <div style="display:flex; margin-left:auto;">

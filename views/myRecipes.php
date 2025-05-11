@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['loggedInUser'])) {
         header("Location: home.php");
         exit();
-} 
+}
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +12,7 @@ if (isset($_SESSION['loggedInUser'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipes</title>
+    <link rel="stylesheet" href="../assets/styles/helper.css">
     <link rel="stylesheet" href="../assets/styles/myRecipes.css">
 </head>
 <body>

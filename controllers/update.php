@@ -8,14 +8,27 @@
     switch ($type) {
 
         case 'updateRecipeByUser':
-
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            $description = $_POST['description'];
+            $category = $_POST['category'];
+            $ingredients = $_POST['ingredients'];
+            $procedure = $_POST['procedure'];
+            $image = $_POST['image'];
+            $prepTime = $_POST['prepTime'];
+            $cookingTime = $_POST['cookingTime'];
+            $additionalTime = $_POST['additionalTime'];
+            $budget = $_POST['budget'];
+            
+            $sql = "UPDATE product_name, description, category, ingredients, procedures,
+                    prep_time, cooking_time, additional_time, budget";
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;
 
         case 'updateRecipeByAdmin':
+            $errors =[];
 
             $recipe = new Recipe($pdo);
-
             $recipeId = $_POST['id'];
             $recipeName = $_POST['name'];
             $recipeDescription = $_POST['description'];
@@ -27,26 +40,50 @@
             $recipeCookingTime = $_POST['cookingTime'];
             $recipeAdditionalTime = $_POST['additionalTime'];
             $recipeBudget = $_POST['budget'];
-            echo($recipeDescription."update.php");
-            $recipeInfo = [
-                'id'               => $recipeId,
-                'name'             => $recipeName,
-                'description'      => $recipeDescription,
-                'category'         => $recipeCategory,
-                'ingredients'      => $recipeIngredients,
-                'procedure'        => $recipeProcedure,
-                'image'            => $recipeImage,
-                'prep_time'        => $recipePrepTime,
-                'cooking_time'     => $recipeCookingTime,
-                'additional_time'  => $recipeAdditionalTime,
-                'budget'           => $recipeBudget
-            ];
 
-            if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
-                $recipe->update($recipeId, $recipeInfo);
-                echo json_encode(['success' => true]);
-            } else {
-                echo json_encode(['success' => false]);
+            if (empty($recipeId) || empty($recipeName) || empty($recipeDescription) || empty($recipeCategory) ||
+            empty($recipeIngredients) || empty($recipeProcedure) || empty($recipeImage) || 
+            empty($recipePrepTime) || empty($recipeCookingTime) || empty($recipeAdditionalTime) || empty($recipeBudget)) {
+            $errors[] = "Please enter all necessary fields!";
+        }   
+
+            $ingredientsArray = explode("\n", $recipeIngredients); 
+            if (count($ingredientsArray) < 3) {
+                $errors[] = "Please enter at least 3 ingredients!";
+            }
+
+            $procedureSteps = explode("\n", $recipeProcedure);
+            if (count($procedureSteps) < 3) {
+                $errors[] = "Please enter at least 3 procedure steps!";
+            }
+
+            if (strlen($recipeDescription) < 300) {
+                $errors[] = "The description must be at least 300 characters long!";
+            }
+
+            if (empty($errors)) {
+                $recipeInfo = [
+                    'id'               => $recipeId,
+                    'name'             => $recipeName,
+                    'description'      => $recipeDescription,
+                    'category'         => $recipeCategory,
+                    'ingredients'      => $recipeIngredients,
+                    'procedure'        => $recipeProcedure,
+                    'image'            => $recipeImage,
+                    'prep_time'        => $recipePrepTime,
+                    'cooking_time'     => $recipeCookingTime,
+                    'additional_time'  => $recipeAdditionalTime,
+                    'budget'           => $recipeBudget
+                ];
+
+                if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
+                    $recipe->update($recipeId, $recipeInfo);
+                    echo json_encode(['success' => true]);
+                }   else {
+                    echo json_encode(['success' => false]);
+                }
+            }   else {
+                echo json_encode(['success' => false, 'errors' => $errors]);
             }
             break;
 

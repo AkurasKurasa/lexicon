@@ -36,7 +36,7 @@ class Recipe
             :author
         )";
         $stmt = $this->db->prepare($sql);
-        session_start();
+        // session_start();
         $author = $_SESSION['id'];
         $stmt->execute([
             ':id'               => $data['id'],
@@ -53,8 +53,6 @@ class Recipe
         ]);
 
 
-        // $productId = $this->db->lastInsertId();
-        // echo("AOSIDJASOIDJASIODJ".$productId);
         $sqlImage = "INSERT INTO images (related_product, image) VALUES (:related_product, :image)";
 
         $stmtImage = $this->db->prepare($sqlImage);
@@ -105,24 +103,22 @@ class Recipe
         ]);
 
         $sqlImage = "UPDATE images
-                    SET image = :image,
-                        related_type = :type   
-                    WHERE related_id = :id 
-                    ";
+                    SET image = :image 
+                    WHERE related_product = :id ";
         
         $stmt = $this->db->prepare($sqlImage);
-
         $resultImg = $stmt->execute([
-            ':id'    => $data['id'],
             ':image' => $data['image'],
-            ':type'  => "product"
+            ':id'    => $id
         ]);
 
     }
 
     public function fetchRecipe($id)
     {
-        $sql = "SELECT * FROM products WHERE id = :id";
+        $sql = "SELECT *, images.image FROM products 
+                LEFT JOIN images ON products.id = images.related_product
+                WHERE products.id = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

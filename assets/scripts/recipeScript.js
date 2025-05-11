@@ -93,17 +93,7 @@ $(document).ready(function() {
     /*Rating Functionality*/
     $("#rateRecipe").on("click", ".userRating", function() {
         indexStarSelected = $(".userRating").index($(this));
-        i = 0
-        $(".userRating").each(function() {
-            if (i <= indexStarSelected) {
-                $(this).html("&#9733;");
-                i++;
-            } else {
-                $(this).html("&#9734;");
-            }
-        });
-        $("#userStar").html(i);
-        $("#starsGiven").val(i);
+        selectStar(indexStarSelected);
         checkInput();
     });
 
@@ -140,6 +130,49 @@ $(document).ready(function() {
         });
 
     });
+
+    //Delete comment
+    $(".comments-container").on('click','#deleteBtn', function(){
+        var comment_element = $(this).closest(".other-comment");
+        let comment_id = comment_element.data("comment-id");
+        $.ajax({
+            url: '../controllers/delete.php',
+            data: {
+                comment_id: comment_id,
+                type: 'deleteComment'
+            },
+            type: 'POST',
+            success: function(response) {
+                data = JSON.parse(response);
+                if(data.success) {
+                    comment_element.remove();
+                    resetCommment()
+                    $("#userComment").attr('placeholder', 'Enter your comment...');
+                    $("#userComment").prop('disabled', false);
+
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("Something Went wrong:" + error);
+            }
+        });
+    });
+
+    // Edit Comment
+    $(".comments-container").on("click","#editBtn",function(){
+    $('.repTitle').offset()
+        $('html, body').animate({
+            scrollTop: $('.repTitle').offset().top
+        }, 500);
+        var comment_element = $(this).closest(".other-comment");
+        let comment_id = comment_element.data("comment-id");
+        populateInputComment(comment_id);
+        $(".other-comment").filter(function() {
+            return $(this).data("comment-id") == comment_id;
+        }).remove();
+
+    });
+    
 
     // Dynamically resizes the textarea
     const $textarea = $('#userComment');
@@ -189,72 +222,37 @@ function populateComment(comment_id) {
     });
 }
 
-//function that populates the comment section
-//     $.ajax({
-//         url: "#",
-//         type: "GET",
-//         data: {
-//             first_name: first_name,
-//             last_name: last_name,
-//             profile_picture_url: profile_picture_url,
-//             comment: comment,
-//             rating: rating,
-//             created_at: created_at,
-//             type: 'fetchComment'
-//         },
-//         success: function(response) {
-//             data = JSON.parse(respone);
-//             if(data.success) {
+function selectStar(indexStarSelected) {
+    i = 0
+    $(".userRating").each(function() {
+        if (i <= indexStarSelected) {
+            $(this).html("&#9733;");
+            i++;
+        } else {
+            $(this).html("&#9734;");
+        }
+    });
+    $("#userStar").html(i);
+    $("#starsGiven").val(i);
+}
 
-//             } else {
-//                 alert("ERROR! Failed fetching comments")
-//             }
-//         }
-//     });
-//     //adds the comment to comment section
-//     var otherComment = $("<div>").addClass("other-comment");
-
-//     // img-container
-//     var imgContainer = $("<div>").addClass("img-container");
-//     var image = $("<img>").addClass("img").attr('src', profile_picture_url);
-//     imgContainer.append(image);
+function populateInputComment(comment_id) {
     
-//     // comment-details
-//     var commentDetails = $("<div>").addClass("comment-details");
-//     var commentContainer = $("<div>").addClass("comment-container");
-//     var commentUsername = $("<p>").addClass("comment-username").html(first_name + " " + last_name);
-    
-//     // star rating
-//     var userRating = $("<div>").addClass("otherUserRatingContainer");
-//     for (var i = 0; i < 5; i++) {
-//         userRating.append(
-//             $("<span>")
-//                 .addClass("star otherUserRating")
-//                 .html(i < rating ? "&#9733;" : "&#9734;")
-//         );
-//     }
-//     commentContainer.append(commentUsername).append(userRating);
-    
-//     // comment text
-//     var commentText = $("<p>").addClass("comment").html(comment);
-//     commentDetails.append(commentContainer).append(commentText);
-    
-//     // timestamp and edit/delete
-//     var timestampEditDeleteContainer = $("<div>").addClass("timestamp-edit-delete-container");
-//     var timePosted = $("<p>").addClass("time-posted").html(created_at);
-    
-//     var editDeleteContainer = $("<div>").addClass("edit-delete-container").css("display", "");
-//     editDeleteContainer.append($("<p>").text("Edit")).append($("<p>").text("Delete"));
-    
-//     timestampEditDeleteContainer.append(timePosted).append(editDeleteContainer);
-    
-//     // assemble all parts
-//     otherComment
-//         .append(imgContainer)
-//         .append(commentDetails)
-//         .append(timestampEditDeleteContainer);
-    
-//     // Append to the comment section
-//     $(".comments-container").prepend($("<hr>")).prepend(otherComment);
-    
-// }
+    $.ajax({
+        url: '../controllers/fetch.php',
+        type: 'GET',
+        data: {
+            comment_id: comment_id,
+            type: 'fetchMyComment'
+        },
+        success: function(response) {
+            data = JSON.parse(response);
+            if(data.success) {
+                $("#userComment").attr('placeholder', 'Enter your comment...');
+                $("#userComment").prop('disabled', false);
+                $("#userComment").val(data.comment);
+                selectStar(data.rating);
+            }
+        }
+    });
+}

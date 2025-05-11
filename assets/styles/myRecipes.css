@@ -92,8 +92,6 @@ symbol {
     grid-template-rows: repeat(10, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-
-    cursor: pointer;
 }
 
 .recipeContainer:hover .recipeName h1 {
@@ -561,12 +559,13 @@ button.clear {
     grid-template-rows: repeat(12, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px; 
-    cursor: pointer;
 }
 
 .recipeTop {
     grid-area: 1 / 1 / 10 / 13;
     position: relative;
+    cursor: pointer;
+
 }
 
 .recipeBackground {
@@ -658,12 +657,3 @@ button.clear {
     font-size: 12px;
 }
 
-.timestamp-edit-delete-container {
-    /* display:flex;
-    flex-direction:row; */
-}
-
-.edit-delete-container {
-    display:flex;
-    flex-direction:row;
-}

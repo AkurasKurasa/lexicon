@@ -119,6 +119,26 @@
             echo json_encode($response);
             break;
 
+            case 'fetchMyComment':
+                $comment_id = $_GET['comment_id'];
+                $sql = "SELECT product_review_comments.comment, product_votes.rating
+                       FROM product_review_comments 
+                       LEFT JOIN product_votes ON product_review_comments.id = product_votes.comment_ID
+                       WHERE product_review_comments.id = :id";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([":id" => $comment_id]);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if(isset($result)) {
+                    $response = [
+                        'success' => "Comment to be edited fetched successfully!",
+                        'comment' => $result['comment'],
+                        'rating'  => $result['rating']];
+                } else {
+                    $response["error"] = "Failed to fetch comment to be edited";
+                }
+                echo json_encode($response);
+                break;
+
             case 'fetchComment':
                 session_start();
                 $comment_id = $_GET['comment_id'];
@@ -158,11 +178,11 @@
             
                     $editDelete = '';
                     if (isset($_SESSION['id']) && $_SESSION['id'] == $result['id']) {
-                        $editDelete = '<div class="edit-delete-container" style=""><p>Edit</p><p>Delete</p></div>';
+                        $editDelete = '<div class="edit-delete-container" style=""><p id="editBtn">Edit</p><p id="deleteBtn">Delete</p></div>';
                     }
             
                     $output = '
-                    <div class="other-comment">
+                    <div class="other-comment" data-comment-id='.$comment_id.'>
                         <div class="img-container">
                             <img class="img" src="' . htmlspecialchars($image) . '">
                         </div>
@@ -177,7 +197,8 @@
                             <p class="time-posted">' . htmlspecialchars($created_at) . '</p>'
                             . $editDelete .
                         '</div>
-                    </div><hr>';
+                    <hr>
+                    </div>';
                 } else {
                     $output = "<p>Comment not found.</p>";
                 }
@@ -205,8 +226,7 @@
                 FROM 
                     products
                 LEFT JOIN images 
-                    ON images.related_id = products.id 
-                    AND images.related_type = 'product'
+                    ON images.related_product = products.id 
                 LEFT JOIN users 
                     ON users.id = products.author
             ";
@@ -358,7 +378,6 @@
 
             $id = $_GET['id'];
             $recipe = new Recipe($pdo);
-
             $output = $recipe->fetchRecipe($id);
 
             echo json_encode(['success' => true, 'content' => $output]);
