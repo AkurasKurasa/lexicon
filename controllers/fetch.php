@@ -19,9 +19,7 @@
             FROM 
                 products
             LEFT JOIN images 
-                ON images.related_id = products.id 
-                AND images.related_type = 'product';
-
+                ON images.related_product = products.id
             ";
             $result = $pdo->prepare($query);
             $result->execute();
@@ -29,7 +27,6 @@
             
 
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-
                 // product_name, product_image, category, id
 
                     if ( $id == $row['category'] ) {
@@ -39,7 +36,7 @@
                         }
             
                         $output .= "
-                            <div class='recipeContainer' data-name='{$row['id']}'>
+                            <div class='recipeContainer' data-name=".$row['id'].">
                                 <div class='recipeImage' style='background-image: url({$row['image']});'></div>
                                 <div class='recipeName'>
                                     <h1>{$row['product_name']}</h1>

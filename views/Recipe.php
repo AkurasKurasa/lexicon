@@ -132,7 +132,7 @@
             <div class="input-comment-details">
                 <div id="rateRecipe">
                     <input name="starsGiven" id="starsGiven" value="" hidden>
-                    <input name="product_id" id="product_id" value="<?php echo $_GET['id']; ?>" hidden>
+                    <input name="product_id" id="product_id" value="<?php echo $_GET['name']; ?>" hidden>
                     <p style="display: inline-block;margin:0;"> <span id="userStar">0</span> / 5 stars </p>
                     <span class="star userRating" id="ratingOne">&#9734;</span>
                     <span class="star userRating" id="ratingTwo">&#9734;</span>

@@ -27,20 +27,9 @@ $(document).ready(function(){
         });
     });
 
-    // Recipes.php 
 
-    $(".header").ready(function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get('id');
-
-      if (id) {
-          const category  = id.charAt(0).toUpperCase() + id.slice(1); 
-          $(".header").text(`Explore ${category} Recipes`)
-      }
-  });
-
-    $(".recipeContainer").click(function() {
-
+    $(document).on('click','.recipeContainer', function() {
+      console.log('hello_world');
       const dishName = $(this).data("name");
 
       $.ajax({
@@ -68,8 +57,7 @@ $(document).ready(function(){
 
   $(".recipesSection").ready(function() {
     const urlParams = new URLSearchParams(window.location.search);
-      const id = urlParams.get('id');
-
+      const id = urlParams.get('category');
       $.ajax({
         url: "../controllers/fetch.php",
         method: "GET",
@@ -82,7 +70,12 @@ $(document).ready(function(){
           if (data.success) {
             $(".recipesSection").empty();
             $(".recipesSection").prepend(data.content);
-            console.log(data.id)
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('category');
+            if (id) {
+                const category  = id.charAt(0).toUpperCase() + id.slice(1); 
+                $(".header").text(`Explore ${category} Recipes`)
+            }
           } else {
             
           }

@@ -39,11 +39,11 @@ if (empty($_SESSION['id'])) {
                 <h1 class="featuredRecipe-name">BARBEQUE</h1>
             </div>
         </div>
-        <form method="GET" action="../views/userRecipe.php">
+        <!-- <form method="GET" action="../views/userRecipe.php">
             <div class="controlWrapper2" style="width: 100%; display: flex; justify-content: center;">
                 <button type="submit" class="addBtn" id="recipeButton" style="width: 1200px; display: block; margin: auto; margin-top: -15px; position: relative; background-color: #e9b251; height: 60px; font-size: 18px; font-weight: bold; color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">Add Recipe</button>
             </div>
-        </form>
+        </form> -->
             <br><br>
         <div class="otherRecipes">
 
@@ -96,10 +96,4 @@ if (empty($_SESSION['id'])) {
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../script.js"></script>
-<script src="../scripts/user.js"></script>
-<script>
-document.querySelector('.addBtn').addEventListener('click', function() {
-    window.location.href = 'userRecipe.php';
-});
-</script>
 </html>

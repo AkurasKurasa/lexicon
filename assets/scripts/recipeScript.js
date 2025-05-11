@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const product_id = urlParams.get('id');
+    const product_id = urlParams.get('name');
 
     //Ajax for the recipe rating and the number of comments
     $.ajax({
@@ -25,7 +25,7 @@ $(document).ready(function() {
             $.each(data.comment_id, function(index, comment_id) {
                 populateComment(comment_id['id']);
             });
-
+        console.log(data.recipeInfo);
         // Populates the recipe page
         author_image = data.recipeInfo['author_image'] ?? '../assets/images/img_avatar.png';
         recipe_name = data.recipeInfo['product_name'];
