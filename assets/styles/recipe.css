@@ -654,7 +654,7 @@ main {
 }
 
 .comment,
-.time-posted {
+.time-posted, .edit-delete-container {
     font-size: .8em;
     font-family: var(--lexendDeca);
     font-weight: 300;
@@ -716,4 +716,17 @@ main {
 .ingredients ol {
     list-style-type: disc;
     padding-left: 20px; 
+}
+
+.timestamp-edit-delete-container {
+    margin-left: auto;
+}
+
+.edit-delete-container {
+    display:flex;
+    gap:10px;
+    flex-direction:row;
+    justify-content: center;
+    cursor:pointer;
+    text-decoration: underline;
 }

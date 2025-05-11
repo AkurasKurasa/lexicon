@@ -85,6 +85,107 @@
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;
 
+            case 'populateRecipe':
+            session_start(); 
+            $sql = "SELECT product_review_comments.id 
+            FROM product_review_comments
+            ORDER BY product_review_comments.created_at ASC";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $usersCommented = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $response["comment_id"] = $usersCommented;
+
+            //CHECKS IF LOGGED IN AND IF THE USER HAS COMMENTED 
+            $alreadyCommented = false;
+            if (isset($_SESSION['id'])) {
+            $user = new User($pdo);
+            $userInfo = $user->fetchUser($_SESSION["id"]);
+            $profile_url = $userInfo['image'] ?? "../assets/images/img_avatar.png";
+            $response["profile_picture_url"] = $profile_url;
+            $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM product_review_comments WHERE product_id = :product_id AND authored_by = :user_id");
+            $checkStmt->execute([':product_id' => $_GET['product_id'], ':user_id' => $_SESSION['id']]);
+            $alreadyCommented = $checkStmt->fetchColumn() > 0;
+
+            $response["checkLoggedIn"] = true;
+            } else {
+            $response["checkLoggedIn"] = false;
+            }
+            $response["alreadyCommented"] = $alreadyCommented;
+
+            //RETRIEVES ALL RECIPE INFO
+            $recipe = new Recipe($pdo);
+            $recipeInfo = $recipe->fetchAllRecipeDetails($_GET['product_id']);
+            $response["recipeInfo"] = $recipeInfo[0];
+            echo json_encode($response);
+            break;
+
+            case 'fetchComment':
+                session_start();
+                $comment_id = $_GET['comment_id'];
+            
+                $sql = "SELECT
+                            users.id,
+                            users.first_name, 
+                            users.last_name, 
+                            images.image,
+                            product_review_comments.comment,
+                            product_review_comments.created_at,
+                            product_votes.rating
+                        FROM product_review_comments
+                        LEFT JOIN users ON product_review_comments.authored_by = users.id 
+                        LEFT JOIN product_votes ON product_review_comments.id = product_votes.comment_id 
+                        LEFT JOIN images ON users.id = images.related_user
+                        WHERE product_review_comments.id = :comment_id";
+            
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([':comment_id' => $comment_id]);
+            
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+                if ($result) {
+                    $first_name = $result['first_name'];
+                    $last_name = $result['last_name'];
+                    $image = $result['image'] ?? '../assets/images/img_avatar.png';
+                    $comment = $result['comment'];
+                    $created_at = $result['created_at'];
+                    $rating = $result['rating'] ?? 0;
+            
+                    $ratingOutput = '<div class="otherUserRatingContainer">';
+                    for ($i = 0; $i < 5; $i++) {
+                        $ratingOutput .= '<span class="star otherUserRating">' . ($i < $rating ? '&#9733;' : '&#9734;') . '</span>';
+                    }
+                    $ratingOutput .= '</div>';
+            
+                    $editDelete = '';
+                    if (isset($_SESSION['id']) && $_SESSION['id'] == $result['id']) {
+                        $editDelete = '<div class="edit-delete-container" style=""><p>Edit</p><p>Delete</p></div>';
+                    }
+            
+                    $output = '
+                    <div class="other-comment">
+                        <div class="img-container">
+                            <img class="img" src="' . htmlspecialchars($image) . '">
+                        </div>
+                        <div class="comment-details">
+                            <div class="comment-container">
+                                <p class="comment-username">' . htmlspecialchars($first_name . ' ' . $last_name) . '</p>' 
+                                . $ratingOutput . 
+                            '</div>
+                            <p class="comment">' . htmlspecialchars($comment) . '</p>
+                        </div>
+                        <div class="timestamp-edit-delete-container">
+                            <p class="time-posted">' . htmlspecialchars($created_at) . '</p>'
+                            . $editDelete .
+                        '</div>
+                    </div><hr>';
+                } else {
+                    $output = "<p>Comment not found.</p>";
+                }
+                $response['success'] = 'Comment Fetched Successfully!';
+                $response['output'] = $output;
+                echo json_encode($response);
+                break;
+            
 
         case 'fetchRecipesAdmin': 
             $filterName = $_GET['filterName'] ?? null; 
@@ -440,10 +541,8 @@
 
             echo json_encode(['success' => true, 'content' => $output]);
             break;
-        
-        case 'fetchComments':
-            break;
-        
+
+    
         default:
             # code...
             break;

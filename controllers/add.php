@@ -31,12 +31,12 @@
             $errors[] = "Please enter all necessary fields!";
         }   
 
-            $ingredientsArray = explode(",", $recipeIngredients); 
+            $ingredientsArray = explode("\n", $recipeIngredients); 
             if (count($ingredientsArray) < 3) {
                 $errors[] = "Please enter at least 3 ingredients!";
             }
 
-            $procedureSteps = explode(",", $recipeProcedure);
+            $procedureSteps = explode("\n", $recipeProcedure);
             if (count($procedureSteps) < 3) {
                 $errors[] = "Please enter at least 3 procedure steps!";
             }
@@ -153,6 +153,47 @@
             echo json_encode(['success' => true]);
             break;
 
+        case 'addComment':
+            session_start();
+            if (isset($_POST['starsGiven'], $_POST['userComment'], $_POST['product_id']) && isset($_SESSION['id'])) {    
+                $starsGiven = filter_var($_POST['starsGiven'], FILTER_SANITIZE_NUMBER_INT);
+                $userComment = filter_var($_POST['userComment'], FILTER_SANITIZE_STRING);
+                $product_id = $_POST['product_id']; 
+                $author = $_SESSION['id'];
+                $currentTimestamp = date('Y-m-d H:i:s');
+        
+                $sql = "INSERT INTO product_review_comments (comment, product_id, authored_by, created_at)
+                        VALUES (:comment, :product_id, :authored_by, :created_at)";
+                $stmt = $pdo->prepare($sql);
+                if ($stmt->execute([
+                    ':comment' => $userComment,
+                    ':product_id' => $product_id,
+                    ':authored_by' => $author,
+                    ':created_at' => $currentTimestamp
+                ]))
+                $commentId = $pdo->lastInsertId();
+        
+                
+                $sql = "INSERT INTO product_votes (comment_id, rating)
+                        VALUES (:comment_id, :rating)";
+                $stmt = $pdo->prepare($sql);
+                if ($stmt->execute([
+                    ':comment_id' => $commentId,
+                    ':rating' => $starsGiven
+                ]))
+        
+                {
+                    $response = [
+                        'success' => 'CommentID Fetched SuccessFully',
+                        'comment_id' => $commentId
+                    ];
+                } else {
+                    // Error handling
+                    $response["error"] = "Comment error!";
+                }
+            echo(json_encode($response));
+            }
+            break;
         default:
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;

@@ -657,3 +657,13 @@ button.clear {
     font-family: var(--openSans);
     font-size: 12px;
 }
+
+.timestamp-edit-delete-container {
+    /* display:flex;
+    flex-direction:row; */
+}
+
+.edit-delete-container {
+    display:flex;
+    flex-direction:row;
+}

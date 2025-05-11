@@ -4,10 +4,11 @@ $(document).ready(function() {
 
     //Ajax for the recipe rating and the number of comments
     $.ajax({
-        url: "../controllers/recipeProcess.php",
+        url: "../controllers/fetch.php",
         type: "GET",
         data: {
-            product_id: product_id
+            product_id: product_id,
+            type: 'populateRecipe'
         },
         success: function(response) {
             data = JSON.parse(response);
@@ -20,10 +21,9 @@ $(document).ready(function() {
                 $("#userComment").prop('disabled', true);
             }
             $(".userImage").attr('src', data.profile_picture_url);
-            
             // Populates the comment
-            $.each(data.usersCommented, function(index, user) {
-                populateComment(user.first_name, user.last_name, user.image ?? "../assets/images/img_avatar.png", user.comment, user.rating, user.created_at);
+            $.each(data.comment_id, function(index, comment_id) {
+                populateComment(comment_id['id']);
             });
 
         // Populates the recipe page
@@ -110,17 +110,28 @@ $(document).ready(function() {
     /*submitComment button script */
     $("#commentForm").on('submit', function(e) {
         e.preventDefault();
-        $.ajax({
-            url: "../controllers/recipeProcess.php",
+        let formData = $('#commentForm').serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+          }, {});           
+           $.ajax({
+            url: "../controllers/add.php",
             type: "POST",
-            data: $("#commentForm").serialize(),
+            data: {
+                starsGiven: formData['starsGiven'],
+                product_id: formData['product_id'],
+                userComment: formData['userComment'],
+                type: 'addComment'
+            },
             success: function(response) {
+
                 let data = JSON.parse(response);
+                console.log(data.success);  
                 if (data.success) {
                     resetCommment();
                     $("#userComment").attr('placeholder', 'You may only enter a comment once.');
                     $("#userComment").prop('disabled', true);
-                    populateComment(data.first_name, data.last_name, data.profile_picture_url, data.comment, data.rating, data.created_at);
+                    populateComment(data.comment_id);
                 }
             },
             error: function(xhr, status, error) {
@@ -159,36 +170,91 @@ function resetCommment() {
     checkInput();
 }
 
-//function that populates the comment section
-function populateComment(first_name, last_name, profile_picture_url, comment, rating, created_at) {
-    //adds the comment to comment section
-    var otherComment = $("<div>").addClass("other-comment");
-
-
-    // img-container
-    var imgContainer = $("<div>").addClass("img-container");
-    var image = $("<img>").addClass("img").attr('src', profile_picture_url);
-    imgContainer.append(image);
-
-    var commentDetails = $("<div>").addClass("comment-details");
-    var commentContainer = $("<div>").addClass("comment-container");
-    var commentUsername = $("<p>").addClass("comment-username").html(first_name + " " + last_name);
-    var userRating = $("<div>").addClass("otherUserRatingContainer");
-    for (i = 0; i < 5; i++) {
-        if (i < rating) {
-            userRating.append($("<span>").addClass("star otherUserRating").html("&#9733;"));
-        } else {
-            userRating.append($("<span>").addClass("star otherUserRating").html("&#9734;"));
+function populateComment(comment_id) {
+    $.ajax({
+        url: "../controllers/fetch.php",
+        type: "GET",
+        data: {
+            comment_id: comment_id,
+            type: 'fetchComment'
+        },
+        success: function(response) {
+            data = JSON.parse(response);
+            if(data.success) {
+                $(".comments-container").prepend(data.output);
+            } else {
+                alert("ERROR! Failed fetching comments")
+            }
         }
-    }
-    commentContainer.append(commentUsername).append(userRating);
-    var comment = $("<p>").addClass("comment").html(comment);
-    commentDetails.append(commentContainer).append(comment);
-
-    //time-posted
-    var timePosted = $("<p>").addClass("time-posted").html(created_at);
-    otherComment.append(imgContainer).append(commentDetails).append(timePosted);
-
-    //Append to the comment section
-    $(".comments-container").prepend(otherComment).prepend($("<hr>"));
+    });
 }
+
+//function that populates the comment section
+//     $.ajax({
+//         url: "#",
+//         type: "GET",
+//         data: {
+//             first_name: first_name,
+//             last_name: last_name,
+//             profile_picture_url: profile_picture_url,
+//             comment: comment,
+//             rating: rating,
+//             created_at: created_at,
+//             type: 'fetchComment'
+//         },
+//         success: function(response) {
+//             data = JSON.parse(respone);
+//             if(data.success) {
+
+//             } else {
+//                 alert("ERROR! Failed fetching comments")
+//             }
+//         }
+//     });
+//     //adds the comment to comment section
+//     var otherComment = $("<div>").addClass("other-comment");
+
+//     // img-container
+//     var imgContainer = $("<div>").addClass("img-container");
+//     var image = $("<img>").addClass("img").attr('src', profile_picture_url);
+//     imgContainer.append(image);
+    
+//     // comment-details
+//     var commentDetails = $("<div>").addClass("comment-details");
+//     var commentContainer = $("<div>").addClass("comment-container");
+//     var commentUsername = $("<p>").addClass("comment-username").html(first_name + " " + last_name);
+    
+//     // star rating
+//     var userRating = $("<div>").addClass("otherUserRatingContainer");
+//     for (var i = 0; i < 5; i++) {
+//         userRating.append(
+//             $("<span>")
+//                 .addClass("star otherUserRating")
+//                 .html(i < rating ? "&#9733;" : "&#9734;")
+//         );
+//     }
+//     commentContainer.append(commentUsername).append(userRating);
+    
+//     // comment text
+//     var commentText = $("<p>").addClass("comment").html(comment);
+//     commentDetails.append(commentContainer).append(commentText);
+    
+//     // timestamp and edit/delete
+//     var timestampEditDeleteContainer = $("<div>").addClass("timestamp-edit-delete-container");
+//     var timePosted = $("<p>").addClass("time-posted").html(created_at);
+    
+//     var editDeleteContainer = $("<div>").addClass("edit-delete-container").css("display", "");
+//     editDeleteContainer.append($("<p>").text("Edit")).append($("<p>").text("Delete"));
+    
+//     timestampEditDeleteContainer.append(timePosted).append(editDeleteContainer);
+    
+//     // assemble all parts
+//     otherComment
+//         .append(imgContainer)
+//         .append(commentDetails)
+//         .append(timestampEditDeleteContainer);
+    
+//     // Append to the comment section
+//     $(".comments-container").prepend($("<hr>")).prepend(otherComment);
+    
+// }

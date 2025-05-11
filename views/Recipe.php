@@ -121,7 +121,7 @@
 
 <!-- THIS IS THE COMMENTS SECTION -->
 <section class="comment-section">
-    <div class="repTitle">Questions and Replies:</div>
+    <div class="repTitle">Comments and Ratings:</div>
     <hr style="margin: 30px 0px 30px 0px">
     <div id="input-container">
      <form method=POST id="commentForm">
@@ -149,10 +149,10 @@
             </div>                
         </div>
     </form> 
-</div>
 
+</div>
+<hr>
     <div class="comments-container">
-    <hr>
     </div>
 <main>
 </section>
