@@ -104,6 +104,10 @@ $(document).ready(function() {
         checkInput();
     });
 
+    $("#userSubmit").click(function(){
+        window.location.href = "../views/user.php?id="+$("#userSubmit").data('id');
+    });
+
     /*submitComment button script */
     $("#commentForm").on('submit', function(e) {
         e.preventDefault();

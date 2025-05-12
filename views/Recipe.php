@@ -47,7 +47,7 @@ if (empty($_SESSION['id'])) {
 
             <div class ="userLink">
                 <span class="userIcon"></span>
-                <span>Submitted by: </span>
+                <span style="color:black;">Submitted by: </span>
             <a href="#">
                 <span class="userSubmit" id="userSubmit">Aunt Jemima</span>
             </a>
