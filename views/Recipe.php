@@ -15,6 +15,7 @@ if (empty($_SESSION['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../assets/styles/recipe.css">
 </head>
 <body>
@@ -39,14 +40,14 @@ if (empty($_SESSION['id'])) {
                 <span class="starRecipe"></span>
                 <span class="starRecipe"></span>
                 <span class="starRecipe"></span>
-                <p style="display: inline-block;"> <span id="NumOfReviews">0</span> reviews / <span id="AveStars">0</span> average
+                <p style="display: inline-block;"> <span id="numOfReviews">0</span> reviews / <span id="aveRatings">0</span> average ratings
                 <hr style="margin: 20px 15px 20px 15px">
             </div>
 
 
             <div class ="userLink">
                 <span class="userIcon"></span>
-                <span>Submitted by: </span>
+                <span style="color:black;">Submitted by: </span>
             <a href="#">
                 <span class="userSubmit" id="userSubmit">Aunt Jemima</span>
             </a>

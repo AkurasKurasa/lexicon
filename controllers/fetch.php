@@ -162,8 +162,7 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':product_id' => $_GET['product_id']]);
             $usersCommented = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $response["comment_id"] = $usersCommented;
-
+            // $response["comment_id"] = $usersCommented;
             //CHECKS IF LOGGED IN AND IF THE USER HAS COMMENTED 
             $alreadyCommented = false;
             if (isset($_SESSION['id'])) {
@@ -183,8 +182,14 @@
 
             //RETRIEVES ALL RECIPE INFO
             $recipe = new Recipe($pdo);
-            $recipeInfo = $recipe->fetchAllRecipeDetails($_GET['product_id']);
-            $response["recipeInfo"] = $recipeInfo[0];
+            $product_id = $_GET['product_id'];
+            $recipeInfo = $recipe->fetchAllRecipeDetails($product_id);
+            $ratingsInfo = $recipe->fetchRecipeRating($product_id);
+            $response = [
+                "recipeInfo" => $recipeInfo[0],
+                "ratingsInfo" => $ratingsInfo,
+                "comment_id" => $usersCommented
+            ];
             echo json_encode($response);
             break;
 
