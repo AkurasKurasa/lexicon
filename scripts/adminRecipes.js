@@ -32,7 +32,7 @@ $(document).ready(function() {
           obj[item.name] = item.value;
           return obj;
         }, {});
-        console.log(formData['id']);
+        console.log(formData);
         if ( formData['id'].length > 0 ) {
 
           $.ajax({
@@ -72,8 +72,6 @@ $(document).ready(function() {
           
         } else {
           
-          console.log(formData);
-
           $.ajax({
             url: "../controllers/add.php",
             method: "POST",

@@ -32,6 +32,26 @@
         case 'updateRecipeByAdmin':
             $errors =[];
 
+            // if (empty($recipeId) || empty($recipeName) || empty($recipeDescription) || empty($recipeCategory) ||
+            // empty($recipeIngredients) || empty($recipeProcedure) || empty($recipeImage) || 
+            // empty($recipePrepTime) || empty($recipeCookingTime) || empty($recipeAdditionalTime) || empty($recipeBudget)) {
+            //     $errors[] = "Please enter all necessary fields!";
+            // }   
+
+            // $ingredientsArray = explode("\n", $recipeIngredients); 
+            // if (count($ingredientsArray) < 3) {
+            //     $errors[] = "Please enter at least 3 ingredients!";
+            // }
+
+            // $procedureSteps = explode("\n", $recipeProcedure);
+            // if (count($procedureSteps) < 3) {
+            //     $errors[] = "Please enter at least 3 procedure steps!";
+            // }
+
+            // if (strlen($recipeDescription) < 300) {
+            //     $errors[] = "The description must be at least 300 characters long!";
+            // }
+
             $recipe = new Recipe($pdo);
             $recipeId = $_POST['id'];
             $recipeName = $_POST['name'];
@@ -45,27 +65,8 @@
             $recipeAdditionalTime = $_POST['additionalTime'];
             $recipeBudget = $_POST['budget'];
 
-            if (empty($recipeId) || empty($recipeName) || empty($recipeDescription) || empty($recipeCategory) ||
-            empty($recipeIngredients) || empty($recipeProcedure) || empty($recipeImage) || 
-            empty($recipePrepTime) || empty($recipeCookingTime) || empty($recipeAdditionalTime) || empty($recipeBudget)) {
-                $errors[] = "Please enter all necessary fields!";
-            }   
-
-            $ingredientsArray = explode("\n", $recipeIngredients); 
-            if (count($ingredientsArray) < 3) {
-                $errors[] = "Please enter at least 3 ingredients!";
-            }
-
-            $procedureSteps = explode("\n", $recipeProcedure);
-            if (count($procedureSteps) < 3) {
-                $errors[] = "Please enter at least 3 procedure steps!";
-            }
-
-            if (strlen($recipeDescription) < 300) {
-                $errors[] = "The description must be at least 300 characters long!";
-            }
-
             if (empty($errors)) {
+
                 $recipeInfo = [
                     'id'               => $recipeId,
                     'name'             => $recipeName,
@@ -80,13 +81,10 @@
                     'budget'           => $recipeBudget
                 ];
 
-                if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
-                    $recipe->update($recipeId, $recipeInfo);
-                    echo json_encode(['success' => true]);
-                }   else {
-                    echo json_encode(['success' => false]);
-                }
-            }   else {
+                $recipe->update($recipeId, $recipeInfo);
+                echo json_encode(['success' => true, 'info' => $recipeId]);
+                
+            } else {
                 echo json_encode(['success' => false, 'errors' => $errors]);
                 if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
                     $recipe->update($recipeId, $recipeInfo);

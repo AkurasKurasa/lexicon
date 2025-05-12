@@ -78,7 +78,7 @@
             $recipe = new Recipe($pdo);
             $errors = [];
 
-            $recipeId = $_POST['id'];
+            $recipeId = uniqid("recipe_");
             $recipeName = $_POST['name'];
             $recipeDescription = $_POST['description'];
             $recipeCategory = $_POST['category'];
@@ -93,22 +93,22 @@
             if (empty($recipeId) || empty($recipeName) || empty($recipeDescription) || empty($recipeCategory) ||
             empty($recipeIngredients) || empty($recipeProcedure) || empty($recipeImage) || 
             empty($recipePrepTime) || empty($recipeCookingTime) || empty($recipeAdditionalTime) || empty($recipeBudget)) {
-            $errors[] .= "Please enter all necessary fields!";
-        }   
+            // $errors[] .= "Please enter all necessary fields!";
+            }   
 
-            $ingredientsArray = explode(",", $recipeIngredients); 
-            if (count($ingredientsArray) < 3) {
-                $errors[] .= "Please enter at least 3 ingredients!";
-            }
+            // $ingredientsArray = explode(",", $recipeIngredients); 
+            // if (count($ingredientsArray) < 3) {
+            //     $errors[] .= "Please enter at least 3 ingredients!";
+            // }
 
-            $procedureSteps = explode(",", $recipeProcedure);
-            if (count($procedureSteps) < 3) {
-                $errors[] .= "Please enter at least 3 procedure steps!";
-            }
+            // $procedureSteps = explode(",", $recipeProcedure);
+            // if (count($procedureSteps) < 3) {
+            //     $errors[] .= "Please enter at least 3 procedure steps!";
+            // }
 
-            if (strlen($recipeDescription) < 300) {
-                $errors[] .= "The description must be at least 300 characters long!";
-            }
+            // if (strlen($recipeDescription) < 300) {
+            //     $errors[] .= "The description must be at least 300 characters long!";
+            // }
 
             if (empty($errors)) {
                 $recipeInfo = [

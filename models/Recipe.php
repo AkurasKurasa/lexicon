@@ -114,15 +114,15 @@ class Recipe
 
     }
 
-    public function fetchRecipe($id)
-    {
-        $sql = "SELECT *, images.image FROM products 
-                LEFT JOIN images ON products.id = images.related_product
-                WHERE products.id = :id";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+    // public function fetchRecipe($id)
+    // {
+    //     $sql = "SELECT *, images.image FROM products 
+    //             LEFT JOIN images ON products.id = images.related_product
+    //             WHERE products.id = :id";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->execute([':id' => $id]);
+    //     return $stmt->fetch(PDO::FETCH_ASSOC);
+    // }
 
     public function fetchAllRecipeDetails($id) {
         $sql = "SELECT products.*, 
