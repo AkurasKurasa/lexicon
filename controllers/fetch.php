@@ -477,6 +477,16 @@
             echo json_encode(['success' => true, 'content' => $output]);
             break;
 
+        case 'fetchUserViaAdmin':
+
+            $id = $_GET['id'];
+            $user = new User($pdo);
+
+            $output = $user->fetchUserViaAdmin($id);
+
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
+
         case 'fetchLogs':
 
             $filterName = $_GET['filterName'] ?? null; 

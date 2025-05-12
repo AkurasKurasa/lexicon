@@ -164,7 +164,7 @@
                 'image'      => $image
             ];
 
-            $user->create($userInfo);
+            $user->createViaAdmin($userInfo);
 
             $log = new Log($pdo);
 

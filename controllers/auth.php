@@ -157,6 +157,7 @@
                     $_SESSION['first_name'] = $session['first_name'];
                     $_SESSION['last_name'] = $session['last_name'];
                     $_SESSION['email'] = $session['email'];
+                    
                     // $_SESSION['password'] = $session['password'];
         
                     echo json_encode(['success' => true, 'message' => "Login successful!", 'session' => $session]);

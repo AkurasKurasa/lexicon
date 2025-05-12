@@ -175,7 +175,7 @@ $(document).ready(function() {
           method: "GET",
           data: { 
             id: id,
-            type: 'fetchUser'
+            type: 'fetchUserViaAdmin'
           },
           success: function(response) {
             const data = JSON.parse(response);
@@ -183,7 +183,7 @@ $(document).ready(function() {
               $("#userId").val(data.content['id']);
               $("#userFirstName").val(data.content['first_name']);
               $("#userLastName").val(data.content['last_name']);
-              $("#userCategory").val(data.content['role'].toLowerCase());
+              $("#userCategory").val(data.content['role']);
               $("#userGender").val(data.content['gender'].toLowerCase());
               $("#userEmail").val(data.content['email']);
               $("#userPassword").val(data.content['password']);

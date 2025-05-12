@@ -29,79 +29,43 @@
             echo json_encode(['success' => true, 'content' => $output, 'id' => $id]);
             break;
 
-        case 'updateRecipeByAdmin':
-            $errors =[];
+        case 'updateUserByAdmin':
+            $user = new User($pdo);
 
-            // if (empty($recipeId) || empty($recipeName) || empty($recipeDescription) || empty($recipeCategory) ||
-            // empty($recipeIngredients) || empty($recipeProcedure) || empty($recipeImage) || 
-            // empty($recipePrepTime) || empty($recipeCookingTime) || empty($recipeAdditionalTime) || empty($recipeBudget)) {
-            //     $errors[] = "Please enter all necessary fields!";
-            // }   
+            $userId = $_POST['id'];
+            $userFirstName = $_POST['firstName'];
+            $userLastName = $_POST['lastName'];
+            $userRole = $_POST['role'];
+            $userEmail = $_POST['email'];
+            $userPassword = $_POST['password'];
+            $userGender = $_POST['gender'];
+            $userImage = $_POST['image'];
 
-            // $ingredientsArray = explode("\n", $recipeIngredients); 
-            // if (count($ingredientsArray) < 3) {
-            //     $errors[] = "Please enter at least 3 ingredients!";
-            // }
+            $userInfo = [
+                'id'         => $userId,
+                'first_name' => $userFirstName,
+                'last_name'  => $userLastName,
+                'gender'     => $userGender,
+                'email'      => $userEmail,
+                'password'   => $userPassword,
+                'role'       => $userRole,
+                'image'      => $userImage
+            ];
 
-            // $procedureSteps = explode("\n", $recipeProcedure);
-            // if (count($procedureSteps) < 3) {
-            //     $errors[] = "Please enter at least 3 procedure steps!";
-            // }
+            if ( strlen($userFirstName) > 0 && strlen($userLastName) > 0 && strlen($userGender) > 0 && strlen($userEmail) > 0 && strlen($userPassword) > 0 && strlen($userRole) > 0 ) {
+                $user->updateViaAdmin($userId, $userInfo);
 
-            // if (strlen($recipeDescription) < 300) {
-            //     $errors[] = "The description must be at least 300 characters long!";
-            // }
+                $log = new Log($pdo);
 
-            $recipe = new Recipe($pdo);
-            $recipeId = $_POST['id'];
-            $recipeName = $_POST['name'];
-            $recipeDescription = $_POST['description'];
-            $recipeCategory = $_POST['category'];
-            $recipeIngredients = $_POST['ingredients'];
-            $recipeProcedure = $_POST['procedure'];
-            $recipeImage = $_POST['image'];
-            $recipePrepTime = $_POST['prepTime'];
-            $recipeCookingTime = $_POST['cookingTime'];
-            $recipeAdditionalTime = $_POST['additionalTime'];
-            $recipeBudget = $_POST['budget'];
-
-            if (empty($errors)) {
-
-                $recipeInfo = [
-                    'id'               => $recipeId,
-                    'name'             => $recipeName,
-                    'description'      => $recipeDescription,
-                    'category'         => $recipeCategory,
-                    'ingredients'      => $recipeIngredients,
-                    'procedure'        => $recipeProcedure,
-                    'image'            => $recipeImage,
-                    'prep_time'        => $recipePrepTime,
-                    'cooking_time'     => $recipeCookingTime,
-                    'additional_time'  => $recipeAdditionalTime,
-                    'budget'           => $recipeBudget
+                $logInfo = [
+                    'id' => $_SESSION['id'],
+                    'action'=> 'updated user ' . $userId
                 ];
 
-                $recipe->update($recipeId, $recipeInfo);
-                echo json_encode(['success' => true, 'info' => $recipeId]);
-                
+                $log->addLog($logInfo);
+                echo json_encode(['success' => true]);
             } else {
-                echo json_encode(['success' => false, 'errors' => $errors]);
-                if ( strlen($recipeName) > 0 && strlen($recipeDescription) > 0 && strlen($recipeCategory) > 0 ) {
-                    $recipe->update($recipeId, $recipeInfo);
-
-                    $log = new Log($pdo);
-
-                    $logInfo = [
-                        'id' => $_SESSION['id'],
-                        'action'=> 'updated recipe ' . $recipeId 
-                    ];
-
-                    $log->addLog($logInfo);
-                    
-                    echo json_encode(['success' => true]);
-                } else {
-                    echo json_encode(['success' => false]);
-                }
+                echo json_encode(['success' => false]);
             }
             break;
 

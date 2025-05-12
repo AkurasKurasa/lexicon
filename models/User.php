@@ -38,6 +38,37 @@ class User
             ':security_cartoon'  => $data['security_cartoon']
         ]);        
     }
+
+    public function createViaAdmin($data)
+    {
+
+        $generatedId = uniqid('user_');
+
+        $sql = "INSERT INTO users (id, first_name, last_name, gender, email, password, role)
+                VALUES (:id, :first_name, :last_name, :gender, :email, :password, :role)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':id'         => $generatedId,
+            ':first_name' => $data['first_name'],
+            ':last_name'  => $data['last_name'],
+            ':gender'     => $data['gender'],
+            ':email'      => $data['email'],
+            ':password'   => $data['password'],
+            ':role'       => $data['role']
+        ]);
+
+        $userId = $this->db->lastInsertId();
+
+        $sqlImage = "INSERT INTO images (related_user, image) VALUES (:related_user, :image)";
+
+        $stmtImage = $this->db->prepare($sqlImage);
+
+        return $stmtImage->execute([
+            ':related_user'   => $generatedId,
+            ':image'        => $data['image']
+        ]);
+
+    }
     
 
         // $userId = $this->db->lastInsertId();
@@ -84,6 +115,37 @@ class User
             ':id'    => $id,
             ':image' => $data['image'],
             ':type'  => "user"
+        ]);
+    }
+
+    public function updateViaAdmin($id, $data)
+    {
+        $sql = "UPDATE users 
+                SET first_name = :first_name, last_name = :last_name, gender = :gender, email = :email, password = :password, role = :role 
+                WHERE id = :id";
+        
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->execute([
+            ':first_name' => $data['first_name'],
+            ':last_name'  => $data['last_name'],
+            ':gender'     => $data['gender'],
+            ':email'      => $data['email'],
+            ':password'   => $data['password'],
+            ':role'       => $data['role'],
+            ':id'         => $id
+        ]);
+
+        $sqlImage = "UPDATE images
+                    SET image = :image
+                    WHERE related_user = :id
+                    ";
+        
+        $stmt = $this->db->prepare($sqlImage);
+
+        $resultImg = $stmt->execute([
+            ':id'    => $data['id'],
+            ':image' => $data['image'],
         ]);
     }
 
@@ -136,6 +198,14 @@ class User
         } catch (PDOException $e) {
             return ['success' => false, 'message' => 'Database error: ' . $e->getMessage()];
         }
+    }
+
+    public function fetchUserViaAdmin($id)
+    {
+        $sql = "SELECT * FROM users WHERE id = :id LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function fetchUser($id)
