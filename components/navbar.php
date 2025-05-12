@@ -16,20 +16,19 @@ if (session_status() === PHP_SESSION_NONE) {
     </ul>
 
     <ul class="nav-tabs">
-
         <li>
-            <a href="#">Welcome <?php echo $_SESSION['first_name']; ?>!▼</a>
+            <a href="#" style="padding:0;">Welcome <?php echo $_SESSION['first_name']; ?>!▼</a>
             <ul class="dropdown">
-            <li>
-        <a href="../views/editProfile.php">Edit Profile</a>
-        </li>
-
-        <li>
-        <a href="../views/myRecipes.php">My Recipes</a>
-        </li>
                 <li>
-                    <a href="../components/logout.php">Logout</a>
+                <a href="../views/editProfile.php">Edit Profile</a>
                 </li>
+
+                <li>
+                <a href="../views/myRecipes.php">My Recipes</a>
+                </li>
+                        <li>
+                            <a href="../components/logout.php">Logout</a>
+                        </li>
             </ul>
         </li>
 

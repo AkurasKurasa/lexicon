@@ -96,7 +96,7 @@ class User
 
         return $count > 0;
     }
-
+    
     public function verifyUser($email, $password)
     {
         $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
