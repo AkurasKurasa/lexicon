@@ -103,7 +103,10 @@ $(document).ready(function() {
         let formData = $('#commentForm').serializeArray().reduce(function(obj, item) {
             obj[item.name] = item.value;
             return obj;
-          }, {});           
+          }, {});   
+          console.log(formData['product_id']);
+          console.log(formData['starsGiven']);
+          console.log(formData['userComment']);        
            $.ajax({
             url: "../controllers/add.php",
             type: "POST",
@@ -251,7 +254,7 @@ function populateInputComment(comment_id) {
                 $("#userComment").attr('placeholder', 'Enter your comment...');
                 $("#userComment").prop('disabled', false);
                 $("#userComment").val(data.comment);
-                selectStar(data.rating);
+                selectStar(data.rating-1);
             }
         }
     });

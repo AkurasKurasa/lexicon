@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "db_cooked";
+$dbname = "cooked_merge";
 $username = "root";
 $password = "";
 
