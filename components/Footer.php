@@ -1,46 +1,44 @@
 <link rel="stylesheet" href="../assets/styles/footer.css">
 
 <footer>
-    <div class="row">
+<div class="main-container">
         <div class="row">
         <div class="col">
-            <ul class="nav-logo">
-                <li id="nav-logo-li">
-                    <a href="Home.php">
-                        <h1>Cooked.</h1>
+                    <a href="Home.php" class="footer-logo">
+                        <div>Cooked.</div>
                     </a>
-                </li>
-            </ul>
         </div>
-  
 
-        <div class="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident maiores nam aperiam, excepturi porro inventore, sed est fuga minus, tenetur recusandae sint quidem! Quidem doloremque nulla ad tempora, ipsum reprehenderit.</div>
-        <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi earum repellendus sit sequi dignissimos ut aspernatur doloremque nam inventore exercitationem, provident quis velit suscipit similique voluptatem quo. Quos, dolore veritatis.</div>
-        <div class="col"></div>
+        <div class="descContent">
+                <p>Cooked is a platform designed to improve the food review experience, 
+                    connecting users and food enthusiasts through shared recipes and insightful feedback.<p>
+        </div>
+        <div class="descContent">
+            <div class="contact">Contact Us!</div>
+        </div>
+            <!-- Email Info -->
+             <div class="contact-container">
+                <div class="contactInfo"> 
+                    <div class="emailSvg"></div>
+                    <!-- <span></span> -->
+                </div>
+                <div class="contactInfo">
+                    <div class="linkedSvg"></div>
+                    <!-- <span></span> -->
+                </div>
+                <div class="contactInfo">
+                    <div class="mobileSvg"></div>
+                    <!-- <span></span> -->
+                </div>
+            </div>
+
+                <a href="#" class="back-to-top">↑ Back to top.</a>
+            </div>
+            </div>
+        </div>
+
     </div>
 
 
-    </div>
-        <div class="row">
-        <div class="row">
 
-            <div class="col emailInfo">
-                <div class="emailSvg"></div>
-                <span>emailAccount@gmail.com</span>
-            </div>
-            <div class="col emailInfo">
-                <div class="emailSvg"></div>
-                <span>emailAccount@gmail.com</span>
-            </div>
-            <div class="col emailInfo">
-                <div class="emailSvg"></div>
-                <span>emailAccount@gmail.com</span>
-            </div>
-            <div class="col emailInfo">
-                <div class="emailSvg"></div>
-                <span>emailAccount@gmail.com</span>
-            </div>
-            </div>
-
-        </div>
 </footer>
