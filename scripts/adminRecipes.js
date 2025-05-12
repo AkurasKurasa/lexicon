@@ -32,7 +32,6 @@ $(document).ready(function() {
           obj[item.name] = item.value;
           return obj;
         }, {});
-        console.log(formData);
         if ( formData['id'].length > 0 ) {
 
           $.ajax({
@@ -202,8 +201,7 @@ $(document).ready(function() {
         success: function(response) {
           const data = JSON.parse(response);
           if (data.success) {
-            console.log(data.content)
-            $("#recipeId").val(data.content['id']);
+            $("#recipeId").val(data.content['related_product']);
             $("#recipeName").val(data.content['product_name']);
             $("#recipeDescription").val(data.content['description']);
             $("#recipeCategory").val(data.content['category']);
