@@ -214,7 +214,7 @@ main {
     margin-left: 2rem;
 }
   
-#filterName, #filterUser {
+#filterName, #filterRecipe {
     width: 300px;
     height: 2rem;
     background: #f5f5f5;
@@ -247,6 +247,7 @@ main {
     flex-direction: row;
     align-items: center;
     gap: 1rem;
+    font-family: var(--bitter);
 }
 
 .filtersContainer > select {
@@ -309,7 +310,7 @@ option {
     cursor: pointer;
 }
 
-.dataSectionLogs {
+.dataSectionReviews {
     border: 1px #42424247 solid;
     width: calc(100% - 4rem);
     height: 78%;
@@ -350,14 +351,17 @@ option {
     font-weight: 500;
     height: 100%;
     max-height: 100%;
-    width: 550px;
-    max-width: 550px;
+    width: 600px;
+    max-width: 600px;
     color: #919191;
     letter-spacing: 0.5px;
     text-align: justify;
     overflow: hidden;
     /* white-space: wrap; */
     text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .reviewAuthor {
@@ -375,4 +379,243 @@ option {
     flex-direction: column;
     text-align: left;
     width: 100px;
+}
+
+
+.modalReview {
+    position: absolute;
+    z-index: 10000; /* 1 */
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.modalReview.is-visible {
+    visibility: visible;
+}
+
+.modalReview.is-visible .modal-overlay {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.modalReview.is-visible .modal-transition {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.modalReview-heading {
+    font-size: 1.125em;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.modal-overlay {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: hsla(0, 0%, 0%, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.1s, opacity 0.1s;
+}
+
+.modal-wrapper {
+    position: absolute;
+    z-index: 9999;
+    top: 5em;
+    left: calc(50% - 12.5em);
+    width: 50em;
+    margin-left: -16em;
+    background-color: #fff;
+    box-shadow: 0 0 1.5em hsla(0, 0%, 0%, 0.35);
+    height: fit-content;
+    overflow: hidden;
+}
+
+.modal-transition {
+  transition: all 0.3s 0.12s;
+  transform: translateY(-10%);
+  opacity: 0;
+}
+
+.modal-body {
+    height: 31em;
+    overflow: hidden;
+}
+
+.modal-header,
+.modal-content {
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modal-header {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.06);
+  border-bottom: 1px solid #e8e8e8;
+  font-family: var(--bitter);
+}
+
+.modal-content {
+    height: 100%;
+    padding: 1em 1em 3em 1em;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  color: #aaa;
+  background: none;
+  border: 0;
+}
+
+.modal-close:hover {
+  color: #777;
+}
+
+.modal-content > *:first-child {
+  margin-top: 0;
+}
+
+.modal-content > *:last-child {
+  margin-bottom: 0;
+}
+
+.reviewForm {
+    /* border: 1px black solid; */
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.fieldsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+    width: 100%;
+    height: fit-content;
+}
+
+.fieldsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.25rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.fieldsContainer.recipe-name {
+    width: 100%;
+}
+
+.fieldsContainer.category {
+    width: 100%;
+}
+
+.fieldsContainer.description {
+    width: 100%;
+}
+
+.fieldsContainer.buttons {
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.fieldsContainer.buttons > button {
+    border: none;
+    border-radius: 0;
+    padding: 0.3rem 2rem;
+    font-family: var(--bitter);
+    font-weight: 500;
+    font-size: 11px;
+    color: white;
+    background: green;
+    cursor: pointer;
+}
+
+.fieldsContainer.buttons > button.submit {
+    background: green;
+} 
+
+.fieldsContainer.buttons > button.clear {
+    background: crimson;
+} 
+
+.fieldsContainer.recipe-name input {
+    width: 100%;
+}
+
+.fieldsContainer > label {
+    font-family: var(--lexendDeca);
+    font-weight: 600;
+    font-size: 8px;
+    color: gray;
+    margin-left: 0.25rem;
+}
+
+.fieldsContainer > input {
+    width: 100%; /* 350px */
+    height: 2rem;
+    background: #f5f5f5;
+    outline: none;
+    /* border: none; */
+    /* border-radius: 1.625rem; */
+    border: 1px #42424247 solid;
+    border-radius: 1px;
+    padding: 0 3.5rem 0 0.5rem;
+    font-size: 10px;
+}
+
+.fieldsContainer > select {
+    width: 100%;
+    height: 2rem;
+    background: #f5f5f5;
+    outline: none;
+    /* border: none; */
+    /* border-radius: 1.625rem; */
+    border: 1px #42424247 solid;
+    border-radius: 1px;
+    padding: 0 3.5rem 0 0.5rem;
+    font-size: 10px;
+}
+
+.fieldsContainer > textarea {
+    width: 100%;
+    height: 5rem;
+    background: #f5f5f5;
+    outline: none;
+    /* border: none; */
+    /* border-radius: 1.625rem; */
+    border: 1px #42424247 solid;
+    border-radius: 1px;
+    padding: 0.5rem;
+    font-size: 10px;
+    resize: none;
 }

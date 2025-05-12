@@ -32,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="../views/editProfile.php">Edit Profile</a>
                 </li>
                 <li>
-                    <a href="../views/myRecipes.php">My Recipes</a>
+                    <a href="#" id="logout">Logout</a>
                 </li>
                 <li>
                     <a href="../components/logout.php">Logout</a>

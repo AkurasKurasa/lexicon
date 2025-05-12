@@ -18,10 +18,7 @@ if (empty($_SESSION['id'])) {
 
 </head>
 <body>
-
-
-        <?php include '../components/Navbar.php'; ?>
-
+    <?php include '../components/Navbar.php'; ?>
         <div class="featuredRecipes">
             <div class="featuredRecipe chicken" data-id="chicken">
                 <h1 class="featuredRecipe-name">CHICKEN</h1>
@@ -96,4 +93,5 @@ if (empty($_SESSION['id'])) {
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../script.js"></script>
+<script src="../auth.js"></script>
 </html>

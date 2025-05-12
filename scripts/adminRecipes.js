@@ -71,6 +71,8 @@ $(document).ready(function() {
           });
           
         } else {
+          
+          console.log(formData);
 
           $.ajax({
             url: "../controllers/add.php",
@@ -113,6 +115,21 @@ $(document).ready(function() {
         }
     
     })
+
+    $(".clear").click(function(e) {
+      e.preventDefault();
+      $("#recipeName").val(null);
+      $("#recipeDescription").val(null);
+      $("#recipeCategory").val(null);
+      $("#recipeDescription").val(null);
+      $("#recipeIngredients").val(null);
+      $("#recipeProcedure").val(null);
+      $("#recipeImage").val(null);
+      $("#recipePrepTime").val(null);
+      $("#recipeAdditionalTime").val(null);
+      $("#recipeCookingTime").val(null);
+      $("#recipeBudget").val(null);
+    }); 
 
     $(".dataSectionRecipe").ready(function() {
         fetchRecipes();
@@ -195,7 +212,7 @@ $(document).ready(function() {
             $("#recipeDescription").val(data.content['description']);
             $("#recipeIngredients").val(data.content['ingredients']);
             $("#recipeProcedure").val(data.content['procedures']);
-            // $("#recipeImage").val(data.content['image']);
+            $("#recipeImage").val(data.content['image']);
             $("#recipePrepTime").val(data.content['prep_time']);
             $("#recipeAdditionalTime").val(data.content['additional_time']);
             $("#recipeCookingTime").val(data.content['cooking_time']);

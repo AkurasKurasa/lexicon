@@ -1,3 +1,13 @@
+<?php
+// Start the session
+session_start();
+
+if (empty($_SESSION['id'])) {
+    header("Location: Login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,27 +30,32 @@
 
                 <h3 class="">GENERAL</h3>
 
-                <div class="tab">
+                <div class="tab dash">
+                    <div class="dashboard"></div>
+                    <p>DASHBOARD</p>
+                </div>
+
+                <div class="tab recipes">
                     <div class="recipe"></div>
                     <p>RECIPES</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab review">
                     <div class="reviews"></div>
                     <p>REVIEWS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab log">
                     <div class="logs"></div>
                     <p>LOGS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab user">
                     <div class="users"></div>
                     <p>USERS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab exports">
                     <div class="export"></div>
                     <p>EXPORT</p>
                 </div>
@@ -49,10 +64,13 @@
 
         </section>
 
+
         <section class="contentSection">
             <nav class="contentTop">
                 <div class="profileContainer">
-                    <p>John Doe</p>
+                    <p>
+                        <?php echo $_SESSION['first_name'] ?>
+                    </p>
                     <div class="profile"></div>
                 </div>
             </nav>
@@ -88,14 +106,14 @@
                                 <option value="seafood">Seafood</option>
                             </select>
 
-                            <select name="" id="" class="filterRecipeField">
+                            <!-- <select name="" id="" class="filterRecipeField">
                                 <option value="" selected>Choose rating...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                            </select>
+                            </select> -->
                         </div>
 
                     </div>
@@ -209,4 +227,5 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="../scripts/adminRecipes.js"></script>
+<script src="../scripts/admin.js"></script>
 </html>

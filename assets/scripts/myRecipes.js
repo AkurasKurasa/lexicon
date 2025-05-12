@@ -115,7 +115,7 @@ $(document).ready(function() {
 
     // Clicks a recipe
     $(".dataSectionRecipe").on('click','.recipeTop', function() {
-        window.location.href = '../views/recipe.php?id='+$(this).closest('.recipeContainer').data('name');
+        window.location.href = '../views/recipe.php?name='+$(this).closest('.recipeContainer').data('name');
     })
     // SUBMITS THE RECIPE
     $("#userRecipeForm").submit(function(e) {

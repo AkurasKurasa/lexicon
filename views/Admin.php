@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../assets/styles/adminDashboard.css">
+    <link rel="stylesheet" href="../assets/styles/adminDashboard-1.css">
     <link rel="stylesheet" href="../assets/styles/helper.css">
 </head>
 <body>
@@ -30,22 +30,22 @@
                     <p>RECIPES</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab review">
                     <div class="reviews"></div>
                     <p>REVIEWS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab log">
                     <div class="logs"></div>
                     <p>LOGS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab user">
                     <div class="users"></div>
                     <p>USERS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab exports">
                     <div class="export"></div>
                     <p>EXPORT</p>
                 </div>
@@ -64,10 +64,17 @@
             </nav>
 
             <section class="contentBottom">
-            
-                <h1>Sentiment Line Chart</h1>
-                <canvas id="sentimentTrend"></canvas>
 
+                <div class="controlContainer">
+                    <button id="trendBtn">Trend</button>
+                    <button id="pieBtn">Pie</button>
+                    <button id="barBtn">Bar</button>
+                </div>
+            
+                <h1 id="sentimentHeader">Sentiment Line Chart</h1>
+                <canvas id="sentimentTrend" style="display: none"></canvas>
+                <canvas id="sentimentPie" style="display: none"></canvas>
+                <canvas id="sentimentBar" style="display: block"></canvas>
             </section>
 
         </section>   

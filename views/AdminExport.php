@@ -20,27 +20,32 @@
 
                 <h3 class="">GENERAL</h3>
 
-                <div class="tab">
+                <div class="tab dash">
+                    <div class="dashboard"></div>
+                    <p>DASHBOARD</p>
+                </div>
+
+                <div class="tab recipes">
                     <div class="recipe"></div>
                     <p>RECIPES</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab review">
                     <div class="reviews"></div>
                     <p>REVIEWS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab log">
                     <div class="logs"></div>
                     <p>LOGS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab user">
                     <div class="users"></div>
                     <p>USERS</p>
                 </div>
 
-                <div class="tab">
+                <div class="tab exports">
                     <div class="export"></div>
                     <p>EXPORT</p>
                 </div>
@@ -63,11 +68,11 @@
 
                     <h1>Export Tables</h1>
 
-                    <button>Export recipes as .csv</button>
-                    <button>Export reviews as .csv</button>
-                    <button>Export users as .csv</button>
-                    <button>Export logs as .csv</button>
-                    <button>Export all as .csv</button>
+                    <button id="exportRecipes">Export recipes as .csv</button>
+                    <button id="exportReviews">Export reviews as .csv</button>
+                    <button id="exportUsers">Export users as .csv</button>
+                    <button id="exportLogs">Export logs as .csv</button>
+                    <button id="exportAll">Export all as .csv</button>
                 </div>
 
             </section>
@@ -77,7 +82,8 @@
     </main>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<!-- <script src="../scripts/adminLogs.js"></script> -->
+<script src="../scripts/admin.js"></script>
+<script src="../scripts/adminExports-1.js"></script>
 </html>
 
 <!-- <link rel="stylesheet" href="../assets/styles/adminExport.css">

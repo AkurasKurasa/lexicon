@@ -206,12 +206,13 @@ main {
     font-family: var(--bitter);
     font-weight: 700;
     margin-left: 1rem;
+    width: 230px;
     height: 2rem;
     border-radius: 0;
     border: none;
     padding: 0.5rem 2rem;
     color: white;
-    background-color: #a1a1a1;
+    background-color: #FF0303;
     cursor: pointer;
     margin-left: 1rem;
     /* margin-top: 0.5rem; */

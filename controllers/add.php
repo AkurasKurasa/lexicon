@@ -1,7 +1,11 @@
 <?php
+
+    session_start();
+
     include('../config.php');
     require_once '../models/Recipe.php';
     require_once '../models/User.php';
+    require_once '../models/Log.php';
 
     $type = $_POST['type'];
 
@@ -23,7 +27,9 @@
             $recipeCookingTime = $_POST['cookingTime'];
             $recipeAdditionalTime = $_POST['additionalTime'];
             $recipeBudget = $_POST['budget'];
-            session_start();
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
             $author = $_SESSION['id'];
             if (empty($recipeId) || empty($recipeName) || empty($recipeDescription) || empty($recipeCategory) ||
             empty($recipeIngredients) || empty($recipeProcedure) || empty($recipeImage) || 
@@ -119,6 +125,16 @@
                     'budget'           => $recipeBudget
                 ];
                 $recipe->create($recipeInfo);
+                
+                $log = new Log($pdo);
+
+                $logInfo = [
+                    'id' => $_SESSION['id'],
+                    'action'=> 'added a recipe named ' . $recipeName  
+                ];
+
+                $log->addLog($logInfo);
+
                 echo json_encode(['success' => true]);
             } else {
                 echo json_encode(['success' => false, 'errors' => $errors]);
@@ -150,11 +166,22 @@
 
             $user->create($userInfo);
 
+            $log = new Log($pdo);
+
+            $logInfo = [
+                'id' => $_SESSION['id'],
+                'action'=> 'added a user named ' . $firstName . " " . $lastName 
+            ];
+
+            $log->addLog($logInfo);
+
             echo json_encode(['success' => true]);
             break;
 
             case 'addComment':
-                session_start();
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
                 if (isset($_POST['starsGiven'], $_POST['userComment'], $_POST['product_id']) && isset($_SESSION['id'])) {
                     $starsGiven = filter_var($_POST['starsGiven'], FILTER_SANITIZE_NUMBER_INT);
                     $userComment = filter_var($_POST['userComment'], FILTER_SANITIZE_STRING);
