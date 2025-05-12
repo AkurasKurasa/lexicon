@@ -22,11 +22,16 @@ $(document).ready(function() {
             }
             $(".userImage").attr('src', data.profile_picture_url);
             // Populates the comment
+            console.log(data);
             $.each(data.comment_id, function(index, comment_id) {
                 populateComment(comment_id['id']);
             });
         console.log(data.recipeInfo);
         // Populates the recipe page
+        total_review = data.ratingsInfo['total_review'];
+        max_review = data.ratingsInfo['max_review'];
+        numOfReviews = data.ratingsInfo['max_review'] / 5;
+        aveRatings = total_review / max_review;
         author_image = data.recipeInfo['author_image'] ?? '../assets/images/img_avatar.png';
         recipe_name = data.recipeInfo['product_name'];
         author = data.recipeInfo['author'];
@@ -42,6 +47,8 @@ $(document).ready(function() {
         product_image = data.recipeInfo['product_image'];
 
         // Update the recipe content
+        $("#numOfReviews").html(numOfReviews);
+        $("#aveRatings").html(aveRatings);
         $(".recipeName").html(recipe_name);
         $(".userSubmit").html(author_name);
         $(".recipeDescription").html(description);

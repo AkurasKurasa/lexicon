@@ -4,17 +4,19 @@ $(document).ready(function(){
     var user_id = urlParams.get('id');
 
     $.ajax({
-        url: "../controllers/profileProcess.php",
+        url: "../controllers/fetch.php",
         type: "GET",
         data: {
-            user_id: user_id,
+            id: user_id,
             type: 'fetchUser'
         },
         success: function(response) {
-            data = JSON.parse(response);
+            d = JSON.parse(response);
+            data = d.content;
+            console.log(data);
             var name = data.first_name + " " + data.last_name;
             var description = data.description;
-            var image = data.image;
+            var image = data.image ?? '../assets/images/img_avatar.png';
             console.log(name);
             $("#userImage").attr('src', image);
             $("#user-name").html(name);
