@@ -120,6 +120,12 @@
                 echo json_encode(['success' => false]);
             }
             break;
+
+        case 'logout':
+            session_destroy();
+
+            echo json_encode(['success' => true]);
+            break;
     
         default:
             echo json_encode(['success' => false]);

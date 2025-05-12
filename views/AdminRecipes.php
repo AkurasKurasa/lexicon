@@ -106,14 +106,14 @@ if (empty($_SESSION['id'])) {
                                 <option value="seafood">Seafood</option>
                             </select>
 
-                            <select name="" id="" class="filterRecipeField">
+                            <!-- <select name="" id="" class="filterRecipeField">
                                 <option value="" selected>Choose rating...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                            </select>
+                            </select> -->
                         </div>
 
                     </div>

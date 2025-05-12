@@ -1,17 +1,10 @@
 <?php
-<<<<<<< HEAD
 session_start();
 if (isset($_SESSION['loggedInUser'])) {
         header("Location: home.php");
         exit();
 } 
 ?>
-=======
-// Start the session
-session_start();
-?>
-
->>>>>>> version_1_merge
 <!DOCTYPE html>
 <html lang="en">
 <head>

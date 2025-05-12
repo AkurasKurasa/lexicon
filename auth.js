@@ -83,4 +83,26 @@ $(document).ready(function() {
         });
     })
 
+    $('#logout').click(function() {
+        $.ajax({
+            url: "../controllers/auth.php",
+            method: "POST",
+            data: {
+                type: 'logout'
+            },
+            success: function(response) {
+                const data = JSON.parse(response);
+                if (data.success) {
+                    alert("User is logged out successfully!");
+                    window.location.href = "Login.php";
+                } else {
+                
+                }
+            },
+            error: function() {
+
+            }
+        });
+    });
+
 });

@@ -77,7 +77,7 @@
                             <input id="filterRecipe" type="text" name="searchQueryInput" class="filterLogFieldInput" placeholder="Search recipe..." value="" />
                         </div>
 
-                        <div class="filtersContainer">
+                        <!-- <div class="filtersContainer">
                             <select name="" id="filterRating" class="filterLogField">
                                 <option value="" selected>Select rating...</option>
                                 <option value="User">1</option>
@@ -86,7 +86,7 @@
                                 <option value="Super-admin">4</option>
                                 <option value="Super-admin">5</option>
                             </select>
-                        </div>
+                        </div> -->
 
                         <div class="filtersContainer">
                             <select name="" id="filterSentiment" class="filterLogField">

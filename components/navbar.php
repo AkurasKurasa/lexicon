@@ -13,21 +13,13 @@
     <ul class="nav-tabs">
 
         <li>
-            <a href="#">Recipes</a>
-        </li>
-
-        <li>
-            <a href="#">Search</a>
-        </li>
-
-        <li>
             <a href="#"><?php echo $_SESSION['first_name']; ?> ▼</a>
             <ul class="dropdown">
                 <li>
                     <a href="#">Edit Profile</a>
                 </li>
                 <li>
-                    <a href="#">Logout</a>
+                    <a href="#" id="logout">Logout</a>
                 </li>
             </ul>
         </li>

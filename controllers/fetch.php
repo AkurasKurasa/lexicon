@@ -19,9 +19,7 @@
             FROM 
                 products
             LEFT JOIN images 
-                ON images.related_id = products.id 
-                AND images.related_type = 'product';
-
+                ON images.related_product = products.id 
             ";
             $result = $pdo->prepare($query);
             $result->execute();
