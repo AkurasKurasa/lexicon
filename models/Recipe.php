@@ -116,13 +116,28 @@ class Recipe
 
     public function fetchRecipe($id)
     {
-        $sql = "SELECT *, images.image FROM products 
-                LEFT JOIN images ON products.id = images.related_product
-                WHERE products.id = :id";
+        $sql = "
+                SELECT *
+                FROM products
+                LEFT JOIN images ON images.related_product = products.id
+                WHERE products.id = :id;
+                ";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+
+    // Not working with admin
+    // public function fetchRecipe($id)
+    // {
+    //     $sql = "SELECT *, images.image FROM products 
+    //             LEFT JOIN images ON products.id = images.related_product
+    //             WHERE products.id = :id";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->execute([':id' => $id]);
+    //     return $stmt->fetch(PDO::FETCH_ASSOC);
+    // }
 
     public function fetchAllRecipeDetails($id) {
         $sql = "SELECT products.*, 
