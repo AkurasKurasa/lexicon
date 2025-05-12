@@ -35,9 +35,9 @@ if (!isset($_SESSION["id"])) {
                     <p>Password and Security</p>
                 </div>
 
-                <div class="delete-account">
+                <!-- <div class="delete-account">
                     <p>Delete Account</p>
-                </div>
+                </div> -->
 
             </div>
 
