@@ -27,7 +27,6 @@ $(document).ready(function() {
                 populateComment(comment_id['id']);
             });
         console.log(data.recipeInfo);
-        // Populates the recipe page
         total_review = data.ratingsInfo['total_review'];
         max_review = data.ratingsInfo['max_review'];
         numOfReviews = data.ratingsInfo['max_review'] / 5;
@@ -46,7 +45,15 @@ $(document).ready(function() {
         budget = data.recipeInfo['budget'];
         product_image = data.recipeInfo['product_image'];
 
-        // Update the recipe content
+        var starHtml = '';
+        for (var i = 0; i < 5; i++) {
+            if (i < aveRatings) {
+                starHtml += '<span class="starRecipe starActive"></span>'; // Add starActive for filled stars
+            } else {
+                starHtml += '<span class="starRecipe"></span>'; // Add only starRecipe for empty stars
+            }
+        }
+        $(".recipeRating").prepend(starHtml);
         $("#numOfReviews").html(numOfReviews);
         $("#aveRatings").html(aveRatings);
         $(".recipeName").html(recipe_name);
@@ -211,9 +218,7 @@ function resetCommment() {
     $("#userComment").height('auto');
     $("#userStar").html("0");
     $("#starsGiven").val("");
-    $(".userRating").each(function() {
-        $(this).html("&#9734;");
-    });
+    selectStar(-1);
     checkInput();
 }
 
@@ -237,18 +242,17 @@ function populateComment(comment_id) {
 }
 
 function selectStar(indexStarSelected) {
-    i = 0
-    $(".userRating").each(function() {
-        if (i <= indexStarSelected) {
-            $(this).html("&#9733;");
-            i++;
+    $(".userRating").each(function(index) {
+        if (index <= indexStarSelected) {
+            $(this).addClass("starActive");
         } else {
-            $(this).html("&#9734;");
+            $(this).removeClass("starActive");
         }
     });
-    $("#userStar").html(i);
-    $("#starsGiven").val(i);
+    $("#userStar").html(indexStarSelected + 1);
+    $("#starsGiven").val(indexStarSelected + 1);
 }
+
 
 function populateInputComment(comment_id) {
     

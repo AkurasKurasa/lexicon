@@ -42,4 +42,9 @@ $(document).ready(function(){
           alert("Something went wrong.");
         }
       });
+
+        $(document).on('click','.recipeContainer', function(){
+        var product_id = $(this).data("name");
+        window.location.href = "../views/recipe.php?name=" + product_id;
+      });
 })

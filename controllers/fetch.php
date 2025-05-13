@@ -23,47 +23,48 @@
         $result = $pdo->prepare($query);
         $result->execute();
         $counter = 0;
-        
+        $recipe = new Recipe($pdo);
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             // product_name, product_image, category, id
                 if ( $id == $row['author'] ) {
+                    $r = $recipe->fetchRecipeRating($row['id']);
+                    $total_rating = $r['total_review'] ?? 0;
+                    $max_review = $r['max_review'] ?? 0; 
+                    $ave_review = ($max_review != 0) ? ($total_rating / $max_review) : 0;
                     if ($counter % 4 == 0) {
                         $output .= "<div class='recipesContainer'>";
                     }
-        
+                    $filledStars = floor($ave_review);
+                    $maxStars = 5;
+                    $starsHTML = "";
+
+                    for ($i = 0; $i < $filledStars; $i++) {
+                        $starsHTML .= "<svg viewBox='0 0 24 24' width='16px' height='16px' fill='red' xmlns='http://www.w3.org/2000/svg'>
+                            <path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/>
+                        </svg>";
+                    }
+
+                    for ($i = $filledStars; $i < $maxStars; $i++) {
+                        $starsHTML .= "<svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'>
+                            <path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/>
+                        </svg>";
+                    }
                     $output .= "
-                        <div class='recipeContainer' data-name=".$row['id'].">
+                        <div class='recipeContainer' data-name='" . $row['id'] . "' data-rating='" . $ave_review . "'>
                             <div class='recipeImage' style='background-image: url({$row['image']});'></div>
                             <div class='recipeName'>
                                 <h1>{$row['product_name']}</h1>
                                 <div class='recipeRatingContainer'>
                                     <div class='starsContainer'>
-                                        <!-- Repeat 5 empty stars -->
-                                        <symbol id='icon-star-empty'>
-                                            <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                        </symbol>
-                                        <symbol id='icon-star-empty'>
-                                            <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                        </symbol>
-                                        <symbol id='icon-star-empty'>
-                                            <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                        </symbol>
-                                        <symbol id='icon-star-empty'>
-                                            <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                        </symbol>
-                                        <symbol id='icon-star-empty'>
-                                            <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                        </symbol>
+                                        $starsHTML
                                     </div>
-                                    <p class='ratingsCount'>0 Ratings</p>
+                                    <p class='ratingsCount'>{$ave_review} Average Rating" . ($ave_review == 1 ? "" : "s") . "</p>
                                 </div>
                             </div>
                         </div>
                     ";
-            
                     $counter++;
-
                 }
         
                 if ($counter % 4 == 0) {
@@ -96,49 +97,49 @@
             $result = $pdo->prepare($query);
             $result->execute();
             $counter = 0;
-            
+            $recipe = new Recipe($pdo);
 
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                 // product_name, product_image, category, id
 
                     if ( $id == $row['category'] ) {
-
+                        $r = $recipe->fetchRecipeRating($row['id']);
+                        $total_rating = $r['total_review'] ?? 0;
+                        $max_review = $r['max_review'] ?? 0; 
+                        $ave_review = ($max_review != 0) ? ($total_rating / $max_review) : 0;
                         if ($counter % 4 == 0) {
                             $output .= "<div class='recipesContainer'>";
                         }
-            
+                        $filledStars = floor($ave_review);
+                        $maxStars = 5;
+                        $starsHTML = "";
+
+                        for ($i = 0; $i < $filledStars; $i++) {
+                            $starsHTML .= "<svg viewBox='0 0 24 24' width='16px' height='16px' fill='red' xmlns='http://www.w3.org/2000/svg'>
+                                <path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/>
+                            </svg>";
+                        }
+
+                        for ($i = $filledStars; $i < $maxStars; $i++) {
+                            $starsHTML .= "<svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'>
+                                <path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/>
+                            </svg>";
+                        }
                         $output .= "
-                            <div class='recipeContainer' data-name=".$row['id'].">
+                            <div class='recipeContainer' data-name='" . $row['id'] . "' data-rating='" . $ave_review . "'>
                                 <div class='recipeImage' style='background-image: url({$row['image']});'></div>
                                 <div class='recipeName'>
                                     <h1>{$row['product_name']}</h1>
                                     <div class='recipeRatingContainer'>
                                         <div class='starsContainer'>
-                                            <!-- Repeat 5 empty stars -->
-                                            <symbol id='icon-star-empty'>
-                                                <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                            </symbol>
-                                            <symbol id='icon-star-empty'>
-                                                <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                            </symbol>
-                                            <symbol id='icon-star-empty'>
-                                                <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                            </symbol>
-                                            <symbol id='icon-star-empty'>
-                                                <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                            </symbol>
-                                            <symbol id='icon-star-empty'>
-                                                <svg viewBox='0 0 24 24' width='16px' height='16px' fill='rgba(0,0,0,.65)' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M22 9.24L14.81 8.62L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.55 13.97L22 9.24ZM12 15.4L8.24 17.67L9.24 13.39L5.92 10.51L10.3 10.13L12 6.1L13.71 10.14L18.09 10.52L14.77 13.4L15.77 17.68L12 15.4Z'/></svg> 
-                                            </symbol>
+                                            $starsHTML
                                         </div>
-                                        <p class='ratingsCount'>0 Ratings</p>
+                                        <p class='ratingsCount'>{$ave_review} Average Rating" . ($ave_review == 1 ? "" : "s") . "</p>
                                     </div>
                                 </div>
                             </div>
                         ";
-                
                         $counter++;
-
                     }
             
                     if ($counter % 4 == 0) {
@@ -174,9 +175,9 @@
             $checkStmt->execute([':product_id' => $_GET['product_id'], ':user_id' => $_SESSION['id']]);
             $alreadyCommented = $checkStmt->fetchColumn() > 0;
 
-            $response["checkLoggedIn"] = true;
+            $checkLoggedIn = true;
             } else {
-            $response["checkLoggedIn"] = false;
+            $checkLoggedIn = false;
             }
             $response["alreadyCommented"] = $alreadyCommented;
 
@@ -188,7 +189,9 @@
             $response = [
                 "recipeInfo" => $recipeInfo[0],
                 "ratingsInfo" => $ratingsInfo,
-                "comment_id" => $usersCommented
+                "comment_id" => $usersCommented,
+                "alreadyCommented" => $alreadyCommented,
+                "checkLoggedIn" => $checkLoggedIn
             ];
             echo json_encode($response);
             break;
@@ -246,7 +249,7 @@
             
                     $ratingOutput = '<div class="otherUserRatingContainer">';
                     for ($i = 0; $i < 5; $i++) {
-                        $ratingOutput .= '<span class="star otherUserRating">' . ($i < $rating ? '&#9733;' : '&#9734;') . '</span>';
+                        $ratingOutput .= '<span class="star otherUserRating ' . ($i < $rating ? 'starActive' : '') . '">' . '&#9734;' . '</span>';
                     }
                     $ratingOutput .= '</div>';
             

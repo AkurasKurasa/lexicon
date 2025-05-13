@@ -335,7 +335,7 @@ main {
     font-size: 20px;
     width: 15px;
     display: inline-block;
-    color: #FF0303;
+    color: rgba(0,0,0,.65);
 }
 .starRecipe:last-child {
     margin-right: 0;
@@ -524,7 +524,11 @@ main {
     font-size: 20px;
     width: 15px;
     display: inline-block;
-    color: #FF0303;
+    color: rgba(0,0,0,.65);
+}
+
+.starActive {
+    color: red;
 }
 
 

@@ -166,18 +166,19 @@ class Recipe
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function fetchCategoryRating() {
-        $sql = "SELECT p.category, 
+    public function fetchCategoryRating($category) {
+        $sql = "SELECT 
                        SUM(pv.rating) AS total_review, 
                        COUNT(pv.rating) AS num_reviewers,
                        COUNT(pv.rating) * 5 AS max_review
                 FROM product_votes pv
                 INNER JOIN product_review_comments prc ON pv.comment_id = prc.id
                 INNER JOIN products p ON prc.product_id = p.id
-                GROUP BY p.category";
+                WHERE p.category = :category";
         
         $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':category', $category, PDO::PARAM_STR);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }   
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }    
 }

@@ -35,11 +35,11 @@ if (empty($_SESSION['id'])) {
             <h1 class="recipeName">Aunt Jemima's Beloved Fried Chicken</h1>
             <span></span>
             <div class="recipeRating">
+                <!-- <span class="starRecipe"></span>
                 <span class="starRecipe"></span>
                 <span class="starRecipe"></span>
                 <span class="starRecipe"></span>
-                <span class="starRecipe"></span>
-                <span class="starRecipe"></span>
+                <span class="starRecipe"></span> -->
                 <p style="display: inline-block;"> <span id="numOfReviews">0</span> reviews / <span id="aveRatings">0</span> average ratings
                 <hr style="margin: 20px 15px 20px 15px">
             </div>

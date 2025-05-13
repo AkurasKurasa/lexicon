@@ -21,15 +21,15 @@ if (!isset($_SESSION["id"])) {
         <div class="user-information">
         <img src="../assets/images/banner.jpg" class="cover-photo" alt="Cover Image">
             <div class="user-image-container">
-                <img src="../assets/images/profile_pictures/11.jpg" class="user-image" id="userImage" alt="User Image">
+                <img src="" class="user-image" id="userImage" alt="User Image">
             </div>
             <div class="user-details">
-                <h2 id="user-name">John Doe</h2>
-                <p id="occupation">Home Cook</p>
-                <p id="user-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.</p>
+                <h2 id="user-name"></h2>
+                <p id="occupation"></p>
+                <p id="user-description"></p>
             </div>
         </div>
-            <h1 class="header">Explore John Doe's Recipes</h1>
+            <h1 class="header"></h1>
         <div class="user-recipes">
             <section class="recipesSection">
 
