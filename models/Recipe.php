@@ -64,7 +64,72 @@ class Recipe
 
     }
 
+    public function createFromAdmin($data)
+    {
+        $sql = "INSERT INTO products (
+            id,
+            product_name,
+            description,
+            category, 
+            ingredients, 
+            procedures, 
+            prep_time, 
+            cooking_time, 
+            additional_time, 
+            budget,
+            author
+        ) VALUES (
+            :id,
+            :name, 
+            :description,
+            :category, 
+            :ingredients, 
+            :procedure, 
+            :prep_time, 
+            :cooking_time, 
+            :additional_time, 
+            :budget,
+            :author
+        )";
+        $stmt = $this->db->prepare($sql);
+        // session_start();
+        $author = $_SESSION['id'];
+        $stmt->execute([
+            ':id'               => $data['id'],
+            ':name'             => $data['name'],
+            ':description'      => $data['description'],
+            ':category'         => $data['category'],
+            ':ingredients'      => $data['ingredients'],
+            ':procedure'        => $data['procedure'],
+            ':prep_time'        => $data['prep_time'],
+            ':cooking_time'     => $data['cooking_time'],
+            ':additional_time'  => $data['additional_time'],
+            ':budget'           => $data['budget'],
+            ':author'           => $author
+        ]);
+
+
+        $sqlImage = "INSERT INTO images (related_product, image) VALUES (:related_product, :image)";
+
+        $stmtImage = $this->db->prepare($sqlImage);
+
+        return $stmtImage->execute([
+            ':related_product'   => $data['id'],
+            ':image'        => $data['image']
+        ]);
+
+    }
+
     public function delete($id)
+    {
+        $sql = "DELETE FROM products WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            ':id' => $id
+        ]);
+    }
+
+    public function deleteViaAdmin($id)
     {
         $sql = "DELETE FROM products WHERE id = :id";
         $stmt = $this->db->prepare($sql);
@@ -114,6 +179,48 @@ class Recipe
 
     }
 
+    public function updateViaAdmin($id, $data)
+    {
+        $sql = "UPDATE products 
+                SET product_name = :name, 
+                    description = :description, 
+                    category = :category, 
+                    ingredients = :ingredients, 
+                    procedures = :procedure, 
+                    prep_time = :prep_time, 
+                    cooking_time = :cooking_time, 
+                    additional_time = :additional_time, 
+                    budget = :budget 
+                WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+
+        $result = $stmt->execute([
+            ':name'            => $data['name'],
+            ':description'     => $data['description'],
+            ':category'        => $data['category'],
+            ':ingredients'     => $data['ingredients'],
+            ':procedure'       => $data['procedure'],
+            ':prep_time'       => $data['prep_time'],
+            ':cooking_time'    => $data['cooking_time'],
+            ':additional_time' => $data['additional_time'],
+            ':budget'          => $data['budget'],
+            ':id'              => $id
+        ]);
+
+        $sqlImage = "UPDATE images
+                    SET image = :image 
+                    WHERE related_product = :id ";
+        
+        $stmt = $this->db->prepare($sqlImage);
+        $resultImg = $stmt->execute([
+            ':image' => $data['image'],
+            ':id'    => $id
+        ]);
+
+    }
+    
+
     public function fetchRecipe($id)
     {
         $sql = "
@@ -127,17 +234,19 @@ class Recipe
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function fetchRecipeAdmin($id)
+    {
+        $sql = "
+                SELECT *
+                FROM products
+                LEFT JOIN images ON images.related_product = products.id
+                WHERE products.id = :id;
+                ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-    // Not working with admin
-    // public function fetchRecipe($id)
-    // {
-    //     $sql = "SELECT *, images.image FROM products 
-    //             LEFT JOIN images ON products.id = images.related_product
-    //             WHERE products.id = :id";
-    //     $stmt = $this->db->prepare($sql);
-    //     $stmt->execute([':id' => $id]);
-    //     return $stmt->fetch(PDO::FETCH_ASSOC);
-    // }
 
     public function fetchAllRecipeDetails($id) {
         $sql = "SELECT products.*, 

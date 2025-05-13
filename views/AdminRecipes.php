@@ -67,12 +67,7 @@ if (empty($_SESSION['id'])) {
 
         <section class="contentSection">
             <nav class="contentTop">
-                <div class="profileContainer">
-                    <p>
-                        <?php echo $_SESSION['first_name'] ?>
-                    </p>
-                    <div class="profile"></div>
-                </div>
+                
             </nav>
 
             <section class="contentBottom">

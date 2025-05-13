@@ -27,7 +27,7 @@ $(document).ready(function() {
           method: "GET",
           data: { 
             id: id,
-            type: 'fetchComment'
+            type: 'fetchCommentFromAdmin'
           },
           success: function(response) {
             const data = JSON.parse(response);

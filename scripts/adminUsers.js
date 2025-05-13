@@ -32,7 +32,7 @@ $(document).ready(function() {
         if ( formData['id'].length > 0 ) {
   
           $.ajax({
-            url: "../controllers/update.php",
+            url: "../controllers/adminUpdate.php",
             method: "POST",
             data: { 
               id: formData['id'],
@@ -65,7 +65,7 @@ $(document).ready(function() {
         } else {
   
           $.ajax({
-            url: "../controllers/add.php",
+            url: "../controllers/adminAdd.php",
             method: "POST",
             data: { 
               id: formData['id'],
@@ -140,7 +140,7 @@ $(document).ready(function() {
         if ( confirmation ) {
   
           $.ajax({
-            url: "../controllers/delete.php",
+            url: "../controllers/adminDelete.php",
             method: "POST",
             data: { 
               id: id,
@@ -171,7 +171,7 @@ $(document).ready(function() {
         $('.modalUser-heading').text('Update User Information');
   
         $.ajax({
-          url: "../controllers/fetch.php",
+          url: "../controllers/adminFetch.php",
           method: "GET",
           data: { 
             id: id,
@@ -201,7 +201,7 @@ $(document).ready(function() {
       function fetchUsers(name=null, role=null) {
   
         $.ajax({
-          url: "../controllers/fetch.php",
+          url: "../controllers/adminFetch.php",
           method: "GET",
           data: { 
             filterName: name,

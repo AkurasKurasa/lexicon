@@ -57,21 +57,18 @@
         <section class="contentSection">
 
             <nav class="contentTop">
-                <div class="profileContainer">
-                    <p>John Doe</p>
-                    <div class="profile"></div>
-                </div>
+                
             </nav>
 
             <section class="contentBottom">
 
                 <div class="controlContainer">
-                    <button id="trendBtn">Trend</button>
+                    <!-- <button id="trendBtn">Trend</button>
                     <button id="pieBtn">Pie</button>
-                    <button id="barBtn">Bar</button>
+                    <button id="barBtn">Bar</button> -->
                 </div>
             
-                <h1 id="sentimentHeader">Sentiment Line Chart</h1>
+                <h1 id="sentimentHeader">Sentiment Bar Chart</h1>
                 <canvas id="sentimentTrend" style="display: none"></canvas>
                 <canvas id="sentimentPie" style="display: none"></canvas>
                 <canvas id="sentimentBar" style="display: block"></canvas>

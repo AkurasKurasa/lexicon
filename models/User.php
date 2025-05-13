@@ -53,7 +53,7 @@ class User
             ':last_name'  => $data['last_name'],
             ':gender'     => $data['gender'],
             ':email'      => $data['email'],
-            ':password'   => $data['password'],
+            ':password'   => password_hash($data['password'], PASSWORD_DEFAULT),
             ':role'       => $data['role']
         ]);
 
@@ -70,20 +70,14 @@ class User
 
     }
     
-
-        // $userId = $this->db->lastInsertId();
-
-        // Insert into the images table
-        // $sqlImage = "INSERT INTO images (related_id, image, related_type) VALUES (:related_id, :image, :related_type)";
-        // $stmtImage = $this->db->prepare($sqlImage);
-        
-        // return $stmtImage->execute([
-        //     ':related_id'   => $userId,
-        //     ':image'        => $data['image'],
-        //     ':related_type' => "user"
-        // ]);
-    
     public function delete($id)
+    {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([ ':id' => $id ]);
+    }
+
+    public function deleteViaAdmin($id)
     {
         $sql = "DELETE FROM users WHERE id = :id";
         $stmt = $this->db->prepare($sql);
@@ -136,15 +130,15 @@ class User
             ':id'         => $id
         ]);
 
-        $sqlImage = "UPDATE images
-                    SET image = :image
-                    WHERE related_user = :id
+        $sqlImage = "INSERT INTO images (related_user, image)
+                 VALUES (:id, :image)
+                 ON DUPLICATE KEY UPDATE image = VALUES(image)
                     ";
         
         $stmt = $this->db->prepare($sqlImage);
 
         $resultImg = $stmt->execute([
-            ':id'    => $data['id'],
+            ':id'    => $id,
             ':image' => $data['image'],
         ]);
     }

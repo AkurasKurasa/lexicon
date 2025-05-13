@@ -1,4 +1,6 @@
 <?php
+
+    session_start();
     include('../config.php');
     require_once '../models/Recipe.php';
     require_once '../models/User.php';
@@ -155,7 +157,7 @@
             break;
 
             case 'populateRecipe':
-            session_start(); 
+            // session_start(); 
             $sql = "SELECT product_review_comments.id 
             FROM product_review_comments WHERE product_review_comments.product_id = :product_id
             ORDER BY product_review_comments.created_at ASC";
@@ -165,6 +167,7 @@
             // $response["comment_id"] = $usersCommented;
             //CHECKS IF LOGGED IN AND IF THE USER HAS COMMENTED 
             $alreadyCommented = false;
+            // session_start(); 
             if (isset($_SESSION['id'])) {
             $user = new User($pdo);
             $userInfo = $user->fetchUser($_SESSION["id"]);
@@ -214,7 +217,7 @@
                 break;
 
             case 'fetchComment':
-                session_start();
+                // session_start();
                 $comment_id = $_GET['comment_id'];
                 
                 $sql = "SELECT
@@ -280,7 +283,7 @@
                 $response['output'] = $output;
                 echo json_encode($response);
                 break;
-            
+        
 
         case 'fetchRecipesAdmin': 
             $filterName = $_GET['filterName'] ?? null; 
@@ -648,144 +651,144 @@
             break;
 
     
-        // case 'fetchComment':
+        case 'fetchCommentFromAdmin':
 
-        //     $id = $_GET['id'];
+            $id = $_GET['id'];
 
-        //     $sql = "
-        //             SELECT 
-        //                 prc.id,
-        //                 prc.comment, 
-        //                 prc.created_at, 
-        //                 prc.positive,
-        //                 prc.negative,
-        //                 prc.neutral,
-        //                 prc.sentiment,
-        //                 u.first_name, 
-        //                 u.last_name,
-        //                 p.product_name
-        //             FROM 
-        //                 product_review_comments_test prc
-        //             LEFT JOIN 
-        //                 users u ON prc.authored_by = u.id
-        //             LEFT JOIN
-        //                 products p ON prc.product_id = p.id
-        //             WHERE
-        //                 prc.id = :id
-        //             LIMIT 1;
-        //         ";
-        //     $stmt = $pdo->prepare($sql);
-        //     $stmt->execute([':id' => $id]);
-        //     $output = $stmt->fetch(PDO::FETCH_ASSOC);
+            $sql = "
+                    SELECT 
+                        prc.id,
+                        prc.comment, 
+                        prc.created_at, 
+                        prc.positive,
+                        prc.negative,
+                        prc.neutral,
+                        prc.sentiment,
+                        u.first_name, 
+                        u.last_name,
+                        p.product_name
+                    FROM 
+                        product_review_comments prc
+                    LEFT JOIN 
+                        users u ON prc.authored_by = u.id
+                    LEFT JOIN
+                        products p ON prc.product_id = p.id
+                    WHERE
+                        prc.id = :id
+                    LIMIT 1;
+                ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':id' => $id]);
+            $output = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //     echo json_encode(['success' => true, 'content' => $output]);
-        //     break;
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
         
-        // case 'fetchComments':
+        case 'fetchComments':
 
-        //     $filterName = $_GET['filterName'] ?? null; 
-        //     $filterRecipe = $_GET['filterRecipe'] ?? null; 
-        //     $filterRating = $_GET['filterRating'] ?? null;
-        //     $filterSentiment = $_GET['filterSentiment'] ?? null;  
-        //     $filterStartDate = $_GET['filterStartDate'] ?? null;
-        //     $filterStartTime = $_GET['filterStartTime'] ?? null;
-        //     $filterEndDate = $_GET['filterEndDate'] ?? null;
-        //     $filterEndTime = $_GET['filterEndTime'] ?? null;
+            $filterName = $_GET['filterName'] ?? null; 
+            $filterRecipe = $_GET['filterRecipe'] ?? null; 
+            $filterRating = $_GET['filterRating'] ?? null;
+            $filterSentiment = $_GET['filterSentiment'] ?? null;  
+            $filterStartDate = $_GET['filterStartDate'] ?? null;
+            $filterStartTime = $_GET['filterStartTime'] ?? null;
+            $filterEndDate = $_GET['filterEndDate'] ?? null;
+            $filterEndTime = $_GET['filterEndTime'] ?? null;
 
-        //     $params = [];
-        //     $conditions = [];
+            $params = [];
+            $conditions = [];
 
-        //     $query = "
-        //         SELECT 
-        //             prc.id,
-        //             prc.comment, 
-        //             prc.created_at, 
-        //             prc.positive,
-        //             prc.negative,
-        //             prc.neutral,
-        //             prc.sentiment,
-        //             prc.created_at,
-        //             u.first_name, 
-        //             u.last_name,
-        //             p.product_name
-        //         FROM 
-        //             product_review_comments_test prc
-        //         LEFT JOIN 
-        //             users u ON prc.authored_by = u.id
-        //         LEFT JOIN
-        //             products p ON prc.product_id = p.id
-        //     ";
+            $query = "
+                SELECT 
+                    prc.id,
+                    prc.comment, 
+                    prc.created_at, 
+                    prc.positive,
+                    prc.negative,
+                    prc.neutral,
+                    prc.sentiment,
+                    prc.created_at,
+                    u.first_name, 
+                    u.last_name,
+                    p.product_name
+                FROM 
+                    product_review_comments prc
+                LEFT JOIN 
+                    users u ON prc.authored_by = u.id
+                LEFT JOIN
+                    products p ON prc.product_id = p.id
+            ";
 
-        //     if (!empty($filterName)) {
-        //         $conditions[] = "CONCAT(u.first_name, ' ', u.last_name) LIKE :filterName";
-        //         $params[':filterName'] = '%' . $filterName . '%';
-        //     }
+            if (!empty($filterName)) {
+                $conditions[] = "CONCAT(u.first_name, ' ', u.last_name) LIKE :filterName";
+                $params[':filterName'] = '%' . $filterName . '%';
+            }
 
-        //     if (!empty($filterRecipe)) {
-        //         $conditions[] = "p.product_name LIKE :filterRecipe";
-        //         $params[':filterRecipe'] = '%' . $filterRecipe . '%';
-        //     }
+            if (!empty($filterRecipe)) {
+                $conditions[] = "p.product_name LIKE :filterRecipe";
+                $params[':filterRecipe'] = '%' . $filterRecipe . '%';
+            }
 
-        //     if (!empty($filterSentiment)) {
-        //         $conditions[] = "prc.sentiment = :filterSentiment";
-        //         $params[':filterSentiment'] = $filterSentiment;
-        //     }
+            if (!empty($filterSentiment)) {
+                $conditions[] = "prc.sentiment = :filterSentiment";
+                $params[':filterSentiment'] = $filterSentiment;
+            }
 
-        //     if (!empty($filterStartDate)) {
-        //         $conditions[] = "DATE(prc.created_at) >= :startDate";
-        //         $params[':startDate'] = $filterStartDate;
-        //     }
+            if (!empty($filterStartDate)) {
+                $conditions[] = "DATE(prc.created_at) >= :startDate";
+                $params[':startDate'] = $filterStartDate;
+            }
             
-        //     if (!empty($filterStartTime)) {
-        //         $conditions[] = "TIME(prc.created_at) >= :startTime";
-        //         $params[':startTime'] = $filterStartTime;
-        //     }
+            if (!empty($filterStartTime)) {
+                $conditions[] = "TIME(prc.created_at) >= :startTime";
+                $params[':startTime'] = $filterStartTime;
+            }
             
-        //     if (!empty($filterEndDate)) {
-        //         $conditions[] = "DATE(prc.created_at) <= :endDate";
-        //         $params[':endDate'] = $filterEndDate;
-        //     }
+            if (!empty($filterEndDate)) {
+                $conditions[] = "DATE(prc.created_at) <= :endDate";
+                $params[':endDate'] = $filterEndDate;
+            }
             
-        //     if (!empty($filterEndTime)) {
-        //         $conditions[] = "TIME(prc.created_at) <= :endTime";
-        //         $params[':endTime'] = $filterEndTime;
-        //     }
+            if (!empty($filterEndTime)) {
+                $conditions[] = "TIME(prc.created_at) <= :endTime";
+                $params[':endTime'] = $filterEndTime;
+            }
 
-        //     if (!empty($conditions)) {
-        //         $query .= " WHERE " . implode(" AND ", $conditions);
-        //     }
+            if (!empty($conditions)) {
+                $query .= " WHERE " . implode(" AND ", $conditions);
+            }
 
-        //     $query .= " ORDER BY prc.created_at DESC";
+            $query .= " ORDER BY prc.created_at DESC";
         
-        //     $result = $pdo->prepare($query);
-        //     $result->execute($params);
+            $result = $pdo->prepare($query);
+            $result->execute($params);
         
-        //     $output = "";
+            $output = "";
         
-        //     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         
-        //         $output .= "
+                $output .= "
 
-        //             <div class='reviewContainer' data-name='{$row['id']}>
-        //                 <p class='reviewTime'>{$row['created_at']}</p>
-        //                 <p class='reviewInformation'>
-        //                     {$row['comment']}   
-        //                 </p>
+                    <div class='reviewContainer' data-name='{$row['id']}>
+                        <p class='reviewTime'>{$row['created_at']}</p>
+                        <p class='reviewInformation'>
+                            {$row['comment']}   
+                        </p>
 
-        //                 <p class='reviewAuthor'>{$row['first_name']} {$row['last_name']}</p>
+                        <p class='reviewAuthor'>{$row['first_name']} {$row['last_name']}</p>
 
-        //                 <p class='reviewResults'>
-        //                     <span>Positive: {$row['positive']}</span>
-        //                     <span>Neutral: {$row['neutral']}</span>
-        //                     <span>Negative: {$row['negative']}</span>
-        //                 </p>
-        //             </div>
-        //         ";
+                        <p class='reviewResults'>
+                            <span>Positive: {$row['positive']}</span>
+                            <span>Neutral: {$row['neutral']}</span>
+                            <span>Negative: {$row['negative']}</span>
+                        </p>
+                    </div>
+                ";
                 
-        //     }
+            }
 
-        //     echo json_encode(['success' => true, 'content' => $output]);
-        //     break;
+            echo json_encode(['success' => true, 'content' => $output]);
+            break;
 
         default:
             # code...

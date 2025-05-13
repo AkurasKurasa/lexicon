@@ -56,10 +56,10 @@
 
         <section class="contentSection">
             <nav class="contentTop">
-                <div class="profileContainer">
+                <!-- <div class="profileContainer">
                     <p>John Doe</p>
                     <div class="profile"></div>
-                </div>
+                </div> -->
             </nav>
 
             <section class="contentBottom">
@@ -74,9 +74,9 @@
                         <div class="filtersContainer">
                             <select name="" id="filterLogsCategory" class="filterLogField">
                                 <option value="" selected>Select user type...</option>
-                                <option value="User">User</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Super-admin">Super-Admin</option>
+                                <option value="3">User</option>
+                                <option value="2">Admin</option>
+                                <option value="1">Super-Admin</option>
                             </select>
                         </div>
 

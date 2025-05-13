@@ -57,10 +57,10 @@
 
         <section class="contentSection">
             <nav class="contentTop">
-                <div class="profileContainer">
+                <!-- <div class="profileContainer">
                     <p>John Doe</p>
                     <div class="profile"></div>
-                </div>
+                </div> -->
             </nav>
 
             <section class="contentBottom">

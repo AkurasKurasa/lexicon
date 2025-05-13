@@ -157,6 +157,7 @@
                     $_SESSION['first_name'] = $session['first_name'];
                     $_SESSION['last_name'] = $session['last_name'];
                     $_SESSION['email'] = $session['email'];
+                    $_SESSION['role'] = $session['role'];
                     
                     // $_SESSION['password'] = $session['password'];
         

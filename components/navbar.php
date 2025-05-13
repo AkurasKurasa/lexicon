@@ -26,9 +26,18 @@ if (session_status() === PHP_SESSION_NONE) {
                 <li>
                 <a href="../views/myRecipes.php">My Recipes</a>
                 </li>
-                        <li>
-                            <a href="../components/logout.php">Logout</a>
-                        </li>
+
+                <?php if ( $_SESSION['role'] < 3 ): ?>
+                <li>
+                    <a href="../views/Admin.php">Admin Panel</a>
+                </li>
+                <?php else: ?>
+                    
+                <?php endif; ?>
+
+                <li>
+                    <a href="../components/logout.php">Logout</a>
+                </li>
             </ul>
         </li>
 
