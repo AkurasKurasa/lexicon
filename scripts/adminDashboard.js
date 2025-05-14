@@ -104,48 +104,118 @@ $(document).ready(function() {
 
       const ctx = document.getElementById('sentimentBar').getContext('2d');
 
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Positive', 'Negative', 'Neutral'],
-          datasets: [{
-            label: 'Sentiment Count',
-            data: [55, 25, 20], // example values, change as needed
-            backgroundColor: [
-              'rgba(75, 192, 192, 0.7)',   // Positive - greenish
-              'rgba(255, 99, 132, 0.7)',   // Negative - red
-              'rgba(201, 203, 207, 0.7)'   // Neutral - gray
-            ],
-            borderColor: [
-              'rgba(75, 192, 192, 1)',
-              'rgba(255, 99, 132, 1)',
-              'rgba(201, 203, 207, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: 'Sentiment Bar Chart'
-            },
-            legend: {
-              display: false
+      $.ajax({
+          url: "../controllers/adminFetch.php",
+          method: "GET",
+          data: { 
+            type: 'fetchData'
+          },
+          success: function(response) {
+            const data = JSON.parse(response);
+            if (data.success) {
+              console.log(data.positive);
+              console.log(data.negative);
+
+              var positives = data.positive;   // Example positive data
+              var negatives = data.negative;    // Example negative data
+
+              new Chart(document.getElementById('sentimentBar').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Sentiment'], // This is the label for the bar
+                    datasets: [{
+                        label: 'Positive',
+                        data: [positives],
+                        backgroundColor: 'rgba(75, 192, 192, 0.7)',   // Positive - greenish
+                        borderColor: 'rgba(75, 192, 192, 1)',         // Border color
+                        borderWidth: 1
+                    }, {
+                        label: 'Negative',
+                        data: [negatives],
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)',   // Negative - red
+                        borderColor: 'rgba(255, 99, 132, 1)',         // Border color
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Sentiment Bar Chart'
+                        },
+                        legend: {
+                            display: true
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,  // Enable stacking on x-axis
+                        },
+                        y: {
+                            stacked: true,  // Enable stacking on y-axis
+                            beginAtZero: true,  // Ensure the y-axis starts from 0
+                            title: {
+                                display: true,
+                                text: 'Sentiment Count'
+                            }
+                        }
+                    }
+                }
+            });
+
+            } else {
+              
             }
           },
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: 'Count'
-              }
-            }
+          error: function() {
+            alert("Something went wrong.");
           }
-        }
-      });
+        });
+
+
+      // new Chart(ctx, {
+      //   type: 'bar',
+      //   data: {
+      //     labels: ['Positive', 'Negative', 'Neutral'],
+      //     datasets: [{
+      //       label: 'Sentiment Count',
+      //       data: [55, 25, 20], // example values, change as needed
+      //       backgroundColor: [
+      //         'rgba(75, 192, 192, 0.7)',   // Positive - greenish
+      //         'rgba(255, 99, 132, 0.7)',   // Negative - red
+      //         'rgba(201, 203, 207, 0.7)'   // Neutral - gray
+      //       ],
+      //       borderColor: [
+      //         'rgba(75, 192, 192, 1)',
+      //         'rgba(255, 99, 132, 1)',
+      //         'rgba(201, 203, 207, 1)'
+      //       ],
+      //       borderWidth: 1
+      //     }]
+      //   },
+      //   options: {
+      //     responsive: true,
+      //     plugins: {
+      //       title: {
+      //         display: true,
+      //         text: 'Sentiment Bar Chart'
+      //       },
+      //       legend: {
+      //         display: false
+      //       }
+      //     },
+      //     scales: {
+      //       y: {
+      //         beginAtZero: true,
+      //         title: {
+      //           display: true,
+      //           text: 'Count'
+      //         }
+      //       }
+      //     }
+      //   }
+      // });
     })
 
     $('#sentimentPie').ready(function() {

@@ -12,7 +12,7 @@
         <section class="navigationSection">
 
             <div class="logo">
-                <h1 class="">Cooked.</h1>
+                <h1 class=""><a href="Home.php" style="text-decoration: none; color: inherit;">Cooked.</a></h1>
                 <h2 class="">ADMIN PANEL</h2>
             </div>
 

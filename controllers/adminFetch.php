@@ -431,6 +431,20 @@
             echo json_encode(['success' => true, 'content' => $output]);
             break;
 
+        case 'fetchData':
+            
+            $sql = "SELECT SUM(positive) AS total_positive, SUM(negative) AS total_negative FROM product_review_comments";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            // Fetch the result
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $totalPositive = $row['total_positive'] ?? 0;  // Default to 0 if no data
+            $totalNegative = $row['total_negative'] ?? 0;  // Default to 0 if no data
+
+            echo json_encode(['success' => true, 'positive' => $totalPositive, 'negative' => $totalNegative]);
+
         default:
             # code...
             break;

@@ -28,7 +28,7 @@ if (empty($_SESSION['id'])) {
 <div class="recipeContainer">
     <section class="headerSection">
 
-    <main>
+    <!-- <main> -->
         <!-- Section for the header -->
         <section class="headerSection">
         <div class="recipeHeader">

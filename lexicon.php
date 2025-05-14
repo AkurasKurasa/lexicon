@@ -46,7 +46,7 @@ function updateBar() {
 
                 $checkQuery = "SELECT COUNT(*) FROM categories WHERE category = :category";
                 $checkStmt = $pdo->prepare($checkQuery);
-                $checkStmt->execute(['category' => $category]);
+                $checkStmt->execute([':category' => $category]);
                 $exists = $checkStmt->fetchColumn();
 
                 if ($exists) {

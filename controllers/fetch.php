@@ -177,9 +177,9 @@
             $checkStmt->execute([':product_id' => $_GET['product_id'], ':user_id' => $_SESSION['id']]);
             $alreadyCommented = $checkStmt->fetchColumn() > 0;
 
-            $response["checkLoggedIn"] = true;
+            $checkLoggedIn = true;
             } else {
-            $response["checkLoggedIn"] = false;
+            $checkLoggedIn = false;
             }
             $response["alreadyCommented"] = $alreadyCommented;
 
@@ -191,7 +191,9 @@
             $response = [
                 "recipeInfo" => $recipeInfo[0],
                 "ratingsInfo" => $ratingsInfo,
-                "comment_id" => $usersCommented
+                "comment_id" => $usersCommented,
+                "alreadyCommented" => $alreadyCommented,
+                "checkLoggedIn" => $checkLoggedIn
             ];
             echo json_encode($response);
             break;
