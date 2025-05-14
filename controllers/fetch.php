@@ -381,9 +381,7 @@
             break;
             
             case 'fetchMyRecipes':
-                session_start();
-                $userId = $_SESSION['id'] ?? null;
-            
+                $userId = $_SESSION['id'] ?? null;            
                 if (!$userId) {
                     echo json_encode(['success' => false, 'message' => 'User not logged in.']);
                     break;
